@@ -1,0 +1,94 @@
+.cst_widget_knob{height:60px;width:60px;}
+.cst_icon{font-size:40px;font-style:normal;}
+.cst_icon1{color:#3276b1;}
+.cst_icon2{color:#0DB8DF;}
+.cst_icon3{color:#38D683;}
+label.error {font-weight: bold; color: #FF0064; padding: 2px 8px; margin-top: 2px;}
+ul.inliner {float: left; margin: 0; padding: 8px 0 0 0}
+ul.inliner li { position: relative; list-style: none; display: inline-block; width: 200px;}
+ul.inliner label {position: relative; right: -25px; top: -20px;}
+.status-span {display: inline-block; padding: 2px 12px; margin-bottom: 0; font-size: 14px; font-weight: normal; line-height: 1.428571429; text-align: center; white-space: nowrap; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px;
+}
+.user_color{color:#E58EED;}
+
+.err_field,.err_field:focus{ border-color:#EA3F3F !important}
+select.err_field ~ .select2-container { border:1.5px solid #EA3F3F !important; border-radius: 4px;}
+.job_card_content .col-xs-3 p{border-bottom:1px solid black;}
+.form-horizontal .cst-label,label.col-sm-2.cst-labels{
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.parent_diver{
+    margin-right: -15px;
+    margin-left: -15px;
+	margin-bottom:15px;
+}
+
+@media print
+   {
+.modal-header{margin-top:-3px; margin-bottom:-5px;}	   
+.print-modal-header{padding:0px 15px; margin-top:-10px; margin-bottom: -10px;}	   
+.panel-heading .row .col-xs-4 b {
+    display: block;
+}
+ .job_card_content p{
+    margin: 0 0 -10px !important;	 
+}
+ }
+.btm_border{border-bottom:1px solid black;}
+.mgn-top0{margin-top:0px; margin-bottom:0px;}
+.mgn-bot0{margin-bottom:0;}
+.new-footer{padding: 10px 20px 10px;}
+#padding_remover{padding:0px;}
+
+div#site {
+    background:none repeat scroll 0 0 rgba(0, 0, 0, 0.02);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.member .headline h3 span{background-color:#48608E}
+
+.member1 .headline h3 span{background-color:#FFA200}
+.member1 .value{color:#FFA200}
+.member2 .headline h3 span{background-color:#A786CA}
+.member2 .value{color:#A786CA}
+.member3 .headline h3 span{background-color:#38D683}
+.member3 .value{color:#38D683}
+.member5 .headline h3 span{background-color:#38D683}
+.member5 .value{color:#38D683}
+.member4 .headline h3 span{background-color:#0DB8DF}
+.member4 .value{color:#0DB8DF}
+
+.price-component:before {
+    content: "Works & Price List" !important;
+}
+.action-component:before {
+    content: "Main Section" !important;
+}
+
+.cst_bg_cl1{color:#38D683;}
+.cst_bg_cl2{color:#ED956E;}
+.cst_bg_cl3{color:#53B5E6;}
+.cst_bg_cl4{color:#A786CB;}
+.cst_bg_cl5{color:#19B698;}
+.cst_bg_cl6{color:#0090D9;}
+.cst_bg_cl7{color:#FF6B6B;}
+.cst_bg_cl8{color:#0090D9;}
+.cst_bg_cl9{color:#19B698;}
+.cst_bg_cl10{color:#A786CB;}
+.cst_bg_cl11{color:#53B5E6; }
+.cst_bg_cl12{color:#ED956E;}
+.cst_bg_cl13{color:#38D683;}
+
+table td.texter-right{text-align:right !important;}
+
+.footable > tfoot > tr > th, .footable > tfoot > tr > td{color:#000 !important;}
+
+.titler{margin-top:0px; text-align:center; color:#FEE900;}
+#logo-login h4{text-align:center; color:#04ABEE; font-weight:bold;}
+#logo-login h5{text-align:center}
+
+

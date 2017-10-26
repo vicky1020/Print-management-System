@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Report";
+}
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example1').dataTable();
+    })</script>
+<h2>Report</h2>
+<div class="container" align="center">
+    <table id="example1" class="display table table-bordered " cellspacing="0" width="100%">
+
+        <thead>
+            <tr>
+                <th>[OrderId]</th>
+                <th>[ProductItemId]</th>
+                <th>[PaperGSM]</th>
+                <th>[PaperColor]</th>
+                <th>[PaperSize]</th>
+                <th>[PaperQuality]</th>
+                <th>[PaperSides]</th>
+                <th>[LedgerFalio]</th>
+                <th>[AdditionalPaperCount]</th>
+                <th>[AdditionalPaperSize]</th>
+                <th>[AdditonalPaperGSM]</th>
+                <th>[Quantity]</th>
+                <th>[Amount]</th>
+                <th>[CreatedBy]</th>
+                <th>[CreatedDate]</th>
+                <th>[JobStatus]</th>
+                <th>[Active]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.ProductItemId</td>
+                    <td>@item.PaperGSM</td>
+                <td>@item.PaperColor</td>
+                <td>@item.PaperSize</td>
+                <td>@item.PaperQuality</td>
+                <td>@item.PaperSides</td>
+                <td>@item.LedgerFalio</td>
+                <td>@item.AdditionalPaperCount</td>
+                <td>@item.AdditionalPaperSize</td>
+                <td>@item.AdditonalPaperGSM</td>
+                <td>@item.Quantity</td>
+                <td>@item.Amount</td>
+                <td>@item.CreatedBy</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.JobStatus</td>
+                <td>
+                    <select class="form-control">
+                        <option>Delivered</option>
+                        <option>Pending</option>
+                    </select>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

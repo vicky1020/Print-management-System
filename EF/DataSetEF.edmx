@@ -1,0 +1,788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PrintManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationId" />
+          </Key>
+          <Property Name="ConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationTypeId" Type="int" Nullable="false" />
+          <Property Name="ConfigurationValue" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConfigurationType">
+          <Key>
+            <PropertyRef Name="ConfigurationTypeId" />
+          </Key>
+          <Property Name="ConfigurationTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDisplayConfig">
+          <Key>
+            <PropertyRef Name="ItemDisplayConfigId" />
+          </Key>
+          <Property Name="ItemDisplayConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductItemId" Type="int" Nullable="false" />
+          <Property Name="PaperGSM" Type="bit" Nullable="false" />
+          <Property Name="PaperColor" Type="bit" Nullable="false" />
+          <Property Name="PaperSize" Type="bit" Nullable="false" />
+          <Property Name="PaperQuality" Type="bit" Nullable="false" />
+          <Property Name="PaperSides" Type="bit" Nullable="false" />
+          <Property Name="LedgerFalio" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobProcessType">
+          <Key>
+            <PropertyRef Name="JobProcessTypeId" />
+          </Key>
+          <Property Name="JobProcessTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobProcessType" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrintManagementSystem.dbo.LedgerFalio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LedgerFalio">
+          <Key>
+            <PropertyRef Name="LedgerFalioId" />
+            <PropertyRef Name="LedgerFalioValue" />
+          </Key>
+          <Property Name="LedgerFalioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LedgerFalioValue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderConfiguration">
+          <Key>
+            <PropertyRef Name="OrderConfigurationId" />
+          </Key>
+          <Property Name="OrderConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductItemId" Type="int" Nullable="false" />
+          <Property Name="PaperGSMId" Type="int" />
+          <Property Name="PaperColorId" Type="int" />
+          <Property Name="PaperSizeId" Type="int" />
+          <Property Name="PaperQualityId" Type="int" />
+          <Property Name="PaperSidesId" Type="int" />
+          <Property Name="LedgerFalioId" Type="int" />
+          <Property Name="AdditionalPaperCount" Type="int" />
+          <Property Name="AdditionalPaperSizeId" Type="int" />
+          <Property Name="AdditonalPaperGSMId" Type="int" />
+          <Property Name="MinRange" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MaxRange" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductItemId" Type="int" Nullable="false" />
+          <Property Name="PaperGSM" Type="int" />
+          <Property Name="PaperColor" Type="varchar" MaxLength="256" />
+          <Property Name="PaperSize" Type="varchar" MaxLength="256" />
+          <Property Name="PaperQuality" Type="varchar" MaxLength="256" />
+          <Property Name="PaperSides" Type="varchar" MaxLength="256" />
+          <Property Name="LedgerFalio" Type="int" />
+          <Property Name="AdditionalPaperCount" Type="int" />
+          <Property Name="AdditionalPaperSize" Type="varchar" MaxLength="256" />
+          <Property Name="AdditonalPaperGSM" Type="varchar" MaxLength="256" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="JobStatus" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaperGSM">
+          <Key>
+            <PropertyRef Name="PaperGSMId" />
+          </Key>
+          <Property Name="PaperGSMId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaperGSMVal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaperQuality">
+          <Key>
+            <PropertyRef Name="PaperQualityId" />
+          </Key>
+          <Property Name="PaperQualityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QualityName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaperSides">
+          <Key>
+            <PropertyRef Name="PaperSideId" />
+          </Key>
+          <Property Name="PaperSideId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaperSideName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PaperSize">
+          <Key>
+            <PropertyRef Name="PaperSizeId" />
+          </Key>
+          <Property Name="PaperSizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaperSize" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="PrintingColour">
+          <Key>
+            <PropertyRef Name="PrintingColourId" />
+          </Key>
+          <Property Name="PrintingColourId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrintColourName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductItem">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="UserRolesId" />
+          </Key>
+          <Property Name="UserRolesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UsersId" />
+          </Key>
+          <Property Name="UsersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SecurityQuestionId" Type="int" Nullable="false" />
+          <Property Name="SecurityAnswer" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSecurityQuestion">
+          <Key>
+            <PropertyRef Name="UserSecurityQuestionId" />
+          </Key>
+          <Property Name="UserSecurityQuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Configuration_Configuration_TypeId">
+          <End Role="ConfigurationType" Type="Self.ConfigurationType" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ConfigurationType">
+              <PropertyRef Name="ConfigurationTypeId" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="ConfigurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemDisplayConfig_ItemDisplayConfig">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
+          <End Role="ItemDisplayConfig" Type="Self.ItemDisplayConfig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ItemDisplayConfig">
+              <PropertyRef Name="ItemDisplayConfigId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Order_Product">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderConfigurations_OrderConfigurations">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
+          <End Role="OrderConfiguration" Type="Self.OrderConfiguration" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderConfiguration">
+              <PropertyRef Name="OrderConfigurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users_Roles">
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="UserRolesId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users_SecuirtyQuestion">
+          <End Role="UserSecurityQuestion" Type="Self.UserSecurityQuestion" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserSecurityQuestion">
+              <PropertyRef Name="UserSecurityQuestionId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrintManagementSystemModelStoreContainer">
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConfigurationType" EntityType="Self.ConfigurationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemDisplayConfig" EntityType="Self.ItemDisplayConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobProcessType" EntityType="Self.JobProcessType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderConfiguration" EntityType="Self.OrderConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaperGSM" EntityType="Self.PaperGSM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaperQuality" EntityType="Self.PaperQuality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaperSides" EntityType="Self.PaperSides" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintingColour" EntityType="Self.PrintingColour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductItem" EntityType="Self.ProductItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSecurityQuestion" EntityType="Self.UserSecurityQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LedgerFalio" EntityType="Self.LedgerFalio" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LedgerFalio].[LedgerFalioId] AS [LedgerFalioId], 
+    [LedgerFalio].[LedgerFalioValue] AS [LedgerFalioValue]
+    FROM [dbo].[LedgerFalio] AS [LedgerFalio]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PaperSize" EntityType="Self.PaperSize" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PaperSize].[PaperSizeId] AS [PaperSizeId], 
+    [PaperSize].[PaperSize] AS [PaperSize]
+    FROM [dbo].[PaperSize] AS [PaperSize]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Configuration_Configuration_TypeId" Association="Self.FK_Configuration_Configuration_TypeId">
+            <End Role="ConfigurationType" EntitySet="ConfigurationType" />
+            <End Role="Configuration" EntitySet="Configuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemDisplayConfig_ItemDisplayConfig" Association="Self.FK_ItemDisplayConfig_ItemDisplayConfig">
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="ItemDisplayConfig" EntitySet="ItemDisplayConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Order_Product" Association="Self.FK_Order_Order_Product">
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderConfigurations_OrderConfigurations" Association="Self.FK_OrderConfigurations_OrderConfigurations">
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="OrderConfiguration" EntitySet="OrderConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users_Roles" Association="Self.FK_Users_Users_Roles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users_SecuirtyQuestion" Association="Self.FK_Users_Users_SecuirtyQuestion">
+            <End Role="UserSecurityQuestion" EntitySet="UserSecurityQuestion" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrintManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationId" />
+          </Key>
+          <Property Name="ConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ConfigurationValue" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ConfigurationType" Relationship="Self.FK_Configuration_Configuration_TypeId" FromRole="Configuration" ToRole="ConfigurationType" />
+        </EntityType>
+        <EntityType Name="ConfigurationType">
+          <Key>
+            <PropertyRef Name="ConfigurationTypeId" />
+          </Key>
+          <Property Name="ConfigurationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_Configuration_Configuration_TypeId" FromRole="ConfigurationType" ToRole="Configuration" />
+        </EntityType>
+        <EntityType Name="ItemDisplayConfig">
+          <Key>
+            <PropertyRef Name="ItemDisplayConfigId" />
+          </Key>
+          <Property Name="ItemDisplayConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductItemId" Type="Int32" Nullable="false" />
+          <Property Name="PaperGSM" Type="Boolean" Nullable="false" />
+          <Property Name="PaperColor" Type="Boolean" Nullable="false" />
+          <Property Name="PaperSize" Type="Boolean" Nullable="false" />
+          <Property Name="PaperQuality" Type="Boolean" Nullable="false" />
+          <Property Name="PaperSides" Type="Boolean" Nullable="false" />
+          <Property Name="LedgerFalio" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductItem" Relationship="Self.FK_ItemDisplayConfig_ItemDisplayConfig" FromRole="ItemDisplayConfig" ToRole="ProductItem" />
+        </EntityType>
+        <EntityType Name="JobProcessType">
+          <Key>
+            <PropertyRef Name="JobProcessTypeId" />
+          </Key>
+          <Property Name="JobProcessTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobProcessType1" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderConfiguration">
+          <Key>
+            <PropertyRef Name="OrderConfigurationId" />
+          </Key>
+          <Property Name="OrderConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductItemId" Type="Int32" Nullable="false" />
+          <Property Name="PaperGSMId" Type="Int32" />
+          <Property Name="PaperColorId" Type="Int32" />
+          <Property Name="PaperSizeId" Type="Int32" />
+          <Property Name="PaperQualityId" Type="Int32" />
+          <Property Name="PaperSidesId" Type="Int32" />
+          <Property Name="LedgerFalioId" Type="Int32" />
+          <Property Name="AdditionalPaperCount" Type="Int32" />
+          <Property Name="AdditionalPaperSizeId" Type="Int32" />
+          <Property Name="AdditonalPaperGSMId" Type="Int32" />
+          <Property Name="MinRange" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MaxRange" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductItem" Relationship="Self.FK_OrderConfigurations_OrderConfigurations" FromRole="OrderConfiguration" ToRole="ProductItem" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductItemId" Type="Int32" Nullable="false" />
+          <Property Name="PaperGSM" Type="Int32" />
+          <Property Name="PaperColor" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperSize" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperQuality" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperSides" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="LedgerFalio" Type="Int32" />
+          <Property Name="AdditionalPaperCount" Type="Int32" />
+          <Property Name="AdditionalPaperSize" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="AdditonalPaperGSM" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JobStatus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductItem" Relationship="Self.FK_Order_Order_Product" FromRole="OrderItem" ToRole="ProductItem" />
+        </EntityType>
+        <EntityType Name="PaperGSM">
+          <Key>
+            <PropertyRef Name="PaperGSMId" />
+          </Key>
+          <Property Name="PaperGSMId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaperGSMVal" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaperQuality">
+          <Key>
+            <PropertyRef Name="PaperQualityId" />
+          </Key>
+          <Property Name="PaperQualityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QualityName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaperSide">
+          <Key>
+            <PropertyRef Name="PaperSideId" />
+          </Key>
+          <Property Name="PaperSideId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaperSideName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrintingColour">
+          <Key>
+            <PropertyRef Name="PrintingColourId" />
+          </Key>
+          <Property Name="PrintingColourId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintColourName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductItem">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ItemDisplayConfig" Relationship="Self.FK_ItemDisplayConfig_ItemDisplayConfig" FromRole="ProductItem" ToRole="ItemDisplayConfig" />
+          <NavigationProperty Name="OrderConfiguration" Relationship="Self.FK_OrderConfigurations_OrderConfigurations" FromRole="ProductItem" ToRole="OrderConfiguration" />
+          <NavigationProperty Name="OrderItem" Relationship="Self.FK_Order_Order_Product" FromRole="ProductItem" ToRole="OrderItem" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRolesId" />
+          </Key>
+          <Property Name="UserRolesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Users_Users_Roles" FromRole="UserRoles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UsersId" />
+          </Key>
+          <Property Name="UsersId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecurityQuestionId" Type="Int32" Nullable="false" />
+          <Property Name="SecurityAnswer" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_Users_Users_Roles" FromRole="Users" ToRole="UserRoles" />
+          <NavigationProperty Name="UserSecurityQuestion" Relationship="Self.FK_Users_Users_SecuirtyQuestion" FromRole="Users" ToRole="UserSecurityQuestion" />
+        </EntityType>
+        <EntityType Name="UserSecurityQuestion">
+          <Key>
+            <PropertyRef Name="UserSecurityQuestionId" />
+          </Key>
+          <Property Name="UserSecurityQuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Users_Users_SecuirtyQuestion" FromRole="UserSecurityQuestion" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="LedgerFalio">
+          <Key>
+            <PropertyRef Name="LedgerFalioId" />
+            <PropertyRef Name="LedgerFalioValue" />
+          </Key>
+          <Property Name="LedgerFalioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LedgerFalioValue" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaperSize">
+          <Key>
+            <PropertyRef Name="PaperSizeId" />
+          </Key>
+          <Property Name="PaperSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaperSize1" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Configuration_Configuration_TypeId">
+          <End Role="ConfigurationType" Type="Self.ConfigurationType" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ConfigurationType">
+              <PropertyRef Name="ConfigurationTypeId" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="ConfigurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemDisplayConfig_ItemDisplayConfig">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
+          <End Role="ItemDisplayConfig" Type="Self.ItemDisplayConfig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ItemDisplayConfig">
+              <PropertyRef Name="ItemDisplayConfigId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderConfigurations_OrderConfigurations">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
+          <End Role="OrderConfiguration" Type="Self.OrderConfiguration" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderConfiguration">
+              <PropertyRef Name="OrderConfigurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Order_Product">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users_Roles">
+          <End Role="UserRoles" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="UserRolesId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users_SecuirtyQuestion">
+          <End Role="UserSecurityQuestion" Type="Self.UserSecurityQuestion" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserSecurityQuestion">
+              <PropertyRef Name="UserSecurityQuestionId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrintManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="ConfigurationTypes" EntityType="Self.ConfigurationType" />
+          <EntitySet Name="ItemDisplayConfigs" EntityType="Self.ItemDisplayConfig" />
+          <EntitySet Name="JobProcessTypes" EntityType="Self.JobProcessType" />
+          <EntitySet Name="OrderConfigurations" EntityType="Self.OrderConfiguration" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+          <EntitySet Name="PaperGSMs" EntityType="Self.PaperGSM" />
+          <EntitySet Name="PaperQualities" EntityType="Self.PaperQuality" />
+          <EntitySet Name="PaperSides" EntityType="Self.PaperSide" />
+          <EntitySet Name="PrintingColours" EntityType="Self.PrintingColour" />
+          <EntitySet Name="ProductItems" EntityType="Self.ProductItem" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserSecurityQuestions" EntityType="Self.UserSecurityQuestion" />
+          <EntitySet Name="LedgerFalios" EntityType="Self.LedgerFalio" />
+          <EntitySet Name="PaperSizes" EntityType="Self.PaperSize" />
+          <AssociationSet Name="FK_Configuration_Configuration_TypeId" Association="Self.FK_Configuration_Configuration_TypeId">
+            <End Role="ConfigurationType" EntitySet="ConfigurationTypes" />
+            <End Role="Configuration" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemDisplayConfig_ItemDisplayConfig" Association="Self.FK_ItemDisplayConfig_ItemDisplayConfig">
+            <End Role="ProductItem" EntitySet="ProductItems" />
+            <End Role="ItemDisplayConfig" EntitySet="ItemDisplayConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderConfigurations_OrderConfigurations" Association="Self.FK_OrderConfigurations_OrderConfigurations">
+            <End Role="ProductItem" EntitySet="ProductItems" />
+            <End Role="OrderConfiguration" EntitySet="OrderConfigurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Order_Product" Association="Self.FK_Order_Order_Product">
+            <End Role="ProductItem" EntitySet="ProductItems" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users_Roles" Association="Self.FK_Users_Users_Roles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users_SecuirtyQuestion" Association="Self.FK_Users_Users_SecuirtyQuestion">
+            <End Role="UserSecurityQuestion" EntitySet="UserSecurityQuestions" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PrintManagementSystemModelStoreContainer" CdmEntityContainer="PrintManagementSystemEntities">
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="ConfigurationId" ColumnName="ConfigurationId" />
+                <ScalarProperty Name="ConfigurationTypeId" ColumnName="ConfigurationTypeId" />
+                <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConfigurationTypes">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.ConfigurationType">
+              <MappingFragment StoreEntitySet="ConfigurationType">
+                <ScalarProperty Name="ConfigurationTypeId" ColumnName="ConfigurationTypeId" />
+                <ScalarProperty Name="ConfigurationName" ColumnName="ConfigurationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemDisplayConfigs">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.ItemDisplayConfig">
+              <MappingFragment StoreEntitySet="ItemDisplayConfig">
+                <ScalarProperty Name="ItemDisplayConfigId" ColumnName="ItemDisplayConfigId" />
+                <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
+                <ScalarProperty Name="PaperGSM" ColumnName="PaperGSM" />
+                <ScalarProperty Name="PaperColor" ColumnName="PaperColor" />
+                <ScalarProperty Name="PaperSize" ColumnName="PaperSize" />
+                <ScalarProperty Name="PaperQuality" ColumnName="PaperQuality" />
+                <ScalarProperty Name="PaperSides" ColumnName="PaperSides" />
+                <ScalarProperty Name="LedgerFalio" ColumnName="LedgerFalio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobProcessTypes">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.JobProcessType">
+              <MappingFragment StoreEntitySet="JobProcessType">
+                <ScalarProperty Name="JobProcessTypeId" ColumnName="JobProcessTypeId" />
+                <ScalarProperty Name="JobProcessType1" ColumnName="JobProcessType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderConfigurations">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.OrderConfiguration">
+              <MappingFragment StoreEntitySet="OrderConfiguration">
+                <ScalarProperty Name="OrderConfigurationId" ColumnName="OrderConfigurationId" />
+                <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
+                <ScalarProperty Name="PaperGSMId" ColumnName="PaperGSMId" />
+                <ScalarProperty Name="PaperColorId" ColumnName="PaperColorId" />
+                <ScalarProperty Name="PaperSizeId" ColumnName="PaperSizeId" />
+                <ScalarProperty Name="PaperQualityId" ColumnName="PaperQualityId" />
+                <ScalarProperty Name="PaperSidesId" ColumnName="PaperSidesId" />
+                <ScalarProperty Name="LedgerFalioId" ColumnName="LedgerFalioId" />
+                <ScalarProperty Name="AdditionalPaperCount" ColumnName="AdditionalPaperCount" />
+                <ScalarProperty Name="AdditionalPaperSizeId" ColumnName="AdditionalPaperSizeId" />
+                <ScalarProperty Name="AdditonalPaperGSMId" ColumnName="AdditonalPaperGSMId" />
+                <ScalarProperty Name="MinRange" ColumnName="MinRange" />
+                <ScalarProperty Name="MaxRange" ColumnName="MaxRange" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
+                <ScalarProperty Name="PaperGSM" ColumnName="PaperGSM" />
+                <ScalarProperty Name="PaperColor" ColumnName="PaperColor" />
+                <ScalarProperty Name="PaperSize" ColumnName="PaperSize" />
+                <ScalarProperty Name="PaperQuality" ColumnName="PaperQuality" />
+                <ScalarProperty Name="PaperSides" ColumnName="PaperSides" />
+                <ScalarProperty Name="LedgerFalio" ColumnName="LedgerFalio" />
+                <ScalarProperty Name="AdditionalPaperCount" ColumnName="AdditionalPaperCount" />
+                <ScalarProperty Name="AdditionalPaperSize" ColumnName="AdditionalPaperSize" />
+                <ScalarProperty Name="AdditonalPaperGSM" ColumnName="AdditonalPaperGSM" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaperGSMs">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperGSM">
+              <MappingFragment StoreEntitySet="PaperGSM">
+                <ScalarProperty Name="PaperGSMId" ColumnName="PaperGSMId" />
+                <ScalarProperty Name="PaperGSMVal" ColumnName="PaperGSMVal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaperQualities">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperQuality">
+              <MappingFragment StoreEntitySet="PaperQuality">
+                <ScalarProperty Name="PaperQualityId" ColumnName="PaperQualityId" />
+                <ScalarProperty Name="QualityName" ColumnName="QualityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaperSides">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperSide">
+              <MappingFragment StoreEntitySet="PaperSides">
+                <ScalarProperty Name="PaperSideId" ColumnName="PaperSideId" />
+                <ScalarProperty Name="PaperSideName" ColumnName="PaperSideName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintingColours">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.PrintingColour">
+              <MappingFragment StoreEntitySet="PrintingColour">
+                <ScalarProperty Name="PrintingColourId" ColumnName="PrintingColourId" />
+                <ScalarProperty Name="PrintColourName" ColumnName="PrintColourName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductItems">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.ProductItem">
+              <MappingFragment StoreEntitySet="ProductItem">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="UserRolesId" ColumnName="UserRolesId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SecurityQuestionId" ColumnName="SecurityQuestionId" />
+                <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSecurityQuestions">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.UserSecurityQuestion">
+              <MappingFragment StoreEntitySet="UserSecurityQuestion">
+                <ScalarProperty Name="UserSecurityQuestionId" ColumnName="UserSecurityQuestionId" />
+                <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LedgerFalios">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.LedgerFalio">
+              <MappingFragment StoreEntitySet="LedgerFalio">
+                <ScalarProperty Name="LedgerFalioId" ColumnName="LedgerFalioId" />
+                <ScalarProperty Name="LedgerFalioValue" ColumnName="LedgerFalioValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaperSizes">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperSize">
+              <MappingFragment StoreEntitySet="PaperSize">
+                <ScalarProperty Name="PaperSizeId" ColumnName="PaperSizeId" />
+                <ScalarProperty Name="PaperSize1" ColumnName="PaperSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,135 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#page-content-wrapper {
+    padding-left: 0;
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+/*custom style*/
+.header-cont {
+    width: 100%;
+    height: 80px;
+    background-color: #222222;
+    top: 0;
+    left: 0;
+    position: fixed;
+    padding: 0 5px;
+    -webkit-transition: left 500ms;
+    transition: left 500ms;
+}
+
+.menu-cont {
+    width: 40px;
+    float: left;
+    font-size: 15px;
+}
+.menu-text {
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 80px;
+}
+
+.heading-cont {
+    width: 65%;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 26px 0;
+}
+
+.profile-cont {
+    float: right;
+    margin-top: -61px;
+    width: 100px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.profile-user, .profile-logout {
+    float: right;
+}
+
+.side-navbar {
+    left: -14%;
+    width: 14%;
+    height: 100%;
+    padding-top: 90px;
+    background-color: #222222;
+    top: 0;
+    position: fixed;
+    text-align: center;
+    -webkit-transition: left 500ms;
+    transition: left 500ms;
+}
+
+.menu-item {
+    margin: 20px 10px;
+    background-color: #222222;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.menu-item a {
+    color: #999999 !important;
+}
+
+.menu-item:hover a {
+    color: #FFFFFF !important;
+    text-decoration: none;
+}
+
+.login .side-navbar {
+    display: none;
+}
+
+.body-content {
+    margin-top: 80px;
+    margin-left: 0;
+    -webkit-transition: margin-left 500ms;
+    transition: margin-left 500ms;
+}
+
+.show-menu .side-navbar {
+    left: 0;
+    -webkit-transition: left 500ms;
+    transition: left 500ms;
+}
+
+.show-menu .header-cont{
+    left: 14%;
+    -webkit-transition: left 500ms;
+    transition: left 500ms;
+}
+
+.show-menu .body-content{
+    margin-left: 14%;
+    -webkit-transition: margin-left 500ms;
+    transition: margin-left 500ms;
+}
