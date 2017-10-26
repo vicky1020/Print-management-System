@@ -17,6 +17,7 @@ namespace PrintManagement.Common.Mapping
             {
                 cfg.CreateMap<Configuration, ConfigurationModel>();
                 cfg.CreateMap<ConfigurationType, ConfigurationTypeModel>();
+                cfg.CreateMap<Customer, CustomerModel>();
                 cfg.CreateMap<ItemDisplayConfig, ItemDisplayConfigModel>();
                 cfg.CreateMap<JobProcessType, JobProcessTypeModel>();
                 cfg.CreateMap<LedgerFalio, LedgerFalioModel>();
@@ -34,6 +35,7 @@ namespace PrintManagement.Common.Mapping
                 cfg.CreateMap<User, UserModel>();
                 cfg.CreateMap<ConfigurationModel, Configuration>();
                 cfg.CreateMap<ConfigurationTypeModel, ConfigurationType>();
+                cfg.CreateMap<CustomerModel, Customer>();
                 cfg.CreateMap<ItemDisplayConfigModel, ItemDisplayConfig>();
                 cfg.CreateMap<JobProcessTypeModel, JobProcessType>();
                 cfg.CreateMap<LedgerFalioModel, LedgerFalio>();
@@ -72,6 +74,12 @@ namespace PrintManagement.Common.Mapping
         {
             ConfigurationTypeModel configType = Mapper.Map<ConfigurationType, ConfigurationTypeModel>(item);
             return configType;
+        }
+
+        public static CustomerModel ToCustomerModel(this Customer item)
+        {
+            CustomerModel customer = Mapper.Map<Customer, CustomerModel>(item);
+            return customer;
         }
 
         public static ItemDisplayConfigModel ToItemDisplayConfigTypeModel(this ItemDisplayConfig item)
@@ -131,7 +139,7 @@ namespace PrintManagement.Common.Mapping
             return userRole;
         }
 
-        public static UserSecurityQuestionModel UserSecurityQuestionModelModel(this UserSecurityQuestion item)
+        public static UserSecurityQuestionModel ToUserSecurityQuestionModel(this UserSecurityQuestion item)
         {
             UserSecurityQuestionModel userSecurityQuestion =    Mapper.Map<UserSecurityQuestion, UserSecurityQuestionModel>(item);
             return userSecurityQuestion;
@@ -154,6 +162,12 @@ namespace PrintManagement.Common.Mapping
         {
             ConfigurationType configType = Mapper.Map<ConfigurationTypeModel, ConfigurationType>(item);
             return configType;
+        }
+
+        public static Customer ToCustomerEntity(this CustomerModel item)
+        {
+            Customer customer = Mapper.Map<CustomerModel, Customer>(item);
+            return customer;
         }
 
         public static ItemDisplayConfig ToItemDisplayConfigTypeEntity(this ItemDisplayConfigModel item)

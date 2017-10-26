@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PrintManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PrintManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Configuration">
           <Key>
             <PropertyRef Name="ConfigurationId" />
           </Key>
           <Property Name="ConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ConfigurationTypeId" Type="int" Nullable="false" />
+          <Property Name="ConfigurationName" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="ConfigurationValue" Type="varchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="ConfigurationType">
@@ -191,15 +192,15 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="UserSecurityQuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QuestionName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Configuration_Configuration_TypeId">
+        <Association Name="FK_Configuration_Configuration_Typeid">
           <End Role="ConfigurationType" Type="Self.ConfigurationType" Multiplicity="1" />
-          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ConfigurationType">
               <PropertyRef Name="ConfigurationTypeId" />
             </Principal>
             <Dependent Role="Configuration">
-              <PropertyRef Name="ConfigurationId" />
+              <PropertyRef Name="ConfigurationTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -313,7 +314,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
     [PaperSize].[PaperSize] AS [PaperSize]
     FROM [dbo].[PaperSize] AS [PaperSize]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Configuration_Configuration_TypeId" Association="Self.FK_Configuration_Configuration_TypeId">
+          <AssociationSet Name="FK_Configuration_Configuration_Typeid" Association="Self.FK_Configuration_Configuration_Typeid">
             <End Role="ConfigurationType" EntitySet="ConfigurationType" />
             <End Role="Configuration" EntitySet="Configuration" />
           </AssociationSet>
@@ -353,8 +354,9 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           </Key>
           <Property Name="ConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ConfigurationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ConfigurationName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ConfigurationValue" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ConfigurationType" Relationship="Self.FK_Configuration_Configuration_TypeId" FromRole="Configuration" ToRole="ConfigurationType" />
+          <NavigationProperty Name="ConfigurationType" Relationship="Self.FK_Configuration_Configuration_Typeid" FromRole="Configuration" ToRole="ConfigurationType" />
         </EntityType>
         <EntityType Name="ConfigurationType">
           <Key>
@@ -362,7 +364,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           </Key>
           <Property Name="ConfigurationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ConfigurationName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Configuration" Relationship="Self.FK_Configuration_Configuration_TypeId" FromRole="ConfigurationType" ToRole="Configuration" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_Configuration_Configuration_Typeid" FromRole="ConfigurationType" ToRole="Configuration" />
         </EntityType>
         <EntityType Name="ItemDisplayConfig">
           <Key>
@@ -384,7 +386,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           </Key>
           <Property Name="JobProcessTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JobProcessType1" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItem_OrderItem_JobProcessType" FromRole="JobProcessType" ToRole="OrderItem" />
+          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_OrderItem_JobProcessType" FromRole="JobProcessType" ToRole="OrderItem" />
         </EntityType>
         <EntityType Name="OrderConfiguration">
           <Key>
@@ -472,7 +474,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="ItemName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ItemDisplayConfig" Relationship="Self.FK_ItemDisplayConfig_ItemDisplayConfig" FromRole="ProductItem" ToRole="ItemDisplayConfig" />
           <NavigationProperty Name="OrderConfiguration" Relationship="Self.FK_OrderConfigurations_OrderConfigurations" FromRole="ProductItem" ToRole="OrderConfiguration" />
-          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItem_OrderItem_Product" FromRole="ProductItem" ToRole="OrderItem" />
+          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_OrderItem_Product" FromRole="ProductItem" ToRole="OrderItem" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -541,15 +543,15 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="PaperSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PaperSize1" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK_Configuration_Configuration_TypeId">
+        <Association Name="FK_Configuration_Configuration_Typeid">
           <End Role="ConfigurationType" Type="Self.ConfigurationType" Multiplicity="1" />
-          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ConfigurationType">
               <PropertyRef Name="ConfigurationTypeId" />
             </Principal>
             <Dependent Role="Configuration">
-              <PropertyRef Name="ConfigurationId" />
+              <PropertyRef Name="ConfigurationTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -626,50 +628,50 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PrintManagementSystemEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
-          <EntitySet Name="ConfigurationTypes" EntityType="Self.ConfigurationType" />
-          <EntitySet Name="ItemDisplayConfigs" EntityType="Self.ItemDisplayConfig" />
-          <EntitySet Name="JobProcessTypes" EntityType="Self.JobProcessType" />
-          <EntitySet Name="OrderConfigurations" EntityType="Self.OrderConfiguration" />
-          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
-          <EntitySet Name="PaperGSMs" EntityType="Self.PaperGSM" />
-          <EntitySet Name="PaperQualities" EntityType="Self.PaperQuality" />
-          <EntitySet Name="PaperSides" EntityType="Self.PaperSide" />
-          <EntitySet Name="PrintingColours" EntityType="Self.PrintingColour" />
-          <EntitySet Name="ProductItems" EntityType="Self.ProductItem" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
-          <EntitySet Name="UserSecurityQuestions" EntityType="Self.UserSecurityQuestion" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="LedgerFalios" EntityType="Self.LedgerFalio" />
-          <EntitySet Name="PaperSizes" EntityType="Self.PaperSize" />
-          <AssociationSet Name="FK_Configuration_Configuration_TypeId" Association="Self.FK_Configuration_Configuration_TypeId">
-            <End Role="ConfigurationType" EntitySet="ConfigurationTypes" />
-            <End Role="Configuration" EntitySet="Configurations" />
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" />
+          <EntitySet Name="ConfigurationType" EntityType="Self.ConfigurationType" />
+          <EntitySet Name="ItemDisplayConfig" EntityType="Self.ItemDisplayConfig" />
+          <EntitySet Name="JobProcessType" EntityType="Self.JobProcessType" />
+          <EntitySet Name="OrderConfiguration" EntityType="Self.OrderConfiguration" />
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" />
+          <EntitySet Name="PaperGSM" EntityType="Self.PaperGSM" />
+          <EntitySet Name="PaperQuality" EntityType="Self.PaperQuality" />
+          <EntitySet Name="PaperSide" EntityType="Self.PaperSide" />
+          <EntitySet Name="PrintingColour" EntityType="Self.PrintingColour" />
+          <EntitySet Name="ProductItem" EntityType="Self.ProductItem" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+          <EntitySet Name="UserSecurityQuestion" EntityType="Self.UserSecurityQuestion" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="LedgerFalio" EntityType="Self.LedgerFalio" />
+          <EntitySet Name="PaperSize" EntityType="Self.PaperSize" />
+          <AssociationSet Name="FK_Configuration_Configuration_Typeid" Association="Self.FK_Configuration_Configuration_Typeid">
+            <End Role="ConfigurationType" EntitySet="ConfigurationType" />
+            <End Role="Configuration" EntitySet="Configuration" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemDisplayConfig_ItemDisplayConfig" Association="Self.FK_ItemDisplayConfig_ItemDisplayConfig">
-            <End Role="ProductItem" EntitySet="ProductItems" />
-            <End Role="ItemDisplayConfig" EntitySet="ItemDisplayConfigs" />
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="ItemDisplayConfig" EntitySet="ItemDisplayConfig" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_OrderItem_JobProcessType" Association="Self.FK_OrderItem_OrderItem_JobProcessType">
-            <End Role="JobProcessType" EntitySet="JobProcessTypes" />
-            <End Role="OrderItem" EntitySet="OrderItems" />
+            <End Role="JobProcessType" EntitySet="JobProcessType" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderConfigurations_OrderConfigurations" Association="Self.FK_OrderConfigurations_OrderConfigurations">
-            <End Role="ProductItem" EntitySet="ProductItems" />
-            <End Role="OrderConfiguration" EntitySet="OrderConfigurations" />
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="OrderConfiguration" EntitySet="OrderConfiguration" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_OrderItem_Product" Association="Self.FK_OrderItem_OrderItem_Product">
-            <End Role="ProductItem" EntitySet="ProductItems" />
-            <End Role="OrderItem" EntitySet="OrderItems" />
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Users_Roles" Association="Self.FK_Users_Users_Roles">
-            <End Role="UserRole" EntitySet="UserRoles" />
-            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Users_SecuirtyQuestion" Association="Self.FK_Users_Users_SecuirtyQuestion">
-            <End Role="UserSecurityQuestion" EntitySet="UserSecurityQuestions" />
-            <End Role="User" EntitySet="Users" />
+            <End Role="UserSecurityQuestion" EntitySet="UserSecurityQuestion" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -678,16 +680,17 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PrintManagementSystemModelStoreContainer" CdmEntityContainer="PrintManagementSystemEntities">
-          <EntitySetMapping Name="Configurations">
+          <EntitySetMapping Name="Configuration">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.Configuration">
               <MappingFragment StoreEntitySet="Configuration">
                 <ScalarProperty Name="ConfigurationId" ColumnName="ConfigurationId" />
                 <ScalarProperty Name="ConfigurationTypeId" ColumnName="ConfigurationTypeId" />
+                <ScalarProperty Name="ConfigurationName" ColumnName="ConfigurationName" />
                 <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ConfigurationTypes">
+          <EntitySetMapping Name="ConfigurationType">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.ConfigurationType">
               <MappingFragment StoreEntitySet="ConfigurationType">
                 <ScalarProperty Name="ConfigurationTypeId" ColumnName="ConfigurationTypeId" />
@@ -695,7 +698,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ItemDisplayConfigs">
+          <EntitySetMapping Name="ItemDisplayConfig">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.ItemDisplayConfig">
               <MappingFragment StoreEntitySet="ItemDisplayConfig">
                 <ScalarProperty Name="ItemDisplayConfigId" ColumnName="ItemDisplayConfigId" />
@@ -709,7 +712,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="JobProcessTypes">
+          <EntitySetMapping Name="JobProcessType">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.JobProcessType">
               <MappingFragment StoreEntitySet="JobProcessType">
                 <ScalarProperty Name="JobProcessTypeId" ColumnName="JobProcessTypeId" />
@@ -717,7 +720,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderConfigurations">
+          <EntitySetMapping Name="OrderConfiguration">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.OrderConfiguration">
               <MappingFragment StoreEntitySet="OrderConfiguration">
                 <ScalarProperty Name="OrderConfigurationId" ColumnName="OrderConfigurationId" />
@@ -741,7 +744,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderItems">
+          <EntitySetMapping Name="OrderItem">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItem">
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -766,7 +769,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PaperGSMs">
+          <EntitySetMapping Name="PaperGSM">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperGSM">
               <MappingFragment StoreEntitySet="PaperGSM">
                 <ScalarProperty Name="PaperGSMId" ColumnName="PaperGSMId" />
@@ -774,7 +777,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PaperQualities">
+          <EntitySetMapping Name="PaperQuality">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperQuality">
               <MappingFragment StoreEntitySet="PaperQuality">
                 <ScalarProperty Name="PaperQualityId" ColumnName="PaperQualityId" />
@@ -782,7 +785,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PaperSides">
+          <EntitySetMapping Name="PaperSide">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperSide">
               <MappingFragment StoreEntitySet="PaperSide">
                 <ScalarProperty Name="PaperSideId" ColumnName="PaperSideId" />
@@ -790,7 +793,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PrintingColours">
+          <EntitySetMapping Name="PrintingColour">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.PrintingColour">
               <MappingFragment StoreEntitySet="PrintingColour">
                 <ScalarProperty Name="PrintingColourId" ColumnName="PrintingColourId" />
@@ -798,7 +801,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductItems">
+          <EntitySetMapping Name="ProductItem">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.ProductItem">
               <MappingFragment StoreEntitySet="ProductItem">
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
@@ -806,7 +809,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
+          <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -823,7 +826,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserRoles">
+          <EntitySetMapping Name="UserRole">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.UserRole">
               <MappingFragment StoreEntitySet="UserRole">
                 <ScalarProperty Name="UserRolesId" ColumnName="UserRolesId" />
@@ -831,7 +834,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserSecurityQuestions">
+          <EntitySetMapping Name="UserSecurityQuestion">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.UserSecurityQuestion">
               <MappingFragment StoreEntitySet="UserSecurityQuestion">
                 <ScalarProperty Name="UserSecurityQuestionId" ColumnName="UserSecurityQuestionId" />
@@ -839,7 +842,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
+          <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -852,7 +855,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LedgerFalios">
+          <EntitySetMapping Name="LedgerFalio">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.LedgerFalio">
               <MappingFragment StoreEntitySet="LedgerFalio">
                 <ScalarProperty Name="LedgerFalioId" ColumnName="LedgerFalioId" />
@@ -860,7 +863,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PaperSizes">
+          <EntitySetMapping Name="PaperSize">
             <EntityTypeMapping TypeName="PrintManagementSystemModel.PaperSize">
               <MappingFragment StoreEntitySet="PaperSize">
                 <ScalarProperty Name="PaperSizeId" ColumnName="PaperSizeId" />
@@ -882,7 +885,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

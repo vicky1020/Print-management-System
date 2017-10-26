@@ -58,7 +58,7 @@
     <Compile Include="Mapping\ObjectMapper.cs" />
     <Compile Include="Models\ConfigurationModel.cs" />
     <Compile Include="Models\ConfigurationTypeModel.cs" />
-    <Compile Include="Models\CustomerTypeModel.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ItemDisplayConfigModel.cs" />
     <Compile Include="Models\JobProcessTypeModel.cs" />
     <Compile Include="Models\LedgerFalioModel.cs" />

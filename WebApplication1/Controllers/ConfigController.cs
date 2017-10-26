@@ -38,7 +38,7 @@ namespace PrintManagementApp.Controllers
             var irepo = new Repository();
             try
             {
-                var OrderItemModel = await irepo.GetAllOrder();
+                var OrderItemModel = await irepo.GetAllOrderItem();
                 return View(OrderItemModel);
             }
             catch (Exception e)
@@ -52,7 +52,7 @@ namespace PrintManagementApp.Controllers
             var irepo = new Repository();
             try
             {
-                var OrderItemModel = await irepo.GetAllOrder();
+                var OrderItemModel = await irepo.GetAllOrderItem();
                 return View(OrderItemModel);
             }
             catch (Exception e)

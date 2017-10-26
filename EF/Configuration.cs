@@ -16,6 +16,7 @@ namespace EF
     {
         public int ConfigurationId { get; set; }
         public int ConfigurationTypeId { get; set; }
+        public string ConfigurationName { get; set; }
         public string ConfigurationValue { get; set; }
     
         public virtual ConfigurationType ConfigurationType { get; set; }

@@ -14,9 +14,16 @@ namespace EF
     
     public partial class ConfigurationType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ConfigurationType()
+        {
+            this.Configuration = new HashSet<Configuration>();
+        }
+    
         public int ConfigurationTypeId { get; set; }
         public string ConfigurationName { get; set; }
     
-        public virtual Configuration Configuration { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Configuration> Configuration { get; set; }
     }
 }

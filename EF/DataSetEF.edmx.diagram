@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3c51d319674744e682d0c665d8fa8a5b" Name="Diagram1">
+      <Diagram DiagramId="da3bd60f5b8544c289321b9869d376b4" Name="Diagram1">
         <EntityTypeShape EntityType="PrintManagementSystemModel.Configuration" Width="1.5" PointX="11" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.ConfigurationType" Width="1.5" PointX="8.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.ConfigurationType" Width="1.5" PointX="8.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.ItemDisplayConfig" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.JobProcessType" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.OrderConfiguration" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
@@ -22,7 +22,7 @@
         <EntityTypeShape EntityType="PrintManagementSystemModel.Customer" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.LedgerFalio" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.PaperSize" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="PrintManagementSystemModel.FK_Configuration_Configuration_TypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PrintManagementSystemModel.FK_Configuration_Configuration_Typeid" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_ItemDisplayConfig_ItemDisplayConfig" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_OrderItem_OrderItem_JobProcessType" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_OrderConfigurations_OrderConfigurations" ManuallyRouted="false" />

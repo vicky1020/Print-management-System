@@ -25,22 +25,22 @@ namespace EF
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Configuration> Configurations { get; set; }
-        public virtual DbSet<ConfigurationType> ConfigurationTypes { get; set; }
-        public virtual DbSet<ItemDisplayConfig> ItemDisplayConfigs { get; set; }
-        public virtual DbSet<JobProcessType> JobProcessTypes { get; set; }
-        public virtual DbSet<OrderConfiguration> OrderConfigurations { get; set; }
-        public virtual DbSet<OrderItem> OrderItems { get; set; }
-        public virtual DbSet<PaperGSM> PaperGSMs { get; set; }
-        public virtual DbSet<PaperQuality> PaperQualities { get; set; }
-        public virtual DbSet<PaperSide> PaperSides { get; set; }
-        public virtual DbSet<PrintingColour> PrintingColours { get; set; }
-        public virtual DbSet<ProductItem> ProductItems { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<UserSecurityQuestion> UserSecurityQuestions { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<LedgerFalio> LedgerFalios { get; set; }
-        public virtual DbSet<PaperSize> PaperSizes { get; set; }
+        public virtual DbSet<Configuration> Configuration { get; set; }
+        public virtual DbSet<ConfigurationType> ConfigurationType { get; set; }
+        public virtual DbSet<ItemDisplayConfig> ItemDisplayConfig { get; set; }
+        public virtual DbSet<JobProcessType> JobProcessType { get; set; }
+        public virtual DbSet<OrderConfiguration> OrderConfiguration { get; set; }
+        public virtual DbSet<OrderItem> OrderItem { get; set; }
+        public virtual DbSet<PaperGSM> PaperGSM { get; set; }
+        public virtual DbSet<PaperQuality> PaperQuality { get; set; }
+        public virtual DbSet<PaperSide> PaperSide { get; set; }
+        public virtual DbSet<PrintingColour> PrintingColour { get; set; }
+        public virtual DbSet<ProductItem> ProductItem { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<UserSecurityQuestion> UserSecurityQuestion { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<LedgerFalio> LedgerFalio { get; set; }
+        public virtual DbSet<PaperSize> PaperSize { get; set; }
     }
 }
