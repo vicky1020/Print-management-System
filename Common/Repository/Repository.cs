@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Models;
+using PrintManagement.Common.Models;
 using EF;
 using System.Data.Entity;
-using Common.Mapping;
-using Common.Interfaces;
-namespace Common.Repository
+using PrintManagement.Common.Mapping;
+using PrintManagement.Common.Interfaces;
+
+namespace PrintManagement.Common.Repository
 {
     public class Repository : IRepository
     {

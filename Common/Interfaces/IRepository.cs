@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Models;
+using PrintManagement.Common.Models;
 
-namespace Common.Interfaces
+namespace PrintManagement.Common.Interfaces
 {
   public interface IRepository
     {

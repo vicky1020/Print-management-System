@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Common.Repository;
-using Common.Interfaces;
+using PrintManagement.Common.Repository;
+using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
-using WebApplication1.Models;
+using PrintManagementApp.Models;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+namespace PrintManagementApp.Controllers
 {
     #region
    

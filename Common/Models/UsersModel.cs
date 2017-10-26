@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Models
+namespace PrintManagement.Common.Models
 {
    public class UsersModel
     {

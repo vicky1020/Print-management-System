@@ -8,10 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebApplication1.Models;
-using Common.Repository;
-using Common.Models;
-namespace WebApplication1.Controllers
+using PrintManagementApp.Models;
+using PrintManagement.Common.Repository;
+using PrintManagement.Common.Models;
+namespace PrintManagementApp.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -77,8 +77,8 @@ namespace WebApplication1.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             
-              var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password,model.RememberMe, shouldLockout: false);
-           result=SignInStatus.Success;
+             // var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password,model.RememberMe, shouldLockout: false);
+            var result =SignInStatus.Success;
            
             switch (result)
             {

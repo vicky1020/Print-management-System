@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Models
+namespace PrintManagement.Common.Models
 {
    public class OrderItemModel
     {

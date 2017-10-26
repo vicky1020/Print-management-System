@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EF;
-using Common.Models;
+using PrintManagement.Common.Models;
 
-namespace Common.Mapping
+namespace PrintManagement.Common.Mapping
 {
     public static class Mapper
     {

@@ -626,13 +626,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\PrintManagement.Common.csproj">
       <Project>{d1153643-890d-43a3-9e99-cd3252bc7ead}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EF\EF.csproj">
-      <Project>{58c0ce25-14c4-44d0-b114-c31c768538ef}</Project>
-      <Name>EF</Name>
+      <Name>PrintManagement.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{21D70B89-FA9E-4EA7-935B-E29A5D63A1A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagementApp", "WebApplication1\PrintManagementApp.csproj", "{21D70B89-FA9E-4EA7-935B-E29A5D63A1A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D1153643-890D-43A3-9E99-CD3252BC7EAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagement.Common", "Common\PrintManagement.Common.csproj", "{D1153643-890D-43A3-9E99-CD3252BC7EAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF", "EF\EF.csproj", "{58C0CE25-14C4-44D0-B114-C31C768538EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagement. EF", "EF\PrintManagement. EF.csproj", "{58C0CE25-14C4-44D0-B114-C31C768538EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

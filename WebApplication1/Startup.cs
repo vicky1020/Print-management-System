@@ -1,12 +1,12 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Common.Interfaces;
-using Common.Repository;
+using PrintManagement.Common.Interfaces;
+using PrintManagement.Common.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using System.Web.Services.Description;
 
-[assembly: OwinStartupAttribute(typeof(WebApplication1.Startup))]
-namespace WebApplication1
+[assembly: OwinStartupAttribute(typeof(PrintManagementApp.Startup))]
+namespace PrintManagementApp
 {
     public partial class Startup
     {
