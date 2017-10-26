@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    }
+}
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
@@ -13,6 +13,13 @@
     <script type="text/javascript">
 $(document).ready(function(){
     $('#example').dataTable();
+
+    var elements = $(".job-status");
+
+    for (var i = 0; i < elements.length; i++) {
+        element = $(elements[i]);
+        element.val(element.attr("value"));
+    }
 });
 $("#job_card_type").change(function () {
     
@@ -549,7 +556,6 @@ $("#job_card_type").change(function () {
                        <th>Created By</th>
                        <th>Created Date</th>
                        <th>Job Status</th>
-                       <th>Active</th>
 </tr></thead>
             @foreach (var item in Model)
             {
@@ -565,13 +571,12 @@ $("#job_card_type").change(function () {
                 <td>@item.Amount</td>
                 <td>@item.CreatedBy</td>
                 <td>@item.CreatedDate</td>
-                <td>@item.JobProcessTypeId</td>
                 <td>
-                    <select class="form-control">
-                        <option>Delivered</option>
-                        <option>Pending</option>
+                    <select class="form-control job-status" value="@item.JobStatus">
+                        <option value="Estimation">Estimation</option>
+                        <option value="OrderConfirm">OrderConfirm</option>
                     </select>
-                </td>>
+                </td>
                 </tr>
             }
         </table>
