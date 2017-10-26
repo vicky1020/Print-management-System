@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Configurator";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example1').dataTable();
+
+        var elements = $(".job-status");
+
+        for (var i = 0; i < elements.length; i++)
+        {
+            element = $(elements[i]);
+            element.val(element.attr("value"));
+        }
+    })</script>
+<h2>Configurator</h2>
+<div class="add-btn">@Html.ActionLink("ADD", "AddConfig", "Config")</div>
+<div class="table-cont" align="center">
+    <table id="example1" class="display table table-bordered " cellspacing="0" width="100%">
+
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Product Item Id</th>
+                <th>Paper GSM</th>
+                <th>Paper Color</th>
+                <th>Paper Size</th>
+                <th>Paper Quality</th>
+                <th>Paper Sides</th>
+                <th>Ledger Falio</th>
+                <th>Additional Paper Count</th>
+                <th>Additional Paper Size</th>
+                <th>Additonal Paper GSM</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th>Created By</th>
+                <th>Created Date</th>
+                <th>Job Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.ProductItemId</td>
+                    <td>@item.PaperGSM</td>
+                    <td>@item.PaperColor</td>
+                    <td>@item.PaperSize</td>
+                    <td>@item.PaperQuality</td>
+                    <td>@item.PaperSides</td>
+                    <td>@item.LedgerFalio</td>
+                    <td>@item.AdditionalPaperCount</td>
+                    <td>@item.AdditionalPaperSize</td>
+                    <td>@item.AdditonalPaperGSM</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Amount</td>
+                    <td>@item.CreatedBy</td>
+                    <td>@item.CreatedDate</td>
+                    <td>
+                        <select class="form-control job-status" value="@item.JobStatus">
+                            <option value="Estimation">Estimation</option>
+                            <option value="OrderConfirm">OrderConfirm</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
