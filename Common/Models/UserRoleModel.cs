@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PrintManagement.Common.Models
 {
-    public class ProductionModel
+   public class UserRoleModel
     {
-        public int ProductId { get; set; }
-        public string ItemName { get; set; }
-        
+
+        public int UserRolesId { get; set; }
+        public string RoleName { get; set; }
+
     }
 }

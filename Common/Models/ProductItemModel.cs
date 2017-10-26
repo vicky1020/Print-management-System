@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PrintManagement.Common.Models
 {
-   public class PaperSidesModel
+    public class ProductItemModel
     {
-
-        public int PaperSideId { get; set; }
-        public string PaperSideName { get; set; }
+        public int ProductId { get; set; }
+        public string ItemName { get; set; }
+        
     }
 }

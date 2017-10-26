@@ -11,7 +11,7 @@ using PrintManagement.Common.Interfaces;
 
 namespace PrintManagement.Common.Repository
 {
-    public class Repository : IRepository
+    public class Repository //: IRepository
     {
         
         private readonly PrintManagementSystemEntities PMSE;
@@ -25,7 +25,7 @@ namespace PrintManagement.Common.Repository
             var AllOrderList = await PMSE.OrderItems.ToListAsync();
             if (AllOrderList.Count > 0)
             {
-                return AllOrderList.Select(item => item.ToOrderModel()).ToList();
+                return AllOrderList.Select(item => item.ToOrderItemModel()).ToList();
             }
             return null;
         }

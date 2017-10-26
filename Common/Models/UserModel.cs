@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PrintManagement.Common.Models
 {
-   public class UsersModel
+   public class UserModel
     {
 
         public int UsersId { get; set; }

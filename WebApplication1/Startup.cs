@@ -13,7 +13,7 @@ namespace PrintManagementApp
         private IRepository irepo;
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IRepository, Repository>();
+            //services.AddTransient<IRepository, Repository>();
      //       irepo = provider.GetService<IRepository>();
         }
         public void Configuration(IAppBuilder app)

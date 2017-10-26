@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrintManagement.Common.Models
 {
-   public class LedgerFolioModel
+   public class LedgerFalioModel
     {
 
         public int LedgerFalioId { get; set; }
