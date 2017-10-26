@@ -8,28 +8,28 @@
         $('#example1').dataTable();
     })</script>
 <h2>Report</h2>
-<div class="container" align="center">
+<div class="table-cont" align="center">
     <table id="example1" class="display table table-bordered " cellspacing="0" width="100%">
 
         <thead>
             <tr>
-                <th>[OrderId]</th>
-                <th>[ProductItemId]</th>
-                <th>[PaperGSM]</th>
-                <th>[PaperColor]</th>
-                <th>[PaperSize]</th>
-                <th>[PaperQuality]</th>
-                <th>[PaperSides]</th>
-                <th>[LedgerFalio]</th>
-                <th>[AdditionalPaperCount]</th>
-                <th>[AdditionalPaperSize]</th>
-                <th>[AdditonalPaperGSM]</th>
-                <th>[Quantity]</th>
-                <th>[Amount]</th>
-                <th>[CreatedBy]</th>
-                <th>[CreatedDate]</th>
-                <th>[JobStatus]</th>
-                <th>[Active]</th>
+                <th>Order Id</th>
+                <th>Product Item Id</th>
+                <th>Paper GSM</th>
+                <th>Paper Color</th>
+                <th>Paper Size</th>
+                <th>Paper Quality</th>
+                <th>Paper Sides</th>
+                <th>Ledger Falio</th>
+                <th>Additional Paper Count</th>
+                <th>Additional Paper Size</th>
+                <th>Additonal Paper GSM</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th>Created By</th>
+                <th>Created Date</th>
+                <th>Job Status</th>
+                <th>Active</th>
             </tr>
         </thead>
         <tbody>
@@ -39,26 +39,26 @@
                     <td>@item.OrderId</td>
                     <td>@item.ProductItemId</td>
                     <td>@item.PaperGSM</td>
-                <td>@item.PaperColor</td>
-                <td>@item.PaperSize</td>
-                <td>@item.PaperQuality</td>
-                <td>@item.PaperSides</td>
-                <td>@item.LedgerFalio</td>
-                <td>@item.AdditionalPaperCount</td>
-                <td>@item.AdditionalPaperSize</td>
-                <td>@item.AdditonalPaperGSM</td>
-                <td>@item.Quantity</td>
-                <td>@item.Amount</td>
-                <td>@item.CreatedBy</td>
-                <td>@item.CreatedDate</td>
-                <td>@item.JobStatus</td>
-                <td>
-                    <select class="form-control">
-                        <option>Delivered</option>
-                        <option>Pending</option>
-                    </select>
-                </td>
-            </tr>
+                    <td>@item.PaperColor</td>
+                    <td>@item.PaperSize</td>
+                    <td>@item.PaperQuality</td>
+                    <td>@item.PaperSides</td>
+                    <td>@item.LedgerFalio</td>
+                    <td>@item.AdditionalPaperCount</td>
+                    <td>@item.AdditionalPaperSize</td>
+                    <td>@item.AdditonalPaperGSM</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Amount</td>
+                    <td>@item.CreatedBy</td>
+                    <td>@item.CreatedDate</td>
+                    <td>@item.JobStatus</td>
+                    <td>
+                        <select class="form-control">
+                            <option>Delivered</option>
+                            <option>Pending</option>
+                        </select>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

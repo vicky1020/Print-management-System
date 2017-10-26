@@ -31,8 +31,9 @@ textarea {
     left: 0;
     position: fixed;
     padding: 0 5px;
-    -webkit-transition: left 500ms;
-    transition: left 500ms;
+    z-index: 1;
+   /* -webkit-transition: left 500ms;
+    transition: left 500ms;*/
 }
 
 .menu-cont {
@@ -73,13 +74,14 @@ textarea {
     left: -14%;
     width: 14%;
     height: 100%;
-    padding-top: 90px;
+    padding-top: 5px;
     background-color: #222222;
     top: 0;
     position: fixed;
     text-align: center;
     -webkit-transition: left 500ms;
     transition: left 500ms;
+    z-index: 2;
 }
 
 .menu-item {
@@ -103,33 +105,37 @@ textarea {
 .login .side-navbar, .login .header-cont {
     display: none;
 }
-#page-content-wrapper {
-    padding-left: 0;
-    margin-left: 0;
-    width: 100%;
-    height: auto;
-}
-.body-content {
-    margin-top: 80px;
+
+.body-cont {
+    margin-top: 60px;
     margin-left: 0;
     -webkit-transition: margin-left 500ms;
     transition: margin-left 500ms;
 }
 
+.body-content {
+    overflow-x: hidden;
+}
 .show-menu .side-navbar {
     left: 0;
-    -webkit-transition: left 500ms;
-    transition: left 500ms;
+    -webkit-transition: left 300ms;
+    transition: left 300ms;
 }
 
-.show-menu .header-cont{
+/*.show-menu .header-cont{
     left: 14%;
     -webkit-transition: left 500ms;
     transition: left 500ms;
+}*/
+
+.show-menu .body-cont {
+    margin-left: 14%;
+    -webkit-transition: margin-left 300ms;
+    transition: margin-left 300ms;
 }
 
-.show-menu .body-content{
-    margin-left: 14%;
-    -webkit-transition: margin-left 500ms;
-    transition: margin-left 500ms;
+.table-cont th, .table-cont td {
+    max-width: 80px !important;
+    padding: 3px !important;
+    text-align: center;
 }
