@@ -14,11 +14,18 @@ namespace EF
     
     public partial class ProductItem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductItem()
+        {
+            this.OrderItems = new HashSet<OrderItem>();
+        }
+    
         public int ProductId { get; set; }
         public string ItemName { get; set; }
     
         public virtual ItemDisplayConfig ItemDisplayConfig { get; set; }
         public virtual OrderConfiguration OrderConfiguration { get; set; }
-        public virtual OrderItem OrderItem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

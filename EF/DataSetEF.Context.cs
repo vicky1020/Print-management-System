@@ -36,9 +36,10 @@ namespace EF
         public virtual DbSet<PaperSide> PaperSides { get; set; }
         public virtual DbSet<PrintingColour> PrintingColours { get; set; }
         public virtual DbSet<ProductItem> ProductItems { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<UserSecurityQuestion> UserSecurityQuestions { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<LedgerFalio> LedgerFalios { get; set; }
         public virtual DbSet<PaperSize> PaperSizes { get; set; }
     }

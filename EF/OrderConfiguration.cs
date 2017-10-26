@@ -25,12 +25,13 @@ namespace EF
         public Nullable<int> AdditionalPaperCount { get; set; }
         public Nullable<int> AdditionalPaperSizeId { get; set; }
         public Nullable<int> AdditonalPaperGSMId { get; set; }
-        public Nullable<decimal> MinRange { get; set; }
-        public Nullable<decimal> MaxRange { get; set; }
+        public Nullable<int> MinRange { get; set; }
+        public Nullable<int> MaxRange { get; set; }
         public decimal Amount { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public bool Active { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         public virtual ProductItem ProductItem { get; set; }
     }

@@ -29,9 +29,12 @@ namespace EF
         public decimal Amount { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public string JobStatus { get; set; }
-        public bool Active { get; set; }
+        public Nullable<int> CustomerId { get; set; }
+        public int JobProcessTypeId { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
     
+        public virtual JobProcessType JobProcessType { get; set; }
         public virtual ProductItem ProductItem { get; set; }
     }
 }

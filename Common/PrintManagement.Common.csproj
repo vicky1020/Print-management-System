@@ -58,6 +58,7 @@
     <Compile Include="Mapping\ObjectMapper.cs" />
     <Compile Include="Models\ConfigurationModel.cs" />
     <Compile Include="Models\ConfigurationTypeModel.cs" />
+    <Compile Include="Models\CustomerTypeModel.cs" />
     <Compile Include="Models\ItemDisplayConfigModel.cs" />
     <Compile Include="Models\JobProcessTypeModel.cs" />
     <Compile Include="Models\LedgerFalioModel.cs" />
@@ -67,7 +68,7 @@
     <Compile Include="Models\PaperQualityModel.cs" />
     <Compile Include="Models\PaperSideModel.cs" />
     <Compile Include="Models\PaperSizeModel.cs" />
-    <Compile Include="Models\PrintingColorModel.cs" />
+    <Compile Include="Models\PrintingColourModel.cs" />
     <Compile Include="Models\ProductItemModel.cs" />
     <Compile Include="Models\UserRoleModel.cs" />
     <Compile Include="Models\UserSecurityQuestionModel.cs" />

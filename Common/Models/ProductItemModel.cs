@@ -10,6 +10,6 @@ namespace PrintManagement.Common.Models
     {
         public int ProductId { get; set; }
         public string ItemName { get; set; }
-        
+
     }
 }

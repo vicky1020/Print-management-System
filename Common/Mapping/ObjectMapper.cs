@@ -26,6 +26,8 @@ namespace PrintManagement.Common.Mapping
                 cfg.CreateMap<PaperGSM, PaperGSMModel>();
                 cfg.CreateMap<PaperQuality, PaperQualityModel>();
                 cfg.CreateMap<PaperSize, PaperSizeModel>();
+                cfg.CreateMap<PaperSide, PaperSideModel>();
+                cfg.CreateMap<ProductItem, ProductItemModel>();
                 cfg.CreateMap<PrintingColour, PrintingColourModel>();
                 cfg.CreateMap<UserRole, UserRoleModel>();
                 cfg.CreateMap<UserSecurityQuestion, UserSecurityQuestionModel>();
@@ -45,10 +47,21 @@ namespace PrintManagement.Common.Mapping
                 cfg.CreateMap<UserRoleModel, UserRole>();
                 cfg.CreateMap<UserSecurityQuestionModel, UserSecurityQuestion>();
                 cfg.CreateMap<UserModel, User>();
+                cfg.CreateMap<PaperSideModel, PaperSide>();
+                cfg.CreateMap<ProductItemModel, ProductItem>();
             });
         }
         #region Entity To Model Mapping
-
+        public static ProductItemModel ToProductItemModel(this ProductItem product)
+        {
+            ProductItemModel productItem = Mapper.Map<ProductItem, ProductItemModel>(product);
+            return productItem;
+        }
+        public static PaperSideModel ToPaperSideModel(this PaperSide PaperSide)
+        {
+            PaperSideModel PaperS = Mapper.Map<PaperSide, PaperSideModel>(PaperSide);
+            return PaperS;
+        }
         public static ConfigurationModel ToConfigurationModel(this Configuration item)
         {
             ConfigurationModel config =  Mapper.Map<Configuration, ConfigurationModel>(item);
@@ -101,9 +114,9 @@ namespace PrintManagement.Common.Mapping
             PaperQualityModel paperQuality = Mapper.Map<PaperQuality, PaperQualityModel>(item);
             return paperQuality;
         }
-        public static PaperSizeModel ToPaperSizeModel(this OrderConfiguration item)
+        public static PaperSizeModel ToPaperSizeModel(this PaperSize item)
         {
-            PaperSizeModel paperSize = Mapper.Map<OrderConfiguration, PaperSizeModel>(item);
+            PaperSizeModel paperSize = Mapper.Map<PaperSize, PaperSizeModel>(item);
             return paperSize;
         }
         public static PrintingColourModel ToPrintingColorModel(this PrintingColour item)
@@ -210,6 +223,16 @@ namespace PrintManagement.Common.Mapping
         {
             User user = Mapper.Map<UserModel, User>(item);
             return user;
+        }
+        public static ProductItem ToProductItemEntity(this ProductItemModel product)
+        {
+            ProductItem productItem = Mapper.Map<ProductItemModel, ProductItem>(product);
+            return productItem;
+        }
+        public static PaperSide ToPaperSideEntity(this PaperSideModel PaperSide)
+        {
+            PaperSide PaperS = Mapper.Map<PaperSideModel, PaperSide>(PaperSide);
+            return PaperS;
         }
         #endregion
     }

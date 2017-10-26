@@ -57,6 +57,9 @@
     <Compile Include="ConfigurationType.cs">
       <DependentUpon>DataSetEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>DataSetEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataSetEF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

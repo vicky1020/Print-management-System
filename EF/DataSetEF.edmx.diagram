@@ -4,27 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa931e1a549c496294bde1b739850489" Name="Diagram1" ZoomLevel="89">
-        <EntityTypeShape EntityType="PrintManagementSystemModel.Configuration" Width="1.5" PointX="10" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.ConfigurationType" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.ItemDisplayConfig" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.JobProcessType" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.OrderConfiguration" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.OrderItem" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.PaperGSM" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.PaperQuality" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+      <Diagram DiagramId="3c51d319674744e682d0c665d8fa8a5b" Name="Diagram1">
+        <EntityTypeShape EntityType="PrintManagementSystemModel.Configuration" Width="1.5" PointX="11" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.ConfigurationType" Width="1.5" PointX="8.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.ItemDisplayConfig" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.JobProcessType" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.OrderConfiguration" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.OrderItem" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.PaperGSM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.PaperQuality" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.PaperSide" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.PrintingColour" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.ProductItem" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.UserRole" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.ProductItem" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.User" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.UserSecurityQuestion" Width="1.5" PointX="5.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.LedgerFalio" Width="1.5" PointX="5.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintManagementSystemModel.PaperSize" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.UserRole" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.UserSecurityQuestion" Width="1.5" PointX="5.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.Customer" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.LedgerFalio" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintManagementSystemModel.PaperSize" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_Configuration_Configuration_TypeId" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_ItemDisplayConfig_ItemDisplayConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="PrintManagementSystemModel.FK_OrderItem_OrderItem_JobProcessType" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_OrderConfigurations_OrderConfigurations" ManuallyRouted="false" />
-        <AssociationConnector Association="PrintManagementSystemModel.FK_Order_Order_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PrintManagementSystemModel.FK_OrderItem_OrderItem_Product" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_Users_Users_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="PrintManagementSystemModel.FK_Users_Users_SecuirtyQuestion" ManuallyRouted="false" />
       </Diagram>
