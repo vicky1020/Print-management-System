@@ -7,8 +7,9 @@ using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
 using PrintManagementApp.Models;
 using System.Threading.Tasks;
-using WebApplication1.Controllers;
+using PrintManagementApp.Controllers;
 using PrintManagement.Common.Models;
+using PrintManagementApp.Filters;
 
 namespace PrintManagementApp.Controllers
 {
@@ -17,7 +18,7 @@ namespace PrintManagementApp.Controllers
     #endregion
 
     [SessionExpireFilter]
-    public class HomeController : Controller
+    public class JobController : Controller
     {
 
         #region
@@ -26,10 +27,10 @@ namespace PrintManagementApp.Controllers
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HomeController" /> class.
+        /// Initializes a new instance of the <see cref="JobController" /> class.
         /// </summary>
         /// <param name="IRepository">The tenants repository.</param>
-        public HomeController()
+        public JobController()
         {
              irepo =  new Repository();
         }
@@ -56,6 +57,7 @@ namespace PrintManagementApp.Controllers
                 return View(e.Message);
             }
         }
+
 
         public async Task<ActionResult> Report()
         {

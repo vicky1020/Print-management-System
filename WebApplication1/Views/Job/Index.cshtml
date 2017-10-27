@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Job Page";
 }
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -57,7 +57,7 @@ function insertOrder() {
         
     };
     $.ajax({
-        url: "/Home/SaveOrder",
+        url: "/Job/SaveOrder",
         type: "POST",
         data: JSON.stringify({ 'obj': dataObject }),
         dataType: "json",
