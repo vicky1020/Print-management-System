@@ -88,7 +88,7 @@ function insertConfig() {
                             <label class="col-sm-2 control-label" for="item_card_type">Item Type</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="item_card_type" id="item_card_type">
-                                    <option value="Select Item">--select Item--</option>
+                                    <option value="Select Item">Select Item Type</option>
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
 
@@ -260,27 +260,6 @@ function insertConfig() {
 
                             </div>
                         </div>
-
-
-
-
-
-
-
-                        </div>
-
-                        <input type="hidden" name="sub_job_count" value="0" id="jc_sub_job_count" class="jc_counter">
-                        <input type="hidden" name="custom_count" value="0" id="jc_custom_count" class="jc_counter">
-                        <div id="sub_work_adder">
-
-                        </div>
-                        <div id="custom_field_adder">
-
-                        </div>
-                        <div class="error_fetcher row">
-
-                        </div>
-
                         <div class="form-group submit-btn-cont">
                             <button class="btn btn-primary submit-btn @ViewBag.BtnName" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">@ViewBag.BtnName</button>
                        </div>
