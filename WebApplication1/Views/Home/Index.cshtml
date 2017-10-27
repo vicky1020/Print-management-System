@@ -31,6 +31,50 @@ $("#job_card_type").change(function () {
     }
 });
 
+
+$("#ADDbtn").click(function () {
+    insertOrder();
+});
+
+function insertOrder() {
+    var dataObject = {
+        'ProductItemId': 1,
+        'PaperGSM': '200',
+        'PaperColour': '1 Colour',
+        'PaperSize': 'A4',
+        'PaperQuality': 'Excutive Bond Paper',
+        'PaperSides': '',
+        'LedgerFalio': '',
+        'AdditionalPaperCount': '',
+        'AdditionalPaperSize': '',
+        'AdditonalPaperGSM': '',
+        'Quantity': 3,
+        'Amount': 300,
+        'CreatedBy': 'admin',
+        'CustomerId': '',
+        'JobProcessTypeId': 1,
+        'UpdatedBy': 'admin'
+        
+    };
+    $.ajax({
+        url: "/Home/SaveOrder",
+        type: "POST",
+        data: JSON.stringify({ 'obj': dataObject }),
+        dataType: "json",
+        traditional: true,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data.status == "Success") {
+                alert("Done");
+            } else {
+                alert("Error occurs on the Database level!");
+            }
+        },
+        error: function (error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
     </script>}
     <div class="page-content inset well center" style="width:100%;padding:15px"id="page-content-wrapper" align="center">
     <h3>JOBS</h3>
@@ -303,7 +347,7 @@ $("#job_card_type").change(function () {
                     <div class="form-group">
                         <label class="col-sm-3"></label>
                         <div class="col-sm-5">
-                            <button class="btn btn-primary col-sm-6" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">Submit</button>
+                            <button id="ADDbtn" class="btn btn-primary col-sm-6"  data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">Submit</button>
                         </div>
                     </div>
                     </form>
@@ -321,7 +365,7 @@ $("#job_card_type").change(function () {
                        <th>Order Id</th>
                        <th>Product Item Id</th>
                        <th>Paper GSM</th>
-                       <th>Paper Color</th>
+                       <th>Paper Colour</th>
                        <th>Paper Size</th>
                        <th>Paper Quality</th>
                        <th>PaperSides</th>
@@ -337,7 +381,7 @@ $("#job_card_type").change(function () {
                 <tr><td>@item.OrderId</td>
                 <td>@item.ProductItemId</td>
                 <td>@item.PaperGSM</td>
-                <td>@item.PaperColor</td>
+                <td>@item.PaperColour</td>
                 <td>@item.PaperSize</td>
                 <td>@item.PaperQuality</td>
                 <td>@item.PaperSides</td>

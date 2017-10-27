@@ -17,7 +17,7 @@ namespace EF
         public int OrderConfigurationId { get; set; }
         public int ProductItemId { get; set; }
         public Nullable<int> PaperGSMId { get; set; }
-        public Nullable<int> PaperColorId { get; set; }
+        public Nullable<int> PaperColourId { get; set; }
         public Nullable<int> PaperSizeId { get; set; }
         public Nullable<int> PaperQualityId { get; set; }
         public Nullable<int> PaperSidesId { get; set; }
@@ -32,7 +32,5 @@ namespace EF
         public System.DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-    
-        public virtual ProductItem ProductItem { get; set; }
     }
 }

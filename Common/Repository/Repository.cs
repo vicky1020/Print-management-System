@@ -345,7 +345,7 @@ namespace PrintManagement.Common.Repository
             var allOrderConfig = await _entities.OrderConfiguration.ToListAsync();
             if (allOrderConfig.Count > 0)
                 return allOrderConfig.Select(item => item.ToOrderConfigurationModel()).ToList();
-            return null;
+            return new List<OrderConfigurationModel>();
         }
         public async Task<OrderConfigurationModel> GetOrderConfigurationById(int orderCofigId)
         {

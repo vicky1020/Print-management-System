@@ -191,12 +191,14 @@ namespace PrintManagement.Common.Mapping
         public static OrderConfiguration ToOrderConfigurationEntity(this OrderConfigurationModel item)
         {
             OrderConfiguration orderConfiguration = Mapper.Map<OrderConfigurationModel, OrderConfiguration>(item);
+            orderConfiguration.CreatedDate = DateTime.Now;
             return orderConfiguration;
         }
 
         public static OrderItem ToOrderItemEntity(this OrderItemModel item)
         {
             OrderItem orderItem = Mapper.Map<OrderItemModel, OrderItem>(item);
+            orderItem.CreatedDate = DateTime.Now;
             return orderItem;
         }
 

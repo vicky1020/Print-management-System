@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using PrintManagementApp.Models;
 using System.Threading.Tasks;
 using WebApplication1.Controllers;
+using PrintManagement.Common.Models;
 
 namespace PrintManagementApp.Controllers
 {
@@ -30,15 +31,12 @@ namespace PrintManagementApp.Controllers
         /// <param name="IRepository">The tenants repository.</param>
         public HomeController()
         {
-            var irepo =  new Repository();
-
+             irepo =  new Repository();
         }
         #endregion
 
         public async Task<ActionResult> Index()
         {
-            
-            var irepo = new Repository();
             try
             {
                 ViewBag.OrderItem = await irepo.GetAllOrderItem();
@@ -61,7 +59,6 @@ namespace PrintManagementApp.Controllers
 
         public async Task<ActionResult> Report()
         {
-            var irepo = new Repository();
             try
             {
                 var OrderItemModel = await irepo.GetAllOrderItem();
@@ -73,12 +70,10 @@ namespace PrintManagementApp.Controllers
             }
         }
 
-        public ActionResult Contact()
+        public void SaveOrder(OrderItemModel obj)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var OrderItemModel = irepo.AddOrderItem(obj);
         }
-       
+
     }
 }

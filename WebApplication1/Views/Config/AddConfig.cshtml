@@ -32,11 +32,10 @@ $(".ADD").click(function () {
 
 function insertConfig() {
     var dataObject = {
-        'OrderConfigurationId': 3,
         'ProductItemId': 1,
         'PaperGSMId': 1,
-        'PaperColorId': 2,
-        'PaperSizeId': 1,
+        'PaperColorId': 1,
+        'PaperSizeId': 2,
         'PaperQualityId': 1,
         'PaperSidesId': '',
         'LedgerFalioId': '',
@@ -45,7 +44,11 @@ function insertConfig() {
         'AdditonalPaperGSMId': '',
         'MinRange': 0,
         'MaxRange': 1,
-        'Amount': 5.00
+        'Amount': 5.00,
+        'CreatedBy': 'Admin',
+        'CreatedDate': new Date().toISOString().slice(0, 19).replace('T', ' '),
+        'UpdatedBy': '',
+        'UpdatedDate': ''
     };
 
     // prevent the default event behaviour    
@@ -59,17 +62,14 @@ function insertConfig() {
         traditional: true,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-
-            // perform your save call here
-
             if (data.status == "Success") {
                 alert("Done");
             } else {
                 alert("Error occurs on the Database level!");
             }
         },
-        error: function () {
-            alert("An error has occured!!!");
+        error: function (error) {
+            alert(JSON.stringify(error));
         }
     });
 }
@@ -88,7 +88,7 @@ function insertConfig() {
                             <label class="col-sm-2 control-label" for="item_card_type">Item Type</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="item_card_type" id="item_card_type">
-                                    <option value="Select Item">Select Item Type</option>
+                                    <option value="Select Item">--select Item--</option>
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
 

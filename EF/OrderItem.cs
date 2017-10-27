@@ -17,7 +17,7 @@ namespace EF
         public int OrderId { get; set; }
         public int ProductItemId { get; set; }
         public Nullable<int> PaperGSM { get; set; }
-        public string PaperColor { get; set; }
+        public string PaperColour { get; set; }
         public string PaperSize { get; set; }
         public string PaperQuality { get; set; }
         public string PaperSides { get; set; }
