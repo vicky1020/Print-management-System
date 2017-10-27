@@ -161,3 +161,10 @@ textarea {
 .add-btn:hover {
     background-color: #285e8e;
 }
+
+.user .Report{
+ display:none;
+}
+.user .Config {
+    display: none;
+}
