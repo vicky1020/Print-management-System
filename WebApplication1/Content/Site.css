@@ -140,24 +140,39 @@ textarea {
     text-align: center;
 }
 
-.add-btn {
-    float: right;
-    width: 55px;
+.add-btn, .update-btn {
     height: 30px;
     border: 1px solid #285e8e;
     border-radius: 5px;
     background-color: #3276b1;
     line-height: 30px;
     font-size: 14px;
-    margin-right: 10px;
     text-align: center;
 }
 
-.add-btn a {
+.add-btn {
+    float: right;
+    width: 55px;
+    margin-right: 10px;
+}
+
+.update-btn {
+    width: 70px;
+}
+
+.add-btn a, .update-btn a {
     color: #FFF;
     text-decoration: none;
 }
 
 .add-btn:hover {
     background-color: #285e8e;
+}
+
+.submit-btn-cont {
+    margin: 30px 0;
+}
+
+.submit-btn {
+    width: 250px;
 }
