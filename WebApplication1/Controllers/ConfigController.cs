@@ -7,12 +7,14 @@ using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
 using PrintManagementApp.Models;
 using System.Threading.Tasks;
+using WebApplication1.Controllers;
 
 namespace PrintManagementApp.Controllers
 {
     #region
 
     #endregion
+  [SessionExpireFilter]
     public class ConfigController : Controller
     {
 

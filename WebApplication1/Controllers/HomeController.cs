@@ -7,12 +7,15 @@ using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
 using PrintManagementApp.Models;
 using System.Threading.Tasks;
+using WebApplication1.Controllers;
 
 namespace PrintManagementApp.Controllers
 {
     #region
-   
+
     #endregion
+
+    [SessionExpireFilter]
     public class HomeController : Controller
     {
 
@@ -31,7 +34,7 @@ namespace PrintManagementApp.Controllers
 
         }
         #endregion
-       
+
         public async Task<ActionResult> Index()
         {
             
