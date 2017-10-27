@@ -46,6 +46,7 @@ namespace PrintManagement.Common.Interfaces
         #endregion
 
         #region UserModel
+        Task<UserModel> Login(string email);
         Task<List<UserModel>> GetAllUser();
         Task<UserModel> GetUserById(int userId);
         Task<bool> AddUser(UserModel User);

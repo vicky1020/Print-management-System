@@ -28,13 +28,18 @@ namespace PrintManagement.Common.Repository
                 return config.Select(item => item.ToConfigurationModel()).ToList();
             return null;
         }
+        public async Task<UserModel> Login(string email)
+        {
+            var config = await _entities.User.Where(i => i.EmailId == email).FirstOrDefaultAsync();
+            return config?.ToUserModel();
+        }
 
         public async Task<ConfigurationModel> GetConfigurationByName(string name)
         {
             var config = await _entities.Configuration.Where(i => i.ConfigurationName == name).FirstOrDefaultAsync();
             return config?.ToConfigurationModel();
         }
-
+        
         public async Task<List<ConfigurationTypeModel>> GetAllConfigurationType()
         {
             var configType = await _entities.ConfigurationType.ToListAsync();
