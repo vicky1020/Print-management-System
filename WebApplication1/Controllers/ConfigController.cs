@@ -7,12 +7,14 @@ using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
 using PrintManagementApp.Models;
 using System.Threading.Tasks;
+using WebApplication1.Controllers;
 
 namespace PrintManagementApp.Controllers
 {
     #region
 
     #endregion
+  [SessionExpireFilter]
     public class ConfigController : Controller
     {
 
@@ -38,8 +40,8 @@ namespace PrintManagementApp.Controllers
             var irepo = new Repository();
             try
             {
-                var OrderItemModel = await irepo.GetAllOrderItem();
-                return View(OrderItemModel);
+                var OrderConfigModel = await irepo.GetAllOrderConfiguration();
+                return View(OrderConfigModel);
             }
             catch (Exception e)
             {
@@ -52,13 +54,59 @@ namespace PrintManagementApp.Controllers
             var irepo = new Repository();
             try
             {
-                var OrderItemModel = await irepo.GetAllOrderItem();
-                return View(OrderItemModel);
+                ViewBag.OrderItem = await irepo.GetAllOrderItem();
+
+                //ViewBag.ProductItemById = await irepo.GetProductItemById();
+                ViewBag.AllProductItem = await irepo.GetAllProductItem();
+                ViewBag.OrderConfiguration = await irepo.GetAllOrderConfiguration();
+                ViewBag.PrintingColor = await irepo.GetAllPrintingColour();
+                ViewBag.Papersize = await irepo.GetAllPaperSize();
+                ViewBag.PaperGSM = await irepo.GetAllPaperGSM();
+                ViewBag.PaperSide = await irepo.GetAllPaperSide();
+                ViewBag.LedgerFolio = await irepo.GetAllLedgerFalio();
+                ViewBag.Customers = await irepo.GetAllCustomer();
+                ViewBag.paperQuality = await irepo.GetAllPaperQuality();
+                ViewBag.BtnName = "ADD";
+
+
+                return View();
             }
             catch (Exception e)
             {
                 return View(e.Message);
             }
+        }
+
+        public async Task<ActionResult> UpdateConfig()
+        {
+            var irepo = new Repository();
+            try
+            {
+                ViewBag.AllProductItem = await irepo.GetAllProductItem();
+                ViewBag.OrderConfiguration = await irepo.GetAllOrderConfiguration();
+                ViewBag.PrintingColor = await irepo.GetAllPrintingColour();
+                ViewBag.Papersize = await irepo.GetAllPaperSize();
+                ViewBag.PaperGSM = await irepo.GetAllPaperGSM();
+                ViewBag.PaperSide = await irepo.GetAllPaperSide();
+                ViewBag.LedgerFolio = await irepo.GetAllLedgerFalio();
+                ViewBag.Customers = await irepo.GetAllCustomer();
+                ViewBag.paperQuality = await irepo.GetAllPaperQuality();
+                ViewBag.BtnName = "UPDATE";
+                return View("AddConfig");
+            }
+            catch (Exception e)
+            {
+                return View(e.Message);
+            }
+        }
+
+        [HttpPost]
+        public  async Task<ActionResult> InsertConfig(PrintManagement.Common.Models.OrderConfigurationModel obj)
+        {
+            var irepo = new Repository();
+  
+            await irepo.AddOrderConfiguration(obj);
+            return View();
         }
     }
 }

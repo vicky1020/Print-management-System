@@ -7,12 +7,15 @@ using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
 using PrintManagementApp.Models;
 using System.Threading.Tasks;
+using WebApplication1.Controllers;
 
 namespace PrintManagementApp.Controllers
 {
     #region
-   
+
     #endregion
+
+    [SessionExpireFilter]
     public class HomeController : Controller
     {
 
@@ -31,15 +34,24 @@ namespace PrintManagementApp.Controllers
 
         }
         #endregion
-       
+
         public async Task<ActionResult> Index()
         {
-
+            
             var irepo = new Repository();
             try
             {
-                var OrderItemModel = await irepo.GetAllOrderItem();
-                return View(OrderItemModel);
+                ViewBag.OrderItem = await irepo.GetAllOrderItem();
+                ViewBag.AllProductItem = await irepo.GetAllProductItem();
+                ViewBag.OrderConfiguration = await irepo.GetAllOrderConfiguration();
+                ViewBag.PrintingColor = await irepo.GetAllPrintingColour();
+                ViewBag.Papersize = await irepo.GetAllPaperSize();
+                ViewBag.PaperGSM = await irepo.GetAllPaperGSM();
+                ViewBag.PaperSide = await irepo.GetAllPaperSide();
+                ViewBag.LedgerFolio = await irepo.GetAllLedgerFalio();
+                ViewBag.Customers = await irepo.GetAllCustomer();
+                ViewBag.paperQuality = await irepo.GetAllPaperQuality();
+                return View();
             }
             catch (Exception e)
             {

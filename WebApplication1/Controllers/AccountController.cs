@@ -59,6 +59,7 @@ namespace PrintManagementApp.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            Session.Clear();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -70,6 +71,7 @@ namespace PrintManagementApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            Session.Clear();
             if (ModelState.IsValid)
             {
                 var result = SignInStatus.Failure;

@@ -24,7 +24,6 @@ $(document).ready(function(){
 $("#job_card_type").change(function () {
     
     var job_type = $(this).val();
-    alert(job_type);
     if (job_type == 1) {
         $('.order_confor_div').removeClass('hide');
     } else {
@@ -35,286 +34,25 @@ $("#job_card_type").change(function () {
     </script>}
     <div class="page-content inset well center" style="width:100%;padding:15px"id="page-content-wrapper" align="center">
     <h3>JOBS</h3>
-    <ul class="nav nav-tabs">
-        
-       <li class="active"><a href="#Others" data-toggle="tab">OTHERS</a></li>
-        <li><a href="#Billbook" data-toggle="tab">BILL BOOK</a></li>
-    </ul>
         <div class="tab-content clearfix">
-            <div class="tab-pane " id="Billbook">
-                <div class="body-nest" id="element">
-
-                    <div class="panel-body">
-                        <form method="post" class="form-horizontal bucket-form" action="http://webspaprojects.co.in/minioffset/jobs/add_bill_book" id="jc_form_spl">
-                            <input type="hidden" class="form-control" name="job_type" id="job_type" value="2">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="job_card_type">Job Process Type</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control" name="job_card_type" id="job_card_type">
-                                        <option value="1" selected="selected">Order Confirm</option>
-                                        <option value="2" >Estimation</option>
-                                    </select>
-                                    <label class="error"></label>
-                                </div>
-
-
-                            </div>
-
-                            <div class="form-group order_confor_div hide">
-                                <label class="col-sm-2 control-label" for="job_title">Job Title</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="job_title" id="job_title" value="">
-                                    <label class="error" style="color:#c3041d;"></label>
-                                </div>
-                                <label class="col-sm-2 control-label" for="jc_client">Customer</label>
-                                <div class="col-sm-3">
-                                    <input id="new_customer" type="radio" name="customer" value="1" checked="checked">New<br>
-                                    <input type="radio" name="customer" value="2" id="old_customer">Existing<br>
-                                </div>
-
-
-                            </div>
-
-                            <div class="form-group order_confor_div hide">
-                                <div class="client_new">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">Name</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="cust_name" id="cust_name" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="client_new">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">E-Mail</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="cust_email" id="cust_email" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="client_new">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">Phone</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="cust_phone" id="cust_phone" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="client_old" style="display: none;">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">Select Customer</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control select2-hidden-accessible" name="client" id="jc_client" tabindex="-1" aria-hidden="true">
-                                            <option value="">Select Client Name</option>
-
-                                            <option value="1">Indian Printers - CL01AA01</option>
-
-                                            <option value="2">Lakshmi Printers - CL01AA02</option>
-
-                                            <option value="3">Master Offset Printers - CL01AA03</option>
-
-                                            <option value="4">JAZZ Printers - CL01AA04</option>
-
-                                            <option value="5">VIJAY Offset Printer - CL01AA05</option>
-
-                                            <option value="6">Ajith OFFSET PRINTER - CL01AA06</option>
-
-                                            <option value="7">Karthi OFFSET PRINTER - CL01AA07</option>
-
-                                            <option value="8">Shewag OFFSET PRINTER - CL01AA08</option>
-
-                                            <option value="9">Ram OFFSET PRINTER - CL01AA09</option>
-
-                                            <option value="10">Rizwan OFFSET - CL01AA10</option>
-
-                                            <option value="11">Ameer OFFSET PRINTER - CL01AA11</option>
-
-                                            <option value="12">magesh - </option>
-
-                                            <option value="13">renga - 1</option>
-
-                                            <option value="14">Stat Color park - 2</option>
-
-                                            <option value="15">hus - 3</option>
-                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_client-container"><span class="select2-selection__rendered" id="select2-jc_client-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="paper_info_div">
-                                <div class="form-group">
-
-
-                                    <label class="col-sm-2 control-label" for="jc_job">Select Printing Color</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input select2-hidden-accessible" name="job" id="jc_job" tabindex="-1" aria-hidden="true">
-                                            <option value="">Select Job</option>
-
-                                            <option value="1">1 Color</option>
-
-                                            <option value="2">2 Color</option>
-
-                                            <option value="3">3 Color</option>
-
-                                            <option value="4">4 Color</option>
-                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-6 control-label" for="jc_paper_size"><h4 style="color:#428bca;">Main Paper</h4></label>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input jobcard_paper_size" name="paper_size1" id="jobcard_paper_size1">
-                                            <option value="">Select Paper Size</option>
-
-                                            <option value="1">A3</option>
-
-                                            <option value="2">A4</option>
-
-                                            <option value="3">A5</option>
-
-                                            <option value="4">A6</option>
-
-                                            <option value="5">A3 - Gum Sheet</option>
-                                        </select>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input jobcard_paper_gsm" name="gsm1" id="jobcard_paper_gsm1">
-                                            <option value="">Select Paper GSM</option>
-
-                                            <option value="1">54 GSM</option>
-
-                                            <option value="2">60 GSM</option>
-
-                                            <option value="3">70 GSM</option>
-
-                                            <option value="4">80 GSM</option>
-                                        </select>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-6 control-label" for="jc_paper_size"><h4 style="color:#428bca;">Additional Paper</h4></label>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="jc_paper_size">Additional Paper Count</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="paper_count" id="paper_count">
-                                            <option value="">Select Paper Count</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="paper_size2" id="jobcard_paper_size2">
-                                            <option value="">Select Paper Size</option>
-
-                                            <option value="1">A3</option>
-
-                                            <option value="2">A4</option>
-
-                                            <option value="3">A5</option>
-
-                                            <option value="4">A6</option>
-
-                                            <option value="5">A3 - Gum Sheet</option>
-                                        </select>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="gsm2" id="jobcard_paper_gsm2">
-                                            <option value="">Select Paper GSM</option>
-
-                                            <option value="1">54 GSM</option>
-
-                                            <option value="2">60 GSM</option>
-
-                                            <option value="3">70 GSM</option>
-
-                                            <option value="4">80 GSM</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group ">
-
-
-
-                                    <label class="col-sm-2 control-label hide" for="jc_feeding_type">Feeding Type</label>
-                                    <div class="col-sm-3 hide">
-                                        <select class="form-control rst_input" name="feeding_type" id="jc_feeding_type">
-                                            <option value="">Select Feeding Type</option>
-                                            <option value="1" selected="selected">Single Side</option>
-                                            <option value="2">Double side</option>
-
-                                        </select>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control rst_input numbersOnly" name="paper_qty" id="jc_paper_qty" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_qty">Per Book Bill Count</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control rst_input numbersOnly" name="bill_count" id="bill_count" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                            <input type="hidden" name="sub_job_count" value="0" id="jc_sub_job_count" class="jc_counter">
-                            <input type="hidden" name="custom_count" value="0" id="jc_custom_count" class="jc_counter">
-                            <div id="sub_work_adder">
-
-                            </div>
-                            <div id="custom_field_adder">
-
-                            </div>
-                            <div class="error_fetcher row">
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3"></label>
-                                <div class="col-sm-5">
-                                    <button class="btn btn-primary col-sm-6" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">Submit</button>
-                                    <!--<button class="btn btn-primary col-sm-6 jc_form_submit_spl" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing...">Submit</button>-->
-                                    <!--<button class="btn btn-primary col-sm-6 jc_form_process_spl" type="button" data-loading-text="<i class='fontawesome-spinner'></i> Processing...">Process</button>-->
-                                </div>
-
-                                <!-- <button class="btn btn-warning col-sm-1 jc_work_add_trigger" type="button">Add <i class="fa fa-plus"></i></button>
-                     <button class="btn btn-primary col-sm-2 jc_custom_add_trigger" type="button">Add Custom <i class="fa fa-plus"></i></button>-->
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
             <div class="tab-pane active" id="Others">
                 <div class="body-nest" id="element">
 
                     <div class="panel-body">
-                        <form method="post" class="form-horizontal bucket-form" action="http://webspaprojects.co.in/minioffset/jobs/add_bill_book" id="jc_form_spl">
+                        <form method="post" class="form-horizontal bucket-form"  id="jc_form_spl">
                             <input type="hidden" class="form-control" name="item_type" id="item_type" value="2">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="item_card_type">Item Type</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control" name="item_card_type" id="item_card_type">
-                                        <option value="1" selected="selected">Letter Pad</option>
-                                        <option value="2">Bitt Notice</option>
+
+                                    <select class="form-control" name="item_card_type" id="item_card_type" value="Select Item">
+                                        <option value="Select Item">Select Item Type</option>
+                                        @foreach (var item in ViewBag.AllProductItem)
+                                        {
+                                            <option>@item.ItemName</option>
+                                        }
                                     </select>
+
                                     <label class="error"></label>
                                 </div>
 
@@ -325,220 +63,257 @@ $("#job_card_type").change(function () {
                                 <div class="col-sm-3">
                                     <select class="form-control" name="job_card_type" id="job_card_type">
                                         <option value="1" selected="selected">Order Confirm</option>
-                                        <option value="2" >Estimation</option>
+                                        <option value="2">Estimation</option>
                                     </select>
                                     <label class="error"></label>
                                 </div>
 
-
                             </div>
 
-                            <div class="form-group order_confor_div hide">
-                                <label class="col-sm-2 control-label" for="job_title">Job Title</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="job_title" id="job_title" value="">
-                                    <label class="error" style="color:#c3041d;"></label>
-                                </div>
-                                <label class="col-sm-2 control-label" for="jc_client">Customer</label>
-                                <div class="col-sm-3">
-                                    <input id="new_customer" type="radio" name="customer" value="1" checked="checked">New<br>
-                                    <input type="radio" name="customer" value="2" id="old_customer">Existing<br>
-                                </div>
+                    
+
+                    <div class="form-group order_confor_div hide">
+                        <label class="col-sm-2 control-label" for="job_title">Job Title</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="job_title" id="job_title" value="">
+                            <label class="error" style="color:#c3041d;"></label>
+                        </div>
+                        <label class="col-sm-2 control-label" for="jc_client">Customer</label>
+                        <div class="col-sm-3">
+                            <input id="new_customer" type="radio" name="customer" value="1">New<br>
+                            <input type="radio" name="customer" value="2" id="old_customer" checked="checked">Existing<br>
+                        </div>
 
 
-                            </div>
-
-                            <div class="form-group order_confor_div hide">
-                                <div class="client_new">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">Name</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="cust_name" id="cust_name" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="client_new">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">E-Mail</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="cust_email" id="cust_email" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="client_new">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">Phone</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="cust_phone" id="cust_phone" value="">
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                                <div class="client_old" style="display: none;">
-                                    <label class="col-sm-2 control-label" for="jc_job_card">Select Customer</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control select2-hidden-accessible" name="client" id="jc_client" tabindex="-1" aria-hidden="true">
-                                            <option value="">Select Client Name</option>
-
-                                            <option value="1">Indian Printers - CL01AA01</option>
-
-                                            <option value="2">Lakshmi Printers - CL01AA02</option>
-
-                                            <option value="3">Master Offset Printers - CL01AA03</option>
-
-                                            <option value="4">JAZZ Printers - CL01AA04</option>
-
-                                            <option value="5">VIJAY Offset Printer - CL01AA05</option>
-
-                                            <option value="6">Ajith OFFSET PRINTER - CL01AA06</option>
-
-                                            <option value="7">Karthi OFFSET PRINTER - CL01AA07</option>
-
-                                            <option value="8">Shewag OFFSET PRINTER - CL01AA08</option>
-
-                                            <option value="9">Ram OFFSET PRINTER - CL01AA09</option>
-
-                                            <option value="10">Rizwan OFFSET - CL01AA10</option>
-
-                                            <option value="11">Ameer OFFSET PRINTER - CL01AA11</option>
-
-                                            <option value="12">magesh - </option>
-
-                                            <option value="13">renga - 1</option>
-
-                                            <option value="14">Stat Color park - 2</option>
-
-                                            <option value="15">hus - 3</option>
-                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_client-container"><span class="select2-selection__rendered" id="select2-jc_client-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="paper_info_div">
-                                <div class="form-group">
-
-
-                                    <label class="col-sm-2 control-label" for="jc_job">Select Printing Color</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input select2-hidden-accessible" name="job" id="jc_job" tabindex="-1" aria-hidden="true">
-                                            <option value="">Select Job</option>
-
-                                            <option value="1">1 Color</option>
-
-                                            <option value="2">2 Color</option>
-
-                                            <option value="3">3 Color</option>
-
-                                            <option value="4">4 Color</option>
-                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-
-
-
-                                    <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="paper_size" id="jobcard_paper_size">
-                                            <option value="">Select Paper Size</option>
-
-                                            <option value="1">A3</option>
-
-                                            <option value="2">A4</option>
-
-                                            <option value="3">A5</option>
-
-                                            <option value="4">A6</option>
-
-                                            <option value="5">A3 - Gum Sheet</option>
-                                        </select>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input select2-hidden-accessible" name="gsm" id="jc_paper_gsm" tabindex="-1" aria-hidden="true">
-                                            <option value="">Select Paper GSM</option>
-
-                                            <option value="1">54 GSM</option>
-
-                                            <option value="2">60 GSM</option>
-
-                                            <option value="3">70 GSM</option>
-
-                                            <option value="4">80 GSM</option>
-                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                        <label class="error" style="color:#c3041d;"></label>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-
-
-
-                                    <label class="col-sm-2 control-label hide" for="jc_feeding_type">Feeding Type</label>
-                                    <div class="col-sm-3 hide">
-                                        <select class="form-control rst_input" name="feeding_type" id="jc_feeding_type">
-                                            <option value="">Select Feeding Type</option>
-                                            <option value="1" selected="selected">Single Side</option>
-                                            <option value="2">Double side</option>
-
-                                        </select>
-                                    </div>
-
-                                    <label class="col-sm-2 control-label" for="exact_work">Paper Sides</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="exact_work" id="exact_work">
-                                            </select>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="exact_work">Ledger Falio</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="exact_work" id="exact_work"></select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="exact_work">Paper Color</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="exact_work" id="exact_work"></select>
-                                    </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control rst_input" name="exact_work" id="exact_work"></select>
-</div>
-                                </div>
-
-                            </div>
-
-                            <input type="hidden" name="sub_job_count" value="0" id="jc_sub_job_count" class="jc_counter">
-                            <input type="hidden" name="custom_count" value="0" id="jc_custom_count" class="jc_counter">
-                            <div id="sub_work_adder">
-
-                            </div>
-                            <div id="custom_field_adder">
-
-                            </div>
-                            <div class="error_fetcher row">
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3"></label>
-                                <div class="col-sm-5">
-                                    <button class="btn btn-primary col-sm-6" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">Submit</button>
-                                    <!--<button class="btn btn-primary col-sm-6 jc_form_submit_spl" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing...">Submit</button>-->
-                                    <!--<button class="btn btn-primary col-sm-6 jc_form_process_spl" type="button" data-loading-text="<i class='fontawesome-spinner'></i> Processing...">Process</button>-->
-                                </div>
-
-                                <!--<button class="btn btn-warning col-sm-1 jc_work_add_trigger" type="button">Add <i class="fa fa-plus"></i></button>
-                    <button class="btn btn-primary col-sm-2 jc_custom_add_trigger" type="button">Add Custom <i class="fa fa-plus"></i></button>-->
-
-                            </div>
-                        </form>
                     </div>
+
+                    <div class="form-group order_confor_div hide">
+                        <div class="client_new">
+                            <label class="col-sm-2 control-label" for="jc_job_card">Name</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="cust_name" id="cust_name" value="">
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+                        <div class="client_new">
+                            <label class="col-sm-2 control-label" for="jc_job_card">E-Mail</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="cust_email" id="cust_email" value="">
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+                        <div class="client_new">
+                            <label class="col-sm-2 control-label" for="jc_job_card">Phone</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="cust_phone" id="cust_phone" value="">
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+                        <div class="client_old" style="display: none;">
+                            <label class="col-sm-2 control-label" for="jc_job_card">Select Customer</label>
+                            <div class="col-sm-3">
+                                <select class="form-control select2-hidden-accessible" name="client" id="jc_client" tabindex="-1" aria-hidden="true">
+                                    <option value="">Select Client Name</option>
+
+                                    @foreach (var item in ViewBag.Customers)
+                                    {
+                                        <option>@item.FirstName @item.LastName</option>
+                                    }
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_client-container"><span class="select2-selection__rendered" id="select2-jc_client-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper_info_div">
+                        <div class="form-group">
+
+
+                            <label class="col-sm-2 control-label" for="jc_job">Select Printing Color</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input select2-hidden-accessible" name="job" id="jc_job" tabindex="-1" aria-hidden="true">
+                                    <option value="">Select Colour</option>
+
+                                    @foreach (var item in ViewBag.PrintingColor)
+                                    {
+                                        <option>@item.PrintColourName</option>
+                                    }
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                            <label class="col-sm-2 control-label" for="jc_job">Select Paper Quality</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="exact_work" id="exact_work">
+                                    <option value="">Select Quality</option>
+                                    @foreach (var item in ViewBag.paperQuality)
+                                    {
+                                        <option>@item.QualityName</option>
+                                    }
+                                </select>
+                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="paper_size" id="jobcard_paper_size">
+                                    <option value="">Select Paper Size</option>
+
+                                    @foreach (var item in ViewBag.Papersize)
+                                    {
+                                        <option>@item.PaperSize1</option>
+                                    }
+                                </select>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                            <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input select2-hidden-accessible" name="gsm" id="jc_paper_gsm" tabindex="-1" aria-hidden="true">
+                                    <option value="">Select Paper GSM</option>
+
+                                    @foreach (var item in ViewBag.PaperGSM)
+                                    {
+                                        <option>@item.PaperGSMVal</option>
+                                    }
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+
+
+
+                            <label class="col-sm-2 control-label hide" for="jc_feeding_type">Feeding Type</label>
+                            <div class="col-sm-3 hide">
+                                <select class="form-control rst_input" name="feeding_type" id="jc_feeding_type">
+                                    <option value="">Select Feeding Type</option>
+                                    <option value="1" selected="selected">Single Side</option>
+                                    <option value="2">Double side</option>
+
+                                </select>
+                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+
+                            <label class="col-sm-2 control-label" for="exact_work">Paper Sides</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="exact_work" id="exact_work">
+                                    <option>Select Paper Sides</option>
+                                    @foreach (var item in ViewBag.PaperSide)
+                                    {
+                                        <option>@item.PaperSideName</option>
+                                    }
+                                </select>
+                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+
+                            </div>
+                            <label class="col-sm-2 control-label" for="exact_work">Ledger Falio</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="exact_work" id="exact_work">
+                                    <option>Select Ledger Falio</option>
+                                    @foreach (var item in ViewBag.LedgerFolio)
+                                    {
+                                        <option>@item.LedgerFalioValue</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="exact_work">Paper Color</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input select2-hidden-accessible" name="job" id="jc_job" tabindex="-1" aria-hidden="true">
+                                    <option value="">Select Colour</option>
+                                    @foreach (var item in ViewBag.PrintingColor)
+                                    {
+                                        <option>@item.PrintColourName</option>
+                                    }
+
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                            <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" min="0" value="1" name="exact_work" id="exact_work"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4 style="color:#428bca;">Additional Paper</h4></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="jc_paper_size">Additional Paper Count</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="exact_work"></input>
+
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="paper_size2" id="jobcard_paper_size2">
+                                    <option value="">Select Paper Size</option>
+
+                                    @foreach (var item in ViewBag.Papersize)
+                                    {
+                                        <option>@item.PaperSize1</option>
+                                    }
+                                </select>
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+
+                            </div>
+                            <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="gsm2" id="jobcard_paper_gsm2">
+                                    <option value="">Select Paper GSM</option>
+
+                                    @foreach (var item in ViewBag.PaperGSM)
+                                    {
+                                        <option>@item.PaperGSMVal</option>
+                                    }
+                                </select>
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" min="0" value="1" name="exact_work" id="exact_work"></input>
+                            </div>
+                            <label class="col-sm-2 control-label" for="jc_paper_qty">Per Book Bill Count</label>
+                            <div class="col-sm-3">
+                                <input type="number" value="1" min="0" class="form-control rst_input numbersOnly" name="bill_count" id="bill_count" value="">
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                            <label class="error" style="color:#c3041d;"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3"></label>
+                        <div class="col-sm-5">
+                            <button class="btn btn-primary col-sm-6" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">Submit</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
                 </div>
             </div>
         </div>    
     </div>
+
 
     <div class="table-cont">
         <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
@@ -557,7 +332,7 @@ $("#job_card_type").change(function () {
                        <th>Created Date</th>
                        <th>Job Status</th>
 </tr></thead>
-            @foreach (var item in Model)
+            @foreach (var item in ViewBag.OrderItem)
             {
                 <tr><td>@item.OrderId</td>
                 <td>@item.ProductItemId</td>
@@ -573,8 +348,8 @@ $("#job_card_type").change(function () {
                 <td>@item.CreatedDate</td>
                 <td>
                     <select class="form-control job-status" value="@item.JobProcessTypeId">
-                        <option value="Estimation">Estimation</option>
-                        <option value="OrderConfirm">OrderConfirm</option>
+                        <option value="1">Estimation</option>
+                        <option value="2">OrderConfirm</option>
                     </select>
                 </td>
                 </tr>
