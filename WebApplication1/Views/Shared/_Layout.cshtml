@@ -16,18 +16,19 @@
                 <div class="heading-text">Print Management System</div>
             </div>
             <div class="profile-cont">
-                <div class="profile-user">Hi Admin</div>
+                <div class="profile-user">Hi @Session["AccountName"]</div>
                 <div class="profile-logout">@Html.ActionLink("LogOut", "Login", "Account")</div>
             </div>
         </div>
-        <div class="side-navbar">
+        <div class="side-navbar @Session["Roles"]" >
             <div class="menu-text">Menu</div>
-            <div class="menu-item">@Html.ActionLink("Jobs", "Index", "Home")</div>
-            <div class="menu-item">@Html.ActionLink("Orders", "Report", "Home")</div>
-            <div class="menu-item">@Html.ActionLink("Configurator", "Index", "Config")</div>
-            <div class="menu-item">@Html.ActionLink("Report", "Report", "Home")</div>
+            <div class="menu-item Jobs">@Html.ActionLink("Jobs", "Index", "Home")</div>
+            <div class="menu-item Orders">@Html.ActionLink("Orders", "Report", "Home")</div>
+            <div class="menu-item Config">@Html.ActionLink("Configurator", "Index", "Config")</div>
+            <div class="menu-item Report">@Html.ActionLink("Report", "Report", "Home")</div>
 
         </div>
+       
         <div class="body-cont">
             <div class="body-content">
                 @RenderBody()
