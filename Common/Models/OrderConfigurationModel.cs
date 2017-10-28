@@ -10,6 +10,7 @@ namespace PrintManagement.Common.Models
     {
         public int OrderConfigurationId { get; set; }
         public int ProductItemId { get; set; }
+        public string ProductItem { get; set; }
         public Nullable<int> PaperGSMId { get; set; }
         public Nullable<int> PaperColourId { get; set; }
         public Nullable<int> PaperSizeId { get; set; }

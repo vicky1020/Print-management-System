@@ -14,16 +14,7 @@ namespace EF
     
     public partial class JobProcessType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public JobProcessType()
-        {
-            this.OrderItem = new HashSet<OrderItem>();
-        }
-    
         public int JobProcessTypeId { get; set; }
         public string JobProcessType1 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItem { get; set; }
     }
 }

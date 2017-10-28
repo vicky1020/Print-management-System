@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EF;
 using PrintManagement.Common.Models;
+using PrintManagement.Common.Repositories;
 using AutoMapper;
 
 namespace PrintManagement.Common.Mapping

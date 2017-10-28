@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using PrintManagement.Common.Interfaces;
-using PrintManagement.Common.Repository;
+using PrintManagement.Common.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System.Web.Services.Description;
 

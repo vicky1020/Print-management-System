@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th>Order Id</th>
-                    <th>Product Item Id</th>
+                    <th>Product Item</th>
                     <th>Paper GSM</th>
                     <th>Paper Color</th>
                     <th>Paper Size</th>
@@ -27,7 +27,6 @@
                     <th>Created By</th>
                     <th>Created Date</th>
                     <th>Job Status</th>
-                    <th>Active</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +34,7 @@
             {
                     <tr>
                         <td>@item.OrderId</td>
-                        <td>@item.ProductItemId</td>
+                        <td>@item.ProductItem</td>
                         <td>@item.PaperGSM</td>
                         <td>@item.PaperColour</td>
                         <td>@item.PaperSize</td>
@@ -49,13 +48,7 @@
                         <td>@item.Amount</td>
                         <td>@item.CreatedBy</td>
                         <td>@item.CreatedDate</td>
-                        <td>@item.JobProcessTypeId</td>
-                        <td>
-                            <select class="form-control">
-                                <option>Delivered</option>
-                                <option>Pending</option>
-                            </select>
-                        </td>
+                        <td>@item.JobProcessType</td>
                     </tr>
                 }
             </tbody>

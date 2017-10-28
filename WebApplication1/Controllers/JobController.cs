@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PrintManagement.Common.Repository;
+using PrintManagement.Common.Repositories;
 using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
 using PrintManagementApp.Models;

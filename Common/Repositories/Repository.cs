@@ -9,7 +9,7 @@ using System.Data.Entity;
 using PrintManagement.Common.Mapping;
 using PrintManagement.Common.Interfaces;
 
-namespace PrintManagement.Common.Repository
+namespace PrintManagement.Common.Repositories
 {
     public class Repository : IRepository
     {
@@ -39,7 +39,7 @@ namespace PrintManagement.Common.Repository
             var config = await _entities.Configuration.Where(i => i.ConfigurationName == name).FirstOrDefaultAsync();
             return config?.ToConfigurationModel();
         }
-        
+
         public async Task<List<ConfigurationTypeModel>> GetAllConfigurationType()
         {
             var configType = await _entities.ConfigurationType.ToListAsync();
@@ -210,7 +210,7 @@ namespace PrintManagement.Common.Repository
             var allOrders = await _entities.OrderItem.ToListAsync();
             if (allOrders.Count > 0)
                 return allOrders.Select(item => item.ToOrderItemModel()).ToList();
-            return null;
+            return new List<OrderItemModel>();
         }
         public async Task<OrderItemModel> GetOrderItemById(int OrderId)
         {

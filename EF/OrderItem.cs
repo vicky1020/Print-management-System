@@ -15,7 +15,7 @@ namespace EF
     public partial class OrderItem
     {
         public int OrderId { get; set; }
-        public int ProductItemId { get; set; }
+        public string ProductItem { get; set; }
         public Nullable<int> PaperGSM { get; set; }
         public string PaperColour { get; set; }
         public string PaperSize { get; set; }
@@ -30,11 +30,8 @@ namespace EF
         public string CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> CustomerId { get; set; }
-        public int JobProcessTypeId { get; set; }
+        public string JobProcessType { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-    
-        public virtual JobProcessType JobProcessType { get; set; }
-        public virtual ProductItem ProductItem { get; set; }
     }
 }

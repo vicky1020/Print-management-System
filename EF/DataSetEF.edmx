@@ -99,7 +99,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.LedgerFalio' does not ha
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductItemId" Type="int" Nullable="false" />
+          <Property Name="ProductItem" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="PaperGSM" Type="int" />
           <Property Name="PaperColour" Type="varchar" MaxLength="256" />
           <Property Name="PaperSize" Type="varchar" MaxLength="256" />
@@ -114,7 +114,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.LedgerFalio' does not ha
           <Property Name="CreatedBy" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CustomerId" Type="int" />
-          <Property Name="JobProcessTypeId" Type="int" Nullable="false" />
+          <Property Name="JobProcessType" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="256" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
@@ -216,30 +216,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderItem_OrderItem_JobProcessType">
-          <End Role="JobProcessType" Type="Self.JobProcessType" Multiplicity="1" />
-          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobProcessType">
-              <PropertyRef Name="JobProcessTypeId" />
-            </Principal>
-            <Dependent Role="OrderItem">
-              <PropertyRef Name="JobProcessTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderItem_OrderItem_Product">
-          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
-          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductItem">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="OrderItem">
-              <PropertyRef Name="ProductItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_Users_Roles">
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -310,14 +286,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             <End Role="ProductItem" EntitySet="ProductItem" />
             <End Role="ItemDisplayConfig" EntitySet="ItemDisplayConfig" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_OrderItem_JobProcessType" Association="Self.FK_OrderItem_OrderItem_JobProcessType">
-            <End Role="JobProcessType" EntitySet="JobProcessType" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_OrderItem_Product" Association="Self.FK_OrderItem_OrderItem_Product">
-            <End Role="ProductItem" EntitySet="ProductItem" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_Users_Roles" Association="Self.FK_Users_Users_Roles">
             <End Role="UserRole" EntitySet="UserRole" />
             <End Role="User" EntitySet="User" />
@@ -370,7 +338,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           </Key>
           <Property Name="JobProcessTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JobProcessType1" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_OrderItem_JobProcessType" FromRole="JobProcessType" ToRole="OrderItem" />
         </EntityType>
         <EntityType Name="OrderConfiguration">
           <Key>
@@ -400,7 +367,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductItemId" Type="Int32" Nullable="false" />
+          <Property Name="ProductItem" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PaperGSM" Type="Int32" />
           <Property Name="PaperColour" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="PaperSize" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
@@ -415,11 +382,9 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CustomerId" Type="Int32" />
-          <Property Name="JobProcessTypeId" Type="Int32" Nullable="false" />
+          <Property Name="JobProcessType" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="JobProcessType" Relationship="Self.FK_OrderItem_OrderItem_JobProcessType" FromRole="OrderItem" ToRole="JobProcessType" />
-          <NavigationProperty Name="ProductItem" Relationship="Self.FK_OrderItem_OrderItem_Product" FromRole="OrderItem" ToRole="ProductItem" />
         </EntityType>
         <EntityType Name="PaperGSM">
           <Key>
@@ -456,7 +421,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ItemDisplayConfig" Relationship="Self.FK_ItemDisplayConfig_ItemDisplayConfig" FromRole="ProductItem" ToRole="ItemDisplayConfig" />
-          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_OrderItem_Product" FromRole="ProductItem" ToRole="OrderItem" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -549,30 +513,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderItem_OrderItem_JobProcessType">
-          <End Role="JobProcessType" Type="Self.JobProcessType" Multiplicity="1" />
-          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobProcessType">
-              <PropertyRef Name="JobProcessTypeId" />
-            </Principal>
-            <Dependent Role="OrderItem">
-              <PropertyRef Name="JobProcessTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderItem_OrderItem_Product">
-          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
-          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductItem">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="OrderItem">
-              <PropertyRef Name="ProductItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_Users_Roles">
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -622,14 +562,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <AssociationSet Name="FK_ItemDisplayConfig_ItemDisplayConfig" Association="Self.FK_ItemDisplayConfig_ItemDisplayConfig">
             <End Role="ProductItem" EntitySet="ProductItem" />
             <End Role="ItemDisplayConfig" EntitySet="ItemDisplayConfig" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_OrderItem_JobProcessType" Association="Self.FK_OrderItem_OrderItem_JobProcessType">
-            <End Role="JobProcessType" EntitySet="JobProcessType" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_OrderItem_Product" Association="Self.FK_OrderItem_OrderItem_Product">
-            <End Role="ProductItem" EntitySet="ProductItem" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Users_Roles" Association="Self.FK_Users_Users_Roles">
             <End Role="UserRole" EntitySet="UserRole" />
@@ -714,7 +646,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             <EntityTypeMapping TypeName="PrintManagementSystemModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItem">
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
+                <ScalarProperty Name="ProductItem" ColumnName="ProductItem" />
                 <ScalarProperty Name="PaperGSM" ColumnName="PaperGSM" />
                 <ScalarProperty Name="PaperColour" ColumnName="PaperColour" />
                 <ScalarProperty Name="PaperSize" ColumnName="PaperSize" />
@@ -729,7 +661,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="JobProcessTypeId" ColumnName="JobProcessTypeId" />
+                <ScalarProperty Name="JobProcessType" ColumnName="JobProcessType" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
               </MappingFragment>

@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PrintManagementApp.Models;
-using PrintManagement.Common.Repository;
+using PrintManagement.Common.Repositories;
 using PrintManagement.Common.Models;
 namespace PrintManagementApp.Controllers
 {
