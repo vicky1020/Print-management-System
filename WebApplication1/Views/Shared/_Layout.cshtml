@@ -22,11 +22,10 @@
     </div>
     <div class="side-navbar @Session["Roles"]">
         <div class="menu-text">Menu</div>
-        <div class="menu-item Orders">@Html.ActionLink("Orders", "Report", "Job")</div>
+        <div class="menu-item Orders">@Html.ActionLink("Orders", "Orders", "Job")</div>
         <div class="menu-item Jobs">@Html.ActionLink("Jobs", "Index", "Job")</div>
         <div class="menu-item Config">@Html.ActionLink("Configurator", "Index", "Config")</div>
         <div class="menu-item Report">@Html.ActionLink("Report", "Report", "Job")</div>
-
     </div>
 
     <div class="body-cont">

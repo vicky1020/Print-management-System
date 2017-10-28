@@ -181,7 +181,7 @@ namespace PrintManagementApp.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Job");
+                    return RedirectToAction("Orders", "Job");
                 }
                 AddErrors(result);
             }
@@ -374,7 +374,7 @@ namespace PrintManagementApp.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("Orders", "Manage");
             }
 
             if (ModelState.IsValid)
@@ -410,7 +410,7 @@ namespace PrintManagementApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Job");
+            return RedirectToAction("Orders", "Job");
         }
 
         //
@@ -467,7 +467,7 @@ namespace PrintManagementApp.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Job");
+            return RedirectToAction("Orders", "Job");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

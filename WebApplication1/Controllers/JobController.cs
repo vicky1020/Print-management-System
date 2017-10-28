@@ -72,6 +72,20 @@ namespace PrintManagementApp.Controllers
             }
         }
 
+
+        public async Task<ActionResult> Orders()
+        {
+            try
+            {
+                var OrderItemModel = await irepo.GetAllOrderItem();
+                return View(OrderItemModel);
+            }
+            catch (Exception e)
+            {
+                return View(e.Message);
+            }
+        }
+
         public void SaveOrder(OrderItemModel obj)
         {
             var OrderItemModel = irepo.AddOrderItem(obj);

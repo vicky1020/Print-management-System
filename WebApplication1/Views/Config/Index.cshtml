@@ -10,59 +10,60 @@
 
         var elements = $(".job-status");
 
-        for (var i = 0; i < elements.length; i++)
-        {
+        for (var i = 0; i < elements.length; i++) {
             element = $(elements[i]);
             element.val(element.attr("value"));
         }
     })</script>
-<h2>Configurations</h2>
-<div class="add-btn">@Html.ActionLink("ADD", "AddConfig", "Config")</div>
-<div class="table-cont" align="center">
-    <table id="example1" class="display table table-bordered " cellspacing="0" width="100%">
+<div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
+    <h3>Configurations</h3>
+    <div class="add-btn">@Html.ActionLink("ADD", "AddConfig", "Config")</div>
+    <div class="table-cont" align="center">
+        <table id="example1" class="display table table-bordered " cellspacing="0" width="100%">
 
-        <thead>
-            <tr>
-                <th>Order Config Id</th>
-                <th>Product Item Id</th>
-                <th>Paper GSM</th>
-                <th>Paper Colour</th>
-                <th>Paper Size</th>
-                <th>Paper Quality</th>
-                <th>Paper Sides</th>
-                <th>Ledger Falio</th>
-                <th>Additional Paper Count</th>
-                <th>Additional Paper Size</th>
-                <th>Additonal Paper GSM</th>
-                <th>Min Range</th>
-                <th>Max Range</th>
-                <th>Amount</th>
-                <th>Last Modified By</th>
-                <th>Last Modified Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+            <thead>
                 <tr>
-                    <td>@item.OrderConfigurationId<div class="update-btn">@Html.ActionLink("UPDATE", "UpdateConfig", "Config")</div></td>
-                    <td>@item.ProductItemId</td>
-                    <td>@item.PaperGSMId</td>
-                    <td>@item.PaperColourId</td>
-                    <td>@item.PaperSizeId</td>
-                    <td>@item.PaperQualityId</td>
-                    <td>@item.PaperSidesId</td>
-                    <td>@item.LedgerFalioId</td>
-                    <td>@item.AdditionalPaperCount</td>
-                    <td>@item.AdditionalPaperSizeId</td>
-                    <td>@item.AdditonalPaperGSMId</td>
-                    <td>@item.MinRange</td>
-                    <td>@item.MaxRange</td>
-                    <td>@item.Amount</td>
-                    <td>@item.CreatedBy</td>
-                    <td>@item.CreatedDate</td>
+                    <th>Order Config Id</th>
+                    <th>Product Item Id</th>
+                    <th>Paper GSM</th>
+                    <th>Paper Colour</th>
+                    <th>Paper Size</th>
+                    <th>Paper Quality</th>
+                    <th>Paper Sides</th>
+                    <th>Ledger Falio</th>
+                    <th>Additional Paper Count</th>
+                    <th>Additional Paper Size</th>
+                    <th>Additonal Paper GSM</th>
+                    <th>Min Range</th>
+                    <th>Max Range</th>
+                    <th>Amount</th>
+                    <th>Last Modified By</th>
+                    <th>Last Modified Date</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>@item.OrderConfigurationId<div class="update-btn">@Html.ActionLink("UPDATE", "UpdateConfig", "Config")</div></td>
+                        <td>@item.ProductItemId</td>
+                        <td>@item.PaperGSMId</td>
+                        <td>@item.PaperColourId</td>
+                        <td>@item.PaperSizeId</td>
+                        <td>@item.PaperQualityId</td>
+                        <td>@item.PaperSidesId</td>
+                        <td>@item.LedgerFalioId</td>
+                        <td>@item.AdditionalPaperCount</td>
+                        <td>@item.AdditionalPaperSizeId</td>
+                        <td>@item.AdditonalPaperGSMId</td>
+                        <td>@item.MinRange</td>
+                        <td>@item.MaxRange</td>
+                        <td>@item.Amount</td>
+                        <td>@item.CreatedBy</td>
+                        <td>@item.CreatedDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
