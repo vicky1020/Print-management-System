@@ -32,7 +32,7 @@ textarea {
     position: fixed;
     padding: 0 5px;
     z-index: 1;
-   /* -webkit-transition: left 500ms;
+    /* -webkit-transition: left 500ms;
     transition: left 500ms;*/
 }
 
@@ -41,6 +41,7 @@ textarea {
     float: left;
     font-size: 15px;
 }
+
 .menu-text {
     color: #FFFFFF;
     font-weight: bold;
@@ -93,14 +94,14 @@ textarea {
     border-radius: 10px;
 }
 
-.menu-item a {
-    color: #999999 !important;
-}
+    .menu-item a {
+        color: #999999 !important;
+    }
 
-.menu-item:hover a {
-    color: #FFFFFF !important;
-    text-decoration: none;
-}
+    .menu-item:hover a {
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
 
 .login .side-navbar, .login .header-cont {
     display: none;
@@ -116,6 +117,7 @@ textarea {
 .body-content {
     overflow-x: hidden;
 }
+
 .show-menu .side-navbar {
     left: 0;
     -webkit-transition: left 300ms;
@@ -160,10 +162,10 @@ textarea {
     width: 70px;
 }
 
-.add-btn a, .update-btn a {
-    color: #FFF;
-    text-decoration: none;
-}
+    .add-btn a, .update-btn a {
+        color: #FFF;
+        text-decoration: none;
+    }
 
 .add-btn:hover {
     background-color: #285e8e;
@@ -175,4 +177,14 @@ textarea {
 
 .submit-btn {
     width: 250px;
+}
+
+user .Report {
+    display: none;
+}
+
+
+
+.user .Config {
+    display: none;
 }
