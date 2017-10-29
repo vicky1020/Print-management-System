@@ -53,8 +53,22 @@
 
 
             $("#ADDbtn").click(function () {
+                $('.bill_table').removeClass('hide');
+                var description = $('#item_card_type').val();
+                var qty = $('#bill_count').val()
+                var amount = $('#Amount1').val();
+                var GST = (amount * 16) / 100;
+                var netAmount = parseInt(amount) + GST;
+                
+                $('#price').html(amount);
+                $('#price1').html(amount);
+                $('#price2').html(amount);
+                $('#GST').html(GST);
+                $('#netamount').html(netAmount);
+                $('#qty').html(qty);
+                $('#description').html(description);
                 insertOrder();
-            });
+              });
 
             function insertOrder() {
                 var customerType;
@@ -80,7 +94,7 @@
                     'AdditionalPaperSize': $('#paper_size2 option:selected').val(),
                     'AdditonalPaperGSM': $('#paper_gsm2 option:selected').val(),
                     'Quantity': $('#Quantity').val(),
-                    'Amount': 300,
+                    'Amount': $('#Amount1').val(),
                     'CreatedBy': 'admin',
                     'CustomerId': customerType,
                     'JobProcessType': $('#job_process_type option:selected').val(),
@@ -137,8 +151,8 @@
 
         });
     </script>}
-<div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
-<h3>JOBS</h3>
+<div class="page-content inset  center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
+    <h3 style="color: #fff;background-color: #428bca;">JOBS</h3>
     
     <div class="tab-content clearfix well">
         
@@ -152,9 +166,9 @@
                             <label class="col-sm-2 control-label" for="item_card_type">Item Type</label>
                             <div class="col-sm-3">
 
-                                <select class="form-control" name="item_card_type" id="item_card_type" value="Select Item">
-                                    <option value="Select Item">Select Item Type</option>
-
+                                <select class="form-control" name="item_card_type" id="item_card_type" >
+                                    <option value="">Select Item Type</option>
+                                        
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
                                         <option value="@item.ItemName">@item.ItemName</option>
@@ -170,8 +184,8 @@
                             <label class="col-sm-2 control-label" for="job_card_type">Job Process Type</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="job_card_type" id="job_process_type">
-                                    <option value="1" >Order Confirm</option>
-                                    <option value="2" selected="selected">Estimation</option>
+                                    <option value="Order Confirm" >Order Confirm</option>
+                                    <option value="Estimation" selected="selected">Estimation</option>
                                 </select>
                                 <label class="error"></label>
                             </div>
@@ -313,7 +327,7 @@
                                 <label class="col-sm-2 control-label" for="exact_work">Paper Sides</label>
                                 <div class="col-sm-3">
                                     <select class="form-control rst_input" name="exact_work" id="PaperSide">
-                                        <option>Select Paper Sides</option>
+                                        <option value="">Select Paper Sides</option>
                                         @foreach (var item in ViewBag.PaperSide)
                                         {
                                             <option value=@item.PaperSideName>@item.PaperSideName</option>
@@ -352,67 +366,80 @@
                                     <input class="form-control" type="number" min="0" value="1" name="exact_work" id="Quantity"></input>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <h4 style="color:#428bca;">Additional Paper</h4>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="jc_paper_size">Paper Count</label>
-                                <div class="col-sm-3">
-                                    <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="Add_paper_count"></input>
-
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <label class="error" style="color:#c3041d;"></label>
+                            <div class="well">
+                                <div class="form-group">
+                                    <h4 style="color:#428bca;">Additional Paper</h4>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="paper_size2" id="paper_size2">
-                                        <option value="">Select Paper Size</option>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="jc_paper_size">Paper Count</label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="Add_paper_count"></input>
 
-                                        @foreach (var item in ViewBag.Papersize)
-                                        {
-                                            <option>@item.PaperSize1</option>
-                                        }
-                                    </select>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        <label class="error" style="color:#c3041d;"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control rst_input" name="paper_size2" id="paper_size2">
+                                            <option value="">Select Paper Size</option>
+
+                                            @foreach (var item in ViewBag.Papersize)
+                                            {
+                                                <option>@item.PaperSize1</option>
+                                            }
+                                        </select>
+                                        <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        <label class="error" style="color:#c3041d;"></label>
+
+                                    </div>
+                                    <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control rst_input" name="gsm2" id="paper_gsm2">
+                                            <option value="">Select Paper GSM</option>
+
+                                            @foreach (var item in ViewBag.PaperGSM)
+                                            {
+                                                <option>@item.PaperGSMVal</option>
+                                            }
+                                        </select>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        <label class="error" style="color:#c3041d;"></label>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" type="number" min="0" value="1" name="exact_work" id="exact_work">
+                                    </div>
+                                    <label class="col-sm-2 control-label" for="jc_paper_qty">Per Book Bill Count</label>
+                                    <div class="col-sm-3">
+                                        <input type="number" value="1" min="0" class="form-control rst_input numbersOnly" name="bill_count" id="bill_count">
+                                        <label class="error" style="color:#c3041d;"></label>
+                                    </div>
                                     <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
-
                                 </div>
-                                <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="gsm2" id="paper_gsm2">
-                                        <option value="">Select Paper GSM</option>
-
-                                        @foreach (var item in ViewBag.PaperGSM)
-                                        {
-                                            <option>@item.PaperGSMVal</option>
-                                        }
-                                    </select>
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <label class="error" style="color:#c3041d;"></label>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group ">
-                                <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
-                                <div class="col-sm-3">
-                                    <input class="form-control" type="number" min="0" value="1" name="exact_work" id="exact_work">
-                                </div>
-                                <label class="col-sm-2 control-label" for="jc_paper_qty">Per Book Bill Count</label>
-                                <div class="col-sm-3">
-                                    <input type="number" value="1" min="0" class="form-control rst_input numbersOnly" name="bill_count" id="bill_count" >
-                                    <label class="error" style="color:#c3041d;"></label>
-                                </div>
-                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                <label class="error" style="color:#c3041d;"></label>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label" for="jc_paper_size">Amount</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="Amount1"></input>
+
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group">
                             <label class="col-sm-3"></label>
                             <div class="col-sm-5">
-                                <button id="ADDbtn" class="btn btn-primary col-sm-6" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">Submit</button>
+                                <button id="ADDbtn" class="btn btn-primary col-sm-6" >Submit</button>
                             </div>
                         </div>
                     </form>
@@ -421,7 +448,49 @@
             </div>
         </div>
     </div>
-    <h3>Recent Orders</h3>
+    <div class="bill_table well  hide">
+
+        <h3 style="color: #fff;background-color: #428bca;">Admin Reference Bill</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td id="description"></td>
+                    <td class="text-right" id="qty">1</td>
+                    <td class="text-right" id="price1">0.07</td>
+                    <td class="text-right" id="price2">0.07</td>
+                </tr>
+                <tr>
+                    <td colspan="3" rowspan="4" style="vertical-align:middle;"></td>
+                    <td class="text-right">Gross Amount</td>
+                    <td class="text-right" id="price">0.07</td>
+                </tr>
+                <tr>
+                    <td class="text-right">GST(CGST 8% + SGST 8% )</td>
+                    <td class="text-right" id="GST">0.00</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Net Amount</td>
+                    <td class="text-right" id="netamount">0.00</td>
+                </tr>
+                <tr>
+                    <td colspan="3" rowspan="4" style="vertical-align:middle;">RUPEES:  Rupees Only</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <h3 style="color: #fff;background-color: #428bca;">Recent Orders</h3>
     <div class="table-cont well">
         
         <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
