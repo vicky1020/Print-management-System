@@ -68,20 +68,10 @@
                 $('#qty').html(qty);
                 $('#description').html(description);
                 insertOrder();
-              });
+            });
 
             function insertOrder() {
-                var customerType;
-                var customer_type = $("input[name$='customer']:checked").val();
-                if (customer_type == "2") {
-                    customerType = $('#customer option:selected').attr("value");
 
-                }
-                else {
-
-                    customerType =  @ViewBag.Customers.Count +1;
-
-                }
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
                     'PaperGSM': $('#jc_paper_gsm option:selected').val(),
@@ -96,58 +86,34 @@
                     'Quantity': $('#Quantity').val(),
                     'Amount': $('#Amount1').val(),
                     'CreatedBy': 'admin',
-                    'CustomerId': customerType,
+                    'CustomerId': 1,
                     'JobProcessType': $('#job_process_type option:selected').val(),
                     'UpdatedBy': 'admin'
 
                 };
-                //if ($("input[name$='customer']:checked").val() == '1') {
-                //    var dataObject1 = {   
-                //        'FirstName': 'vivek',
-                //        'LastName': 'kumar',
-                //        'Email': 'vivek@gmail.com',
-                //        'PhoneNumber': '9176855954',
-                //        'CreatedBy': 'admin'
-            };
-            //    $.ajax({
-            //        url: "/Job/customer",
-            //        type: "POST",
-            //        data: JSON.stringify({ 'obj': dataObject1 }),
-            //        dataType: "json",
-            //        traditional: true,
-            //        contentType: "application/json; charset=utf-8",
-            //        success: function (data) {
-            //            if (data.status == "Success") {
-            //                alert("Done");
-            //            } else {
-            //                alert("Error occurs on the Database level!");
-            //            }
-            //        },
-            //        error: function (error) {
-            //            alert(JSON.stringify(error));
-            //        }
-            //    });
-            //}
-            $.ajax({
-                url: "/Job/SaveOrder",
-                type: "POST",
-                data: JSON.stringify({ 'obj': dataObject }),
-                dataType: "json",
-                traditional: true,
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (data.status == "Success") {
-                        alert("Done");
-                    } else {
-                        alert("Error occurs on the Database level!");
+
+                $.ajax({
+                    url: "/Job/SaveOrder",
+                    type: "POST",
+                    data: JSON.stringify({ 'obj': dataObject }),
+                    dataType: "json",
+                    traditional: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data.status == "Success") {
+                            alert("Done");
+                        } else {
+                            alert("Error occurs on the Database level!");
+                        }
+                    },
+                    error: function (error) {
+
+                        $('#message').html(JSON.stringify(error));
+                       // alert(JSON.stringify(error));
                     }
-                },
-                error: function (error) {
-                    alert(JSON.stringify(error));
-                }
-            });
-
-
+                });
+            }
+        
 
         });
     </script>}
@@ -439,7 +405,7 @@
                         <div class="form-group">
                             <label class="col-sm-3"></label>
                             <div class="col-sm-5">
-                                <button id="ADDbtn" class="btn btn-primary col-sm-6" >Submit</button>
+                                <button id="ADDbtn" class="btn btn-primary col-sm-6" data-toggle="modal" data-target="#myModal">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -530,5 +496,21 @@
                 </tr>
             }
         </table>
+    </div>
+</div>
+<div class="modal fade success-popup" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Status Message !</h4>
+            </div>
+            <div class="modal-body text-center">
+                <img src="http://osmhotels.com//assets/check-true.jpg">
+                <p class="lead" id="message" style="font-size:15px"></p>
+                <a  class="rd_more btn btn-default" data-dismiss="modal">Go Back</a>
+            </div>
+
+        </div>
     </div>
 </div>

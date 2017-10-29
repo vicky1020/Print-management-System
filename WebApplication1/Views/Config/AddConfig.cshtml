@@ -13,18 +13,7 @@
 @section scripts{
     <script type="text/javascript">
 $(document).ready(function(){
-    $('#example').dataTable();
-});
-$("#job_card_type").change(function () {
-
-    var job_type = $(this).val();
-    alert(job_type);
-    if (job_type == 1) {
-        $('.order_confor_div').removeClass('hide');
-    } else {
-        $('.order_confor_div').addClass('hide');
-    }
-});
+  
 
 $(".ADD").click(function () {
     insertConfig();
@@ -47,31 +36,37 @@ function insertConfig() {
         'Amount': $('#Amount').val(),
         'CreatedBy': 'Admin',
         'UpdatedBy': 'Admin',
-        
+
     };
 
     // prevent the default event behaviour    
-   
+
 
     $.ajax({
         url: "/Config/InsertConfig",
         type: "POST",
-        data: JSON.stringify({ 'obj': dataObject}),
+        data: JSON.stringify({ 'obj': dataObject }),
         dataType: "json",
         traditional: true,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data.status == "Success") {
+            if (data.status == 200) {
+
+                
                 alert("Done");
             } else {
                 alert("Error occurs on the Database level!");
             }
         },
         error: function (error) {
-            alert(JSON.stringify(error));
+            $('#message').html(JSON.stringify(error));
+           // alert(JSON.stringify(error));
+            
         }
     });
-}
+    }
+
+});
 
     </script>}
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
@@ -272,7 +267,7 @@ function insertConfig() {
                             </div>
                         </div>
                         <div class="form-group submit-btn-cont">
-                            <button class="btn btn-primary submit-btn @ViewBag.BtnName" type="submit" data-loading-text="<i class='fontawesome-spinner'></i> Processing..." data-original-title="" title="">@ViewBag.BtnName</button>
+                            <button class="btn btn-primary submit-btn @ViewBag.BtnName" type="submit" data-toggle="modal" data-target="#myModal">@ViewBag.BtnName</button>
                        </div>
                     </form>
                 </div>
@@ -280,5 +275,20 @@ function insertConfig() {
         </div>
     </div>
 </div>
+<div class="modal fade success-popup" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Status Message !</h4>
+            </div>
+            <div class="modal-body text-center">
+                <img src="http://osmhotels.com//assets/check-true.jpg">
+                <p class="lead" id="message" style="font-size:15px"></p>
+                <a class="rd_more btn btn-default" data-dismiss="modal">Go Back</a>
+            </div>
 
+        </div>
+    </div>
+</div>
 
