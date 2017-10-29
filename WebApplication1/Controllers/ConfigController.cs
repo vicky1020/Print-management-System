@@ -9,6 +9,7 @@ using PrintManagementApp.Models;
 using System.Threading.Tasks;
 using PrintManagementApp.Controllers;
 using PrintManagementApp.Filters;
+using PrintManagement.Common.Models;
 
 namespace PrintManagementApp.Controllers
 {
@@ -93,9 +94,10 @@ namespace PrintManagementApp.Controllers
         }
 
         [HttpPost]
-        public void InsertConfig(PrintManagement.Common.Models.OrderConfigurationModel obj)
+        public void InsertConfig(OrderConfigurationModel obj)
         {
             var orderConfig = irepo.AddOrderConfiguration(obj);
         }
+        
     }
 }

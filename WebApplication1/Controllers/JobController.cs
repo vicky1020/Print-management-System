@@ -90,6 +90,10 @@ namespace PrintManagementApp.Controllers
         {
             var OrderItemModel = irepo.AddOrderItem(obj);
         }
+        public void customer(CustomerModel obj)
+        {
+            var CustomerAdd = irepo.AddCustomer(obj);
+        }
 
     }
 }

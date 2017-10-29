@@ -57,7 +57,17 @@
         });
 
         function insertOrder() {
-
+            var customerType;
+            var customer_type = $("input[name$='customer']:checked").val();
+            if (customer_type == "2") {
+                customerType = $('#customer option:selected').attr("value");
+            
+            }
+            else {
+               
+                customerType =  @ViewBag.Customers.Count +1;
+                
+            }
             var dataObject = {
                 'ProductItem': $('#item_card_type option:selected').val(),
                 'PaperGSM': $('#jc_paper_gsm option:selected').val(),
@@ -72,35 +82,66 @@
                 'Quantity': $('#Quantity').val(),
                 'Amount': 300,
                 'CreatedBy': 'admin',
-                'CustomerId': $('#customer option:selected').val(),
+                'CustomerId': customerType,
                 'JobProcessType': $('#job_process_type option:selected').val(),
                 'UpdatedBy': 'admin'
 
             };
-            $.ajax({
-                url: "/Job/SaveOrder",
-                type: "POST",
-                data: JSON.stringify({ 'obj': dataObject }),
-                dataType: "json",
-                traditional: true,
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (data.status == "Success") {
-                        alert("Done");
-                    } else {
-                        alert("Error occurs on the Database level!");
+            //if ($("input[name$='customer']:checked").val() == '1') {
+            //    var dataObject1 = {   
+            //        'FirstName': 'vivek',
+            //        'LastName': 'kumar',
+            //        'Email': 'vivek@gmail.com',
+            //        'PhoneNumber': '9176855954',
+            //        'CreatedBy': 'admin'
+                        };
+            //    $.ajax({
+            //        url: "/Job/customer",
+            //        type: "POST",
+            //        data: JSON.stringify({ 'obj': dataObject1 }),
+            //        dataType: "json",
+            //        traditional: true,
+            //        contentType: "application/json; charset=utf-8",
+            //        success: function (data) {
+            //            if (data.status == "Success") {
+            //                alert("Done");
+            //            } else {
+            //                alert("Error occurs on the Database level!");
+            //            }
+            //        },
+            //        error: function (error) {
+            //            alert(JSON.stringify(error));
+            //        }
+            //    });
+            //}
+                $.ajax({
+                    url: "/Job/SaveOrder",
+                    type: "POST",
+                    data: JSON.stringify({ 'obj': dataObject }),
+                    dataType: "json",
+                    traditional: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data.status == "Success") {
+                            alert("Done");
+                        } else {
+                            alert("Error occurs on the Database level!");
+                        }
+                    },
+                    error: function (error) {
+                        alert(JSON.stringify(error));
                     }
-                },
-                error: function (error) {
-                    alert(JSON.stringify(error));
-                }
-            });
+                });
+        
+            
 
         }
     </script>}
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
-    <h3>JOBS</h3>
-    <div class="tab-content clearfix">
+<h3>JOBS</h3>
+    
+    <div class="tab-content clearfix well">
+        
         <div class="tab-pane active" id="Others">
             <div class="body-nest" id="element">
 
@@ -159,7 +200,7 @@
                             <div class="client_new">
                                 <label class="col-sm-2 control-label" for="jc_job_card">Name</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="cust_name" id="cust_name" value="">
+                                    <input type="text" class="form-control" name="cust_name" id="cust_name" >
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
                             </div>
@@ -185,7 +226,7 @@
 
                                         @foreach (var item in ViewBag.Customers)
                                         {
-                                            <option value=@item.FirstName>@item.FirstName @item.LastName</option>
+                                            <option value=@item.CustomerId>@item.FirstName @item.LastName</option>
                                         }
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_client-container"><span class="select2-selection__rendered" id="select2-jc_client-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
@@ -275,7 +316,7 @@
                                         <option>Select Paper Sides</option>
                                         @foreach (var item in ViewBag.PaperSide)
                                         {
-                                            <option>@item.PaperSideName</option>
+                                            <option value=@item.PaperSideName>@item.PaperSideName</option>
                                         }
                                     </select>
                                     <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -294,7 +335,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="exact_work">Paper Color</label>
+                                <label class="col-sm-2 control-label" for="exact_work">Paper Colour</label>
                                 <div class="col-sm-3">
                                     <select class="form-control rst_input select2-hidden-accessible" name="job" id="PaperColor" tabindex="-1" aria-hidden="true">
                                         <option value="">Select Colour</option>
@@ -312,10 +353,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h4 style="color:#428bca;">Additional Paper</h4></label>
+                                <h4 style="color:#428bca;">Additional Paper</h4>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="jc_paper_size">Additional Paper Count</label>
+                                <label class="col-sm-2 control-label" for="jc_paper_size">Paper Count</label>
                                 <div class="col-sm-3">
                                     <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="Add_paper_count"></input>
 
@@ -334,7 +375,7 @@
                                             <option>@item.PaperSize1</option>
                                         }
                                     </select>
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
 
                                 </div>
@@ -380,7 +421,9 @@
             </div>
         </div>
     </div>
-    <div class="table-cont">
+    <h3>Recent Orders</h3>
+    <div class="table-cont well">
+        
         <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>

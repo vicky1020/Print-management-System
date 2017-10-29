@@ -7,8 +7,8 @@
 
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
     <h3>Report</h3>
-    <div class="container" style="padding:20" align="center">
-        <table id="example1" class="table table-bordered table-striped">
+    <div class="table-cont well" >
+        <table id="example1"  class="display table table-bordered" cellspacing="0" width="100%">
 
             <thead>
                 <tr>
@@ -55,7 +55,7 @@
             </tbody>
         </table>
     </div>
-    <br />
+    
     <button id="btn" class="btn btn-success">Export to Excel</button>
 </div>
     <script type="text/javascript">
@@ -65,9 +65,11 @@
         //   filename:"Reports"
         //});
         //});
-        $("#btn").click(function (e) {
-            window.open('data:application/vnd.ms-excel,' + $('#example1').html());
-            e.preventDefault();
+        
+        $(document).ready(function () {
+            $('#example1').dataTable();
+            $('#btn').bind('click', function (e) {
+                $('#example1').tableExport({ type: 'excel', escape: 'false' });
+            });
         });
-
-    </script>
+</script>

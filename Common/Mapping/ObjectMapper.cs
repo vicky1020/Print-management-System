@@ -168,6 +168,7 @@ namespace PrintManagement.Common.Mapping
         public static Customer ToCustomerEntity(this CustomerModel item)
         {
             Customer customer = Mapper.Map<CustomerModel, Customer>(item);
+            customer.CreatedDate = DateTime.Now;
             return customer;
         }
 

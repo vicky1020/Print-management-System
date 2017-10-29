@@ -577,6 +577,12 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\skin-select.js" />
     <Content Include="Scripts\slidebars.min.js" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\html2canvas.js" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\jquery.base64.js" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\jspdf\jspdf.js" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\jspdf\libs\base64.js" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\jspdf\libs\sprintf.js" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\tableExport.js" />
     <Content Include="Scripts\toggle_close.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -612,6 +618,8 @@
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\Report.cshtml" />
     <Content Include="Views\Job\Orders.cshtml" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\README.md" />
+    <Content Include="Scripts\tableExport.jquery.plugin-master\tableExport.jquery.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
