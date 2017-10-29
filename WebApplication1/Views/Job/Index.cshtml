@@ -20,81 +20,81 @@
                 element = $(elements[i]);
                 element.val(element.attr("value"));
             }
-        });
 
-        var customer_type = $("input[name$='customer']:checked").val();
-        if (customer_type == "1") {
-            $('.client_new').show();
-            $('.client_old').hide();
-        } else {
-            $('.client_old').show();
-            $('.client_new').hide();
-        }
-        $("input[name$='customer']").click(function () {
 
-            if (this.value == "1") { //check value if it is domicilio
+            var customer_type = $("input[name$='customer']:checked").val();
+            if (customer_type == "1") {
                 $('.client_new').show();
                 $('.client_old').hide();
             } else {
                 $('.client_old').show();
                 $('.client_new').hide();
             }
-        });
+            $("input[name$='customer']").click(function () {
 
-        $("#job_process_type").change(function () {
+                if (this.value == "1") { //check value if it is domicilio
+                    $('.client_new').show();
+                    $('.client_old').hide();
+                } else {
+                    $('.client_old').show();
+                    $('.client_new').hide();
+                }
+            });
 
-            var job_type = $('#job_process_type option:selected').val();
-            if (job_type == 1) {
-                $('.order_confor_div').removeClass('hide');
-            } else {
-                $('.order_confor_div').addClass('hide');
-            }
-        });
-        
+            $("#job_process_type").change(function () {
 
-        $("#ADDbtn").click(function () {
-            insertOrder();
-        });
+                var job_type = $('#job_process_type option:selected').val();
+                if (job_type == 1) {
+                    $('.order_confor_div').removeClass('hide');
+                } else {
+                    $('.order_confor_div').addClass('hide');
+                }
+            });
 
-        function insertOrder() {
-            var customerType;
-            var customer_type = $("input[name$='customer']:checked").val();
-            if (customer_type == "2") {
-                customerType = $('#customer option:selected').attr("value");
-            
-            }
-            else {
-               
-                customerType =  @ViewBag.Customers.Count +1;
-                
-            }
-            var dataObject = {
-                'ProductItem': $('#item_card_type option:selected').val(),
-                'PaperGSM': $('#jc_paper_gsm option:selected').val(),
-                'PaperColour': $('#PaperColor option:selected').val(),
-                'PaperSize': $('#paper_size1 option:selected').val(),
-                'PaperQuality': $('#PaperQuality option:selected').val(),
-                'PaperSides': $('#PaperSide option:selected').val(),
-                'LedgerFalio': $('#Ledget_Falio option:selected').val(),
-                'AdditionalPaperCount': $('#Add_paper_count').val(),
-                'AdditionalPaperSize': $('#paper_size2 option:selected').val(),
-                'AdditonalPaperGSM': $('#paper_gsm2 option:selected').val(),
-                'Quantity': $('#Quantity').val(),
-                'Amount': 300,
-                'CreatedBy': 'admin',
-                'CustomerId': customerType,
-                'JobProcessType': $('#job_process_type option:selected').val(),
-                'UpdatedBy': 'admin'
 
+            $("#ADDbtn").click(function () {
+                insertOrder();
+            });
+
+            function insertOrder() {
+                var customerType;
+                var customer_type = $("input[name$='customer']:checked").val();
+                if (customer_type == "2") {
+                    customerType = $('#customer option:selected').attr("value");
+
+                }
+                else {
+
+                    customerType =  @ViewBag.Customers.Count +1;
+
+                }
+                var dataObject = {
+                    'ProductItem': $('#item_card_type option:selected').val(),
+                    'PaperGSM': $('#jc_paper_gsm option:selected').val(),
+                    'PaperColour': $('#PaperColor option:selected').val(),
+                    'PaperSize': $('#paper_size1 option:selected').val(),
+                    'PaperQuality': $('#PaperQuality option:selected').val(),
+                    'PaperSides': $('#PaperSide option:selected').val(),
+                    'LedgerFalio': $('#Ledget_Falio option:selected').val(),
+                    'AdditionalPaperCount': $('#Add_paper_count').val(),
+                    'AdditionalPaperSize': $('#paper_size2 option:selected').val(),
+                    'AdditonalPaperGSM': $('#paper_gsm2 option:selected').val(),
+                    'Quantity': $('#Quantity').val(),
+                    'Amount': 300,
+                    'CreatedBy': 'admin',
+                    'CustomerId': customerType,
+                    'JobProcessType': $('#job_process_type option:selected').val(),
+                    'UpdatedBy': 'admin'
+
+                };
+                //if ($("input[name$='customer']:checked").val() == '1') {
+                //    var dataObject1 = {   
+                //        'FirstName': 'vivek',
+                //        'LastName': 'kumar',
+                //        'Email': 'vivek@gmail.com',
+                //        'PhoneNumber': '9176855954',
+                //        'CreatedBy': 'admin'
             };
-            //if ($("input[name$='customer']:checked").val() == '1') {
-            //    var dataObject1 = {   
-            //        'FirstName': 'vivek',
-            //        'LastName': 'kumar',
-            //        'Email': 'vivek@gmail.com',
-            //        'PhoneNumber': '9176855954',
-            //        'CreatedBy': 'admin'
-                        };
             //    $.ajax({
             //        url: "/Job/customer",
             //        type: "POST",
@@ -114,28 +114,28 @@
             //        }
             //    });
             //}
-                $.ajax({
-                    url: "/Job/SaveOrder",
-                    type: "POST",
-                    data: JSON.stringify({ 'obj': dataObject }),
-                    dataType: "json",
-                    traditional: true,
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        if (data.status == "Success") {
-                            alert("Done");
-                        } else {
-                            alert("Error occurs on the Database level!");
-                        }
-                    },
-                    error: function (error) {
-                        alert(JSON.stringify(error));
+            $.ajax({
+                url: "/Job/SaveOrder",
+                type: "POST",
+                data: JSON.stringify({ 'obj': dataObject }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.status == "Success") {
+                        alert("Done");
+                    } else {
+                        alert("Error occurs on the Database level!");
                     }
-                });
-        
-            
+                },
+                error: function (error) {
+                    alert(JSON.stringify(error));
+                }
+            });
 
-        }
+
+
+        });
     </script>}
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
 <h3>JOBS</h3>
