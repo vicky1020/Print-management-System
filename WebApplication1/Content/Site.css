@@ -63,14 +63,18 @@ textarea {
 
 .profile-cont {
     float: right;
-    margin-top: -61px;
-    width: 100px;
+    margin-top: -50px;
+    width: 150px;
     color: #FFFFFF;
     font-size: 15px;
     font-weight: bold;
 }
 
-.profile-user, .profile-logout {
+.profile-user {
+    float: left;
+}
+
+.profile-logout {
     float: right;
 }
 
