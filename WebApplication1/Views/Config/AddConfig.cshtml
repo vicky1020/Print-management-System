@@ -46,22 +46,14 @@ function insertConfig() {
         url: "/Config/InsertConfig",
         type: "POST",
         data: JSON.stringify({ 'obj': dataObject }),
-        dataType: "json",
         traditional: true,
+        async:false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data.status == 200) {
-
-                
-                alert("Done");
-            } else {
-                alert("Error occurs on the Database level!");
-            }
+            $('#message').html("The Configuration has be saved successfully!");
         },
         error: function (error) {
-            $('#message').html(JSON.stringify(error));
-           // alert(JSON.stringify(error));
-            
+            $('#message').html("Connection Error!");
         }
     });
     }

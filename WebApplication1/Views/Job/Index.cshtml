@@ -15,7 +15,16 @@
             $('#example').dataTable();
 
             var elements = $(".job-status");
-
+            var i=$('#item_card_type option:selected').val();
+            $('#item_card_type').change(function () {
+                if ($('#item_card_type option:selected').val() == 'Bill Book') {
+                    $('#additional').removeClass('hide');
+                }
+                else {
+                    $('#additional').addClass('hide');
+                }
+            });
+            
             for (var i = 0; i < elements.length; i++) {
                 element = $(elements[i]);
                 element.val(element.attr("value"));
@@ -82,7 +91,7 @@
                     'LedgerFalio': $('#Ledget_Falio option:selected').val(),
                     'AdditionalPaperCount': $('#Add_paper_count').val(),
                     'AdditionalPaperSize': $('#paper_size2 option:selected').val(),
-                    'AdditonalPaperGSM': $('#paper_gsm2 option:selected').val(),
+                    'AdditionalPaperGSM': $('#paper_gsm2 option:selected').val(),
                     'Quantity': $('#Quantity').val(),
                     'Amount': $('#Amount1').val(),
                     'CreatedBy': 'admin',
@@ -96,19 +105,14 @@
                     url: "/Job/SaveOrder",
                     type: "POST",
                     data: JSON.stringify({ 'obj': dataObject }),
-                    dataType: "json",
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
-                        if (data.status == "Success") {
-                            alert("Done");
-                        } else {
-                            alert("Error occurs on the Database level!");
-                        }
+                        $('#message').html("Job successfully scheduled");
                     },
                     error: function (error) {
 
-                        $('#message').html(JSON.stringify(error));
+                        $('#message').html("Connection Error");
                        // alert(JSON.stringify(error));
                     }
                 });
@@ -332,7 +336,7 @@
                                     <input class="form-control" type="number" min="0" value="1" name="exact_work" id="Quantity"></input>
                                 </div>
                             </div>
-                            <div class="well">
+                            <div class="well hide" id="additional">
                                 <div class="form-group">
                                     <h4 style="color:#428bca;">Additional Paper</h4>
                                 </div>
