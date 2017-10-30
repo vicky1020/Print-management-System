@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using PrintManagement.Common.Repositories;
+using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
+using PrintManagementApp.Models;
 using System.Threading.Tasks;
+using PrintManagementApp.Controllers;
 using PrintManagementApp.Filters;
 using PrintManagement.Common.Models;
+using PrintManagementApp.Utilities;
 
 namespace PrintManagementApp.Controllers
 {
@@ -16,6 +23,7 @@ namespace PrintManagementApp.Controllers
 
         #region
         private readonly Repository irepo;
+        private ConfigViewDisplay util;
         #endregion
         #region Constructors
 
@@ -26,6 +34,7 @@ namespace PrintManagementApp.Controllers
         public ConfigController()
         {
              irepo = new Repository();
+             util = new ConfigViewDisplay();
         }
         #endregion
 
@@ -34,7 +43,9 @@ namespace PrintManagementApp.Controllers
             try
             {
                 var OrderConfigModel = await irepo.GetAllOrderConfiguration();
-                return View(OrderConfigModel);
+                var OrderConfigValueModel =  util.getConfigValues(OrderConfigModel);
+
+                return View(OrderConfigValueModel);
             }
             catch (Exception e)
             {
