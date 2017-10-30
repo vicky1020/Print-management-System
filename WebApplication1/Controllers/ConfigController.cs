@@ -43,7 +43,7 @@ namespace PrintManagementApp.Controllers
             try
             {
                 var OrderConfigModel = await irepo.GetAllOrderConfiguration();
-                var OrderConfigValueModel =  util.getConfigValues(OrderConfigModel);
+                var OrderConfigValueModel =  await util.getConfigValues(OrderConfigModel);
 
                 return View(OrderConfigValueModel);
             }

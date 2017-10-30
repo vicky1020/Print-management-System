@@ -12,12 +12,12 @@ namespace PrintManagement.Common.Models
         public string ProductItemId { get; set; }
         public Nullable<int> PaperGSMId { get; set; }
         public string PaperColourId { get; set; }
-        public Nullable<int> PaperSizeId { get; set; }
+        public string PaperSizeId { get; set; }
         public string PaperQualityId { get; set; }
         public string PaperSidesId { get; set; }
         public Nullable<int> LedgerFalioId { get; set; }
         public Nullable<int> AdditionalPaperCount { get; set; }
-        public Nullable<int> AdditionalPaperSizeId { get; set; }
+        public string AdditionalPaperSizeId { get; set; }
         public Nullable<int> AdditonalPaperGSMId { get; set; }
         public Nullable<int> MinRange { get; set; }
         public Nullable<int> MaxRange { get; set; }
