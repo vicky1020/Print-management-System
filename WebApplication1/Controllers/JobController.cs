@@ -29,6 +29,7 @@ namespace PrintManagementApp.Controllers
         public JobController()
         {
             irepo = new Repository();
+            util = new Utility();
         }
         #endregion
 
@@ -90,11 +91,11 @@ namespace PrintManagementApp.Controllers
             var CustomerAdd = irepo.AddCustomer(obj);
         }
 
-        public TaxViewModel CalculateTaxes(OrderItemModel obj)
+        public async Task<TaxViewModel> CalculateTaxes(OrderItemModel obj)
         {
             TaxViewModel t = new TaxViewModel();
-            t =  util.GetTaxAmt(obj);
-            return new TaxViewModel();
+            t = await util.GetTaxAmt(obj);
+            return t;
         }
     }
 }

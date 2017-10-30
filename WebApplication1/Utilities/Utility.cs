@@ -6,6 +6,8 @@ using PrintManagement.Common.Models;
 using PrintManagement.Common.Repositories;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using PrintManagementApp.Models;
+
 
 namespace PrintManagementApp.Utilities
 {
@@ -16,29 +18,68 @@ namespace PrintManagementApp.Utilities
         {
             irepo = new Repository();
         }
-        public TaxViewModel GetTaxAmt(OrderItemModel obj)
+        public async Task<TaxViewModel> GetTaxAmt(OrderItemModel obj)
         {
-            TaxViewModel t = new TaxViewModel();
             if (obj.Amount != 0)
             {
-                t = CalculateTax(obj.Amount);
+                return await CalculateTax(obj.Amount);
             }
             else
             {
-                t = CalculateTax(5);
+                return await GetAmountFromConfig(obj);
             }
+        }
+
+        public async Task<TaxViewModel> CalculateTax(decimal amt)
+        {
+            TaxViewModel t = new TaxViewModel();
+            var CGSTVal = Convert.ToDecimal((await irepo.GetConfigurationByName("CGST")).ConfigurationValue);
+            var SGSTVal = Convert.ToDecimal((await irepo.GetConfigurationByName("SGST")).ConfigurationValue);
+            t.Amount = amt;
+            t.CGSTAmt = ((amt * CGSTVal) / 100);
+            t.SGSTAmt = ((amt * SGSTVal) / 100);
+            t.GrossBillAmount = t.Amount + t.CGSTAmt + t.CGSTAmt;
             return t;
         }
 
-        public TaxViewModel CalculateTax(decimal amt)
+        public async Task<TaxViewModel> GetAmountFromConfig(OrderItemModel obj)
         {
             TaxViewModel t = new TaxViewModel();
-            var CGSTVal = Convert.ToDecimal(irepo.GetConfigurationByName("CGST").Result.ConfigurationValue);
-            var SGSTVal = Convert.ToDecimal(irepo.GetConfigurationByName("SGST").Result.ConfigurationValue);
-            t.Amount = amt;
-            t.CGSTAmt = ((amt * CGSTVal) / 100);
-            t.CGSTAmt = ((amt * SGSTVal) / 100);
-            t.GrossBillAmount = t.Amount + t.CGSTAmt + t.CGSTAmt;
+            if (obj.ProductItem != null)
+            {
+                var productDetails = (await irepo.GetAllProductItem()).Where(x=>x.ItemName.Equals(obj.ProductItem)).FirstOrDefault();
+                if (productDetails != null)
+                {
+                    var itemDisplay = (await irepo.GetAllItemDisplayConfig()).Where(x => x.ProductItemId == productDetails.ProductId).FirstOrDefault();
+                    if (itemDisplay != null)
+                    {
+                        var query = from data in (await irepo.GetAllOrderConfiguration())
+                                    where data.ProductItem == obj.ProductItem && obj.Quantity > data.MinRange && obj.Quantity <= data.MaxRange
+                                    select data;
+
+                        if (itemDisplay.PaperGSM)
+                            query = query.Where(p => p.PaperGSM.Equals(obj.PaperGSM));
+
+                        if (itemDisplay.PaperSize)
+                            query = query.Where(p => p.PaperSize.Equals(obj.PaperSize));
+
+                        if (itemDisplay.PaperSides)
+                            query = query.Where(p => p.PaperSize.Equals(obj.PaperSides));
+
+                        if (itemDisplay.PaperQuality)
+                            query = query.Where(p => p.PaperSize.Equals(obj.PaperQuality));
+
+                        if (itemDisplay.PaperColor)
+                            query = query.Where(p => p.PaperSize.Equals(obj.PaperColour));
+
+                        if (itemDisplay.LedgerFalio)
+                            query = query.Where(p => p.PaperSize.Equals(obj.LedgerFalio));
+
+                        var datas = query.ToList();
+                        t = await CalculateTax(datas.FirstOrDefault().Amount);
+                    }
+                }
+            }
             return t;
         }
     }
