@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using PrintManagement.Common.Repositories;
-using PrintManagement.Common.Interfaces;
 using System.Web.Mvc;
-using PrintManagementApp.Models;
 using System.Threading.Tasks;
-using PrintManagementApp.Controllers;
 using PrintManagement.Common.Models;
 using PrintManagementApp.Filters;
 

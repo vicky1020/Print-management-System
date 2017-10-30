@@ -1,16 +1,7 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using PrintManagementApp.Models;
 using PrintManagement.Common.Repositories;
-using PrintManagement.Common.Models;
 namespace PrintManagementApp.Controllers
 {
     [Authorize]
@@ -41,13 +32,13 @@ namespace PrintManagementApp.Controllers
             Session.Clear();
             if (ModelState.IsValid)
             {
-                var result = SignInStatus.Failure;
+                var result = false;
                 var checkCred = new Repository();
                 var loginResult = await checkCred.Login(model.Email);
                 if (loginResult != null)
                 {
                     if (loginResult.EmailId == model.Email && loginResult.Password == model.Password)
-                        result = SignInStatus.Success;
+                        result = true;
                     ViewBag.Roles = loginResult.UserName;
                     ViewBag.AccountName = loginResult.FirstName;
                     Session["AccountName"] = loginResult.FirstName.ToString();
@@ -55,16 +46,12 @@ namespace PrintManagementApp.Controllers
 
                 }
                 else
-                {
-                    result = SignInStatus.Failure;
-                }
+                    result = false;
+
                 switch (result)
                 {
-                    case SignInStatus.Success:
+                    case true:
                         return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.Failure:
                     default:
                         ModelState.AddModelError("", "Invalid login attempt.");
                         return View(model);

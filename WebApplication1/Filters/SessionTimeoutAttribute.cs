@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -8,8 +6,8 @@ using System.Web.Routing;
 namespace PrintManagementApp.Filters
 {
 
-    
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
         public class SessionExpireFilterAttribute : ActionFilterAttribute
         {
             public override void OnActionExecuting(ActionExecutingContext filterContext)
