@@ -47,7 +47,7 @@ namespace PrintManagementApp.Utilities
             TaxViewModel t = new TaxViewModel();
             if (obj.ProductItem != null)
             {
-                var productDetails = (await irepo.GetAllProductItem()).Where(x=>x.ItemName.Equals(obj.ProductItem)).FirstOrDefault();
+                var productDetails = (await irepo.GetAllProductItem()).Where(x => x.ItemName.Equals(obj.ProductItem)).FirstOrDefault();
                 if (productDetails != null)
                 {
                     var itemDisplay = (await irepo.GetAllItemDisplayConfig()).Where(x => x.ProductItemId == productDetails.ProductId).FirstOrDefault();
@@ -58,7 +58,7 @@ namespace PrintManagementApp.Utilities
                                     select data;
 
                         if (itemDisplay.PaperGSM)
-                            query = query.Where(p => p.PaperGSM.Equals(obj.PaperGSM));
+                            query = query.Where(p => p.PaperGSM.Equals(Convert.ToString(obj.PaperGSM)));
 
                         if (itemDisplay.PaperSize)
                             query = query.Where(p => p.PaperSize.Equals(obj.PaperSize));
@@ -76,7 +76,8 @@ namespace PrintManagementApp.Utilities
                             query = query.Where(p => p.PaperSize.Equals(obj.LedgerFalio));
 
                         var datas = query.ToList();
-                        t = await CalculateTax(datas.FirstOrDefault().Amount);
+                        if (datas.Count > 0)
+                            t = await CalculateTax(datas.FirstOrDefault().Amount);
                     }
                 }
             }
