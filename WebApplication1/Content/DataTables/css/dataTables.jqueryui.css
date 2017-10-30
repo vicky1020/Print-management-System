@@ -424,7 +424,7 @@ table.dataTable thead th div.DataTables_sort_wrapper {
   position: relative;
 }
 table.dataTable thead th div.DataTables_sort_wrapper span {
-  position: absolute;
+  position: initial;
   top: 50%;
   margin-top: -8px;
   right: -18px;
