@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using PrintManagement.Common.Models;
 using PrintManagementApp.Filters;
+using PrintManagementApp.Utilities;
 
 namespace PrintManagementApp.Controllers
 {
@@ -16,7 +17,8 @@ namespace PrintManagementApp.Controllers
     {
 
         #region
-      private readonly Repository irepo;
+        private readonly Repository irepo;
+        private readonly Utility util;
         #endregion
         #region Constructors
 
@@ -26,7 +28,7 @@ namespace PrintManagementApp.Controllers
         /// <param name="IRepository">The tenants repository.</param>
         public JobController()
         {
-             irepo =  new Repository();
+            irepo = new Repository();
         }
         #endregion
 
@@ -89,5 +91,11 @@ namespace PrintManagementApp.Controllers
             var CustomerAdd = irepo.AddCustomer(obj);
         }
 
+        public TaxViewModel CalculateTaxes(OrderItemModel obj)
+        {
+            TaxViewModel t = new TaxViewModel();
+            t =  util.GetTaxAmt(obj);
+            return new TaxViewModel();
+        }
     }
 }
