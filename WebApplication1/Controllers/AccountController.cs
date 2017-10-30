@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using PrintManagementApp.Models;
 using PrintManagement.Common.Repositories;
+using Rework;
+
 namespace PrintManagementApp.Controllers
 {
     [Authorize]
@@ -37,7 +39,8 @@ namespace PrintManagementApp.Controllers
                 var loginResult = await checkCred.Login(model.Email);
                 if (loginResult != null)
                 {
-                    if (loginResult.EmailId == model.Email && loginResult.Password == model.Password)
+                    var hashedPassword = model.Password.ToSHA(Crypto.SHA_Type.SHA256);
+                    if (loginResult.EmailId == model.Email && loginResult.Password == hashedPassword)
                         result = true;
                     ViewBag.Roles = loginResult.UserName;
                     ViewBag.AccountName = loginResult.FirstName;
