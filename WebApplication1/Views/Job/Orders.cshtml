@@ -5,7 +5,7 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
-    <h3>Orders</h3>
+    <h3 style="color: #fff;background-color: #428bca;">Orders</h3>
     <div class="table-cont well">
 
         <table id="example1" class="display table table-bordered" cellspacing="0" width="100%">
@@ -59,6 +59,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example1').dataTable();
+        $('#example1').dataTable(
+    {
+        "order": [[0, "desc"]]
+
+}
+    );
     });
     </script>

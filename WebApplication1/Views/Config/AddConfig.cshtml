@@ -12,57 +12,67 @@
 </script>
 @section scripts{
     <script type="text/javascript">
-$(document).ready(function(){
-  
-
-$(".ADD").click(function () {
-    insertConfig();
-});
-
-function insertConfig() {
-    var dataObject = {
-        'ProductItemId': $('#item_card_type option:selected').attr("value"),
-        'PaperGSMId': $('#jc_paper_gsm option:selected').attr("value"),
-        'PaperColourId': $('#PaperColor option:selected').attr("value"),
-        'PaperSizeId': $('#jobcard_paper_size option:selected').attr("value"),
-        'PaperQualityId': $('#Paper_Quality option:selected').attr("value"),
-        'PaperSidesId': $('#PaperSideId option:selected').attr("value"),
-        'LedgerFalioId': $('#LedgerFalio option:selected').attr("value"),
-        'AdditionalPaperCount': $('#AddPaperCount').val(),
-        'AdditionalPaperSizeId': $('#AddPaperSize option:selected').attr("value"),
-        'AdditonalPaperGSMId': $('#Addpaper_gsm option:selected').attr("value"),
-        'MinRange': $('#Min').val(),
-        'MaxRange': $('#max').val(),
-        'Amount': $('#Amount').val(),
-        'CreatedBy': 'Admin',
-        'UpdatedBy': 'Admin',
-
-    };
-
-    // prevent the default event behaviour    
+        $(document).ready(function () {
 
 
-    $.ajax({
-        url: "/Config/InsertConfig",
-        type: "POST",
-        data: JSON.stringify({ 'obj': dataObject }),
-        traditional: true,
-        async:false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            $('#message').html("The Configuration has be saved successfully!");
-        },
-        error: function (error) {
-            $('#message').html("Connection Error!");
-        }
-    });
-    }
+            $(".ADD").click(function () {
+                insertConfig();
+            });
+            $('#item_card_type').change(function () {
+                if ($('#item_card_type option:selected').val() == '') {
+                    $('#button').attr('disabled', true);
+                }
+                else {
+                    $('#button').attr('disabled', false);
+                }
 
-});
+
+            });
+            function insertConfig() {
+                var dataObject = {
+                    'ProductItemId': $('#item_card_type option:selected').attr("value"),
+                    'PaperGSMId': $('#jc_paper_gsm option:selected').attr("value"),
+                    'PaperColourId': $('#PaperColor option:selected').attr("value"),
+                    'PaperSizeId': $('#jobcard_paper_size option:selected').attr("value"),
+                    'PaperQualityId': $('#Paper_Quality option:selected').attr("value"),
+                    'PaperSidesId': $('#PaperSideId option:selected').attr("value"),
+                    'LedgerFalioId': $('#LedgerFalio option:selected').attr("value"),
+                    'AdditionalPaperCount': $('#AddPaperCount').val(),
+                    'AdditionalPaperSizeId': $('#AddPaperSize option:selected').attr("value"),
+                    'AdditonalPaperGSMId': $('#Addpaper_gsm option:selected').attr("value"),
+                    'MinRange': $('#Min').val(),
+                    'MaxRange': $('#max').val(),
+                    'Amount': $('#Amount').val(),
+                    'CreatedBy': 'Admin',
+                    'UpdatedBy': 'Admin',
+
+                };
+
+                // prevent the default event behaviour    
+
+
+                $.ajax({
+                    url: "/Config/InsertConfig",
+                    type: "POST",
+                    data: JSON.stringify({ 'obj': dataObject }),
+                    traditional: true,
+                    async: false,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        $('#message').html("The Configuration has be saved successfully!");
+                    },
+                    error: function (error) {
+                        $('#message').html("Connection Error!");
+                    }
+                });
+            }
+        });
+
+
 
     </script>}
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
-    <h3>CONFIGURATOR</h3>
+    <h3 style="color: #fff;background-color: #428bca;" >CONFIGURATOR</h3>
     <div class="tab-content clearfix">
         <div class="tab-pane active" id="Others">
             <div class="body-nest" id="element">
@@ -74,7 +84,7 @@ function insertConfig() {
                             <label class="col-sm-2 control-label" for="item_card_type">Item Type</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="item_card_type" id="item_card_type">
-                                    <option value="Select Item">--select Item--</option>
+                                    <option value="">--select Item--</option>
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
 
@@ -259,7 +269,7 @@ function insertConfig() {
                             </div>
                         </div>
                         <div class="form-group submit-btn-cont">
-                            <button class="btn btn-primary submit-btn @ViewBag.BtnName" type="submit" data-toggle="modal" data-target="#myModal">@ViewBag.BtnName</button>
+                            <button class="btn btn-primary submit-btn @ViewBag.BtnName" disabled="true" type="submit" id="button"data-toggle="modal" data-target="#myModal">@ViewBag.BtnName</button>
                        </div>
                     </form>
                 </div>

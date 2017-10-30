@@ -12,7 +12,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#example').dataTable();
+            $('#example').dataTable({ "order": [[0, "desc"]] });
 
             var elements = $(".job-status");
             var i=$('#item_card_type option:selected').val();

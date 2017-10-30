@@ -6,7 +6,7 @@
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example1').dataTable();
+        $('#example1').dataTable({ "order": [[0, "desc"]] });
 
         var elements = $(".job-status");
 
@@ -16,7 +16,7 @@
         }
     })</script>
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
-    <h3>Configurations</h3>
+    <h3 style="color: #fff;background-color: #428bca;">Configurations</h3>
     <div class="add-btn">@Html.ActionLink("ADD", "AddConfig", "Config")</div>
     <div class="table-cont" align="center">
         <table id="example1" class="display table table-bordered " cellspacing="0" width="100%">
