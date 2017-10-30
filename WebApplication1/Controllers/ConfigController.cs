@@ -23,7 +23,6 @@ namespace PrintManagementApp.Controllers
 
         #region
         private readonly Repository irepo;
-        private ConfigViewDisplay util;
         #endregion
         #region Constructors
 
@@ -34,7 +33,6 @@ namespace PrintManagementApp.Controllers
         public ConfigController()
         {
              irepo = new Repository();
-             util = new ConfigViewDisplay();
         }
         #endregion
 
@@ -43,9 +41,7 @@ namespace PrintManagementApp.Controllers
             try
             {
                 var OrderConfigModel = await irepo.GetAllOrderConfiguration();
-                var OrderConfigValueModel =  await util.getConfigValues(OrderConfigModel);
-
-                return View(OrderConfigValueModel);
+                return View(OrderConfigModel);
             }
             catch (Exception e)
             {

@@ -76,16 +76,16 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.LedgerFalio' does not ha
             <PropertyRef Name="OrderConfigurationId" />
           </Key>
           <Property Name="OrderConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductItemId" Type="int" Nullable="false" />
-          <Property Name="PaperGSMId" Type="int" />
-          <Property Name="PaperColourId" Type="int" />
-          <Property Name="PaperSizeId" Type="int" />
-          <Property Name="PaperQualityId" Type="int" />
-          <Property Name="PaperSidesId" Type="int" />
-          <Property Name="LedgerFalioId" Type="int" />
+          <Property Name="ProductItem" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="PaperGSM" Type="varchar" MaxLength="256" />
+          <Property Name="PaperColour" Type="varchar" MaxLength="256" />
+          <Property Name="PaperSize" Type="varchar" MaxLength="256" />
+          <Property Name="PaperQuality" Type="varchar" MaxLength="256" />
+          <Property Name="PaperSides" Type="varchar" MaxLength="256" />
+          <Property Name="LedgerFalio" Type="varchar" MaxLength="256" />
           <Property Name="AdditionalPaperCount" Type="int" />
-          <Property Name="AdditionalPaperSizeId" Type="int" />
-          <Property Name="AdditonalPaperGSMId" Type="int" />
+          <Property Name="AdditionalPaperSize" Type="varchar" MaxLength="256" />
+          <Property Name="AdditonalPaperGSM" Type="varchar" MaxLength="256" />
           <Property Name="MinRange" Type="int" />
           <Property Name="MaxRange" Type="int" />
           <Property Name="Amount" Type="money" Nullable="false" />
@@ -344,16 +344,16 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             <PropertyRef Name="OrderConfigurationId" />
           </Key>
           <Property Name="OrderConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductItemId" Type="Int32" Nullable="false" />
-          <Property Name="PaperGSMId" Type="Int32" />
-          <Property Name="PaperColourId" Type="Int32" />
-          <Property Name="PaperSizeId" Type="Int32" />
-          <Property Name="PaperQualityId" Type="Int32" />
-          <Property Name="PaperSidesId" Type="Int32" />
-          <Property Name="LedgerFalioId" Type="Int32" />
+          <Property Name="ProductItem" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PaperGSM" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperColour" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperSize" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperQuality" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PaperSides" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="LedgerFalio" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="AdditionalPaperCount" Type="Int32" />
-          <Property Name="AdditionalPaperSizeId" Type="Int32" />
-          <Property Name="AdditonalPaperGSMId" Type="Int32" />
+          <Property Name="AdditionalPaperSize" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="AdditonalPaperGSM" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="MinRange" Type="Int32" />
           <Property Name="MaxRange" Type="Int32" />
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -622,16 +622,16 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
             <EntityTypeMapping TypeName="PrintManagementSystemModel.OrderConfiguration">
               <MappingFragment StoreEntitySet="OrderConfiguration">
                 <ScalarProperty Name="OrderConfigurationId" ColumnName="OrderConfigurationId" />
-                <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
-                <ScalarProperty Name="PaperGSMId" ColumnName="PaperGSMId" />
-                <ScalarProperty Name="PaperColourId" ColumnName="PaperColourId" />
-                <ScalarProperty Name="PaperSizeId" ColumnName="PaperSizeId" />
-                <ScalarProperty Name="PaperQualityId" ColumnName="PaperQualityId" />
-                <ScalarProperty Name="PaperSidesId" ColumnName="PaperSidesId" />
-                <ScalarProperty Name="LedgerFalioId" ColumnName="LedgerFalioId" />
+                <ScalarProperty Name="ProductItem" ColumnName="ProductItem" />
+                <ScalarProperty Name="PaperGSM" ColumnName="PaperGSM" />
+                <ScalarProperty Name="PaperColour" ColumnName="PaperColour" />
+                <ScalarProperty Name="PaperSize" ColumnName="PaperSize" />
+                <ScalarProperty Name="PaperQuality" ColumnName="PaperQuality" />
+                <ScalarProperty Name="PaperSides" ColumnName="PaperSides" />
+                <ScalarProperty Name="LedgerFalio" ColumnName="LedgerFalio" />
                 <ScalarProperty Name="AdditionalPaperCount" ColumnName="AdditionalPaperCount" />
-                <ScalarProperty Name="AdditionalPaperSizeId" ColumnName="AdditionalPaperSizeId" />
-                <ScalarProperty Name="AdditonalPaperGSMId" ColumnName="AdditonalPaperGSMId" />
+                <ScalarProperty Name="AdditionalPaperSize" ColumnName="AdditionalPaperSize" />
+                <ScalarProperty Name="AdditonalPaperGSM" ColumnName="AdditonalPaperGSM" />
                 <ScalarProperty Name="MinRange" ColumnName="MinRange" />
                 <ScalarProperty Name="MaxRange" ColumnName="MaxRange" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />

@@ -38,7 +38,6 @@ namespace PrintManagementApp.Controllers
             {
                 ViewBag.OrderItem = await irepo.GetAllOrderItem();
                 ViewBag.AllProductItem = await irepo.GetAllProductItem();
-                ViewBag.OrderConfiguration = await irepo.GetAllOrderConfiguration();
                 ViewBag.PrintingColor = await irepo.GetAllPrintingColour();
                 ViewBag.Papersize = await irepo.GetAllPaperSize();
                 ViewBag.PaperGSM = await irepo.GetAllPaperGSM();

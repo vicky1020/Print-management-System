@@ -30,16 +30,16 @@
             });
             function insertConfig() {
                 var dataObject = {
-                    'ProductItemId': $('#item_card_type option:selected').attr("value"),
-                    'PaperGSMId': $('#jc_paper_gsm option:selected').attr("value"),
-                    'PaperColourId': $('#PaperColor option:selected').attr("value"),
-                    'PaperSizeId': $('#jobcard_paper_size option:selected').attr("value"),
-                    'PaperQualityId': $('#Paper_Quality option:selected').attr("value"),
-                    'PaperSidesId': $('#PaperSideId option:selected').attr("value"),
-                    'LedgerFalioId': $('#LedgerFalio option:selected').attr("value"),
+                    'ProductItem': $('#item_card_type option:selected').val(),
+                    'PaperGSM': $('#jc_paper_gsm option:selected').val(),
+                    'PaperColour': $('#PaperColor option:selected').val(),
+                    'PaperSize': $('#jobcard_paper_size option:selected').val(),
+                    'PaperQuality': $('#Paper_Quality option:selected').val(),
+                    'PaperSides': $('#PaperSideId option:selected').val(),
+                    'LedgerFalio': $('#LedgerFalio option:selected').val(),
                     'AdditionalPaperCount': $('#AddPaperCount').val(),
-                    'AdditionalPaperSizeId': $('#AddPaperSize option:selected').attr("value"),
-                    'AdditonalPaperGSMId': $('#Addpaper_gsm option:selected').attr("value"),
+                    'AdditionalPaperSize': $('#AddPaperSize option:selected').val(),
+                    'AdditonalPaperGSM': $('#Addpaper_gsm option:selected').val(),
                     'MinRange': $('#Min').val(),
                     'MaxRange': $('#max').val(),
                     'Amount': $('#Amount').val(),
@@ -88,7 +88,7 @@
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
 
-                                        <option value=@item.ProductId>@item.ItemName</option>
+                                        <option >@item.ItemName</option>
 
                                     }  </select>
                                 <label class="error"></label>
@@ -109,7 +109,7 @@
 
                                         @foreach (var item in ViewBag.Papersize)
                                         {
-                                            <option value=@item.PaperSizeId>@item.PaperSize1</option>
+                                            <option >@item.PaperSize1</option>
                                         }
 
 
@@ -124,7 +124,7 @@
 
                                         @foreach (var item in ViewBag.PaperGSM)
                                         {
-                                            <option value=@item.PaperGSMId>@item.PaperGSMVal</option>
+                                            <option >@item.PaperGSMVal</option>
                                         }
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
@@ -141,8 +141,8 @@
                                 <div class="col-sm-3 hide">
                                     <select class="form-control rst_input" name="feeding_type" id="jc_feeding_type">
                                         <option value="">Select Feeding Type</option>
-                                        <option value="1" selected="selected">Single Side</option>
-                                        <option value="2">Double side</option>
+                                        <option value="Single Side" selected="selected">Single Side</option>
+                                        <option value="Double side">Double side</option>
 
                                     </select>
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -155,7 +155,7 @@
                                         <option>Select Paper Sides</option>
                                           @foreach (var item in ViewBag.PaperSide)
                                         {
-                                            <option value=@item.PaperSideId>@item.PaperSideName</option>
+                                            <option >@item.PaperSideName</option>
                                         }
 
 
@@ -170,7 +170,7 @@
                                         <option>Select Ledger Falio</option>
                                         @foreach (var item in ViewBag.LedgerFolio)
                                         {
-                                            <option value=@item.LedgerFalioId>@item.LedgerFalioValue</option>
+                                            <option >@item.LedgerFalioValue</option>
                                         }
                                     </select>
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -194,7 +194,7 @@
 
                                     @foreach (var item in ViewBag.Papersize)
                                     {
-                                        <option value=@item.PaperSizeId>@item.PaperSize1</option>
+                                        <option >@item.PaperSize1</option>
                                     }
                                 </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
@@ -209,7 +209,7 @@
 
                                     @foreach (var item in ViewBag.PaperGSM)
                                     {
-                                        <option value="@item.PaperGSMId">@item.PaperGSMVal</option>
+                                        <option >@item.PaperGSMVal</option>
                                     }
                                 </select> <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
@@ -221,7 +221,7 @@
                                     <option value="">Select Colour</option>
                                     @foreach (var item in ViewBag.PrintingColor)
                                     {
-                                        <option value=@item.PrintingColourId>@item.PrintColourName</option>
+                                        <option >@item.PrintColourName</option>
                                     }
                                 </select>
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -253,7 +253,7 @@
                                     <option value="">Select Quality</option>
                                     @foreach (var item in ViewBag.paperQuality)
                                     {
-                                        <option value=@item.PaperQualityId>@item.QualityName</option>
+                                        <option >@item.QualityName</option>
                                     }
                                 </select>
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
