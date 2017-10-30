@@ -7,9 +7,13 @@
 
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
     <h3>Report</h3>
+    <div class="container">
+        <button id="btn" class="btn btn-success" style="float: left;"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i>Export to Excel</button>
+    </div>
+    <br />
     <div class="table-cont well" >
         <table id="example1"  class="display table table-bordered" cellspacing="0" width="100%">
-
+           
             <thead>
                 <tr>
                     <th>Order Id</th>
@@ -56,7 +60,7 @@
         </table>
     </div>
     
-    <button id="btn" class="btn btn-success">Export to Excel</button>
+    
 </div>
     <script type="text/javascript">
         // $('#btn').click(function () {
@@ -69,7 +73,7 @@
         $(document).ready(function () {
             $('#example1').dataTable();
             $('#btn').bind('click', function (e) {
-                $('#example1').tableExport({ type: 'excel', escape: 'false' });
+                $('#example1').tableExport({ type: 'excel', escape: 'false',bootstrap:'true' });
             });
         });
 </script>

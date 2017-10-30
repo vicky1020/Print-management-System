@@ -19,11 +19,18 @@
             $('#item_card_type').change(function () {
                 if ($('#item_card_type option:selected').val() == 'Bill Book') {
                     $('#additional').removeClass('hide');
+                    $('#ADDbtn').attr('disabled', false);
                 }
-                else {
+                else if ($('#item_card_type option:selected').val() == "") {
+
+                    $('#ADDbtn').attr('disabled', true);
+                }
+            else {
                     $('#additional').addClass('hide');
-                }
+                    $('#ADDbtn').attr('disabled', false);
+            }
             });
+            
             
             for (var i = 0; i < elements.length; i++) {
                 element = $(elements[i]);
@@ -409,7 +416,7 @@
                         <div class="form-group">
                             <label class="col-sm-3"></label>
                             <div class="col-sm-5">
-                                <button id="ADDbtn" class="btn btn-primary col-sm-6" data-toggle="modal" data-target="#myModal">Submit</button>
+                                <button id="ADDbtn" disabled="true" class="btn btn-primary col-sm-6" data-toggle="modal" data-target="#myModal">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -439,23 +446,17 @@
                     <td class="text-right" id="price1">0.07</td>
                     <td class="text-right" id="price2">0.07</td>
                 </tr>
+                
                 <tr>
                     <td colspan="3" rowspan="4" style="vertical-align:middle;"></td>
-                    <td class="text-right">Gross Amount</td>
-                    <td class="text-right" id="price">0.07</td>
-                </tr>
-                <tr>
-                    <td class="text-right">GST(CGST 8% + SGST 8% )</td>
+                    <td class="text-right">GST(CGST 8% + SGST 8%)</td>
                     <td class="text-right" id="GST">0.00</td>
                 </tr>
                 <tr>
-                    <td class="text-right">Net Amount</td>
+                    <td class="text-right">Net Amount(Indian Rupee <i class="fa fa-inr" aria-hidden="true"></i>)</td>
                     <td class="text-right" id="netamount">0.00</td>
                 </tr>
-                <tr>
-                    <td colspan="3" rowspan="4" style="vertical-align:middle;">RUPEES:  Rupees Only</td>
-
-                </tr>
+                
             </tbody>
         </table>
 
@@ -506,7 +507,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button type="button"  class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Status Message !</h4>
             </div>
             <div class="modal-body text-center">
