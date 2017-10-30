@@ -14,7 +14,7 @@ namespace PrintManagementApp.Controllers
         {
             var irepo = new Repository();
         }
-        
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -24,7 +24,7 @@ namespace PrintManagementApp.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-        
+
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -39,7 +39,8 @@ namespace PrintManagementApp.Controllers
                 var loginResult = await checkCred.Login(model.Email);
                 if (loginResult != null)
                 {
-                    var hashedPassword = model.Password.ToSHA(Crypto.SHA_Type.SHA256);
+                    var Passcode = model.Password + System.Web.Configuration.WebConfigurationManager.AppSettings["SaltValue"];
+                    var hashedPassword = Passcode.ToSHA(Crypto.SHA_Type.SHA256);
                     if (loginResult.EmailId == model.Email && loginResult.Password == hashedPassword)
                         result = true;
                     ViewBag.Roles = loginResult.UserName;
@@ -59,7 +60,7 @@ namespace PrintManagementApp.Controllers
                         ModelState.AddModelError("", "Invalid login attempt.");
                         return View(model);
                 }
-               
+
             }
             return View(ViewBag);
         }
