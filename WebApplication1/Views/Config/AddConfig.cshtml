@@ -14,7 +14,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-
+            $("#reload").click(function () {
+                location.reload('#re');
+            });
             $(".ADD").click(function () {
                 insertConfig();
             });
@@ -30,16 +32,16 @@
             });
             function insertConfig() {
                 var dataObject = {
-                    'ProductItem': $('#item_card_type option:selected').val(),
-                    'PaperGSM': $('#jc_paper_gsm option:selected').val(),
-                    'PaperColour': $('#PaperColor option:selected').val(),
-                    'PaperSize': $('#jobcard_paper_size option:selected').val(),
-                    'PaperQuality': $('#Paper_Quality option:selected').val(),
-                    'PaperSides': $('#PaperSideId option:selected').val(),
-                    'LedgerFalio': $('#LedgerFalio option:selected').val(),
+                    'ProductItem': $('#item_card_type option:selected').attr('value'),
+                    'PaperGSM': $('#jc_paper_gsm option:selected').attr('value'),
+                    'PaperColour': $('#PaperColor option:selected').attr('value'),
+                    'PaperSize': $('#jobcard_paper_size option:selected').attr('value'),
+                    'PaperQuality': $('#Paper_Quality option:selected').attr('value'),
+                    'PaperSides': $('#PaperSideId option:selected').attr('value'),
+                    'LedgerFalio': $('#LedgerFalio option:selected').attr('value'),
                     'AdditionalPaperCount': $('#AddPaperCount').val(),
-                    'AdditionalPaperSize': $('#AddPaperSize option:selected').val(),
-                    'AdditonalPaperGSM': $('#Addpaper_gsm option:selected').val(),
+                    'AdditionalPaperSize': $('#AddPaperSize option:selected').attr('value'),
+                    'AdditonalPaperGSM': $('#Addpaper_gsm option:selected').attr('value'),
                     'MinRange': $('#Min').val(),
                     'MaxRange': $('#max').val(),
                     'Amount': $('#Amount').val(),
@@ -88,7 +90,7 @@
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
 
-                                        <option >@item.ItemName</option>
+                                        <option value="@item.ItemName" >@item.ItemName</option>
 
                                     }  </select>
                                 <label class="error"></label>
@@ -109,7 +111,7 @@
 
                                         @foreach (var item in ViewBag.Papersize)
                                         {
-                                            <option >@item.PaperSize1</option>
+                                            <option value="@item.PaperSize1">@item.PaperSize1</option>
                                         }
 
 
@@ -124,7 +126,7 @@
 
                                         @foreach (var item in ViewBag.PaperGSM)
                                         {
-                                            <option >@item.PaperGSMVal</option>
+                                            <option value="@item.PaperGSMVal">@item.PaperGSMVal</option>
                                         }
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
@@ -155,7 +157,7 @@
                                         <option>Select Paper Sides</option>
                                           @foreach (var item in ViewBag.PaperSide)
                                         {
-                                            <option >@item.PaperSideName</option>
+                                            <option value="@item.PaperSideName">@item.PaperSideName</option>
                                         }
 
 
@@ -170,7 +172,7 @@
                                         <option>Select Ledger Falio</option>
                                         @foreach (var item in ViewBag.LedgerFolio)
                                         {
-                                            <option >@item.LedgerFalioValue</option>
+                                            <option value="@item.LedgerFalioValue">@item.LedgerFalioValue</option>
                                         }
                                     </select>
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -194,7 +196,7 @@
 
                                     @foreach (var item in ViewBag.Papersize)
                                     {
-                                        <option >@item.PaperSize1</option>
+                                        <option value="@item.PaperSize1">@item.PaperSize1</option>
                                     }
                                 </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
@@ -209,7 +211,7 @@
 
                                     @foreach (var item in ViewBag.PaperGSM)
                                     {
-                                        <option >@item.PaperGSMVal</option>
+                                        <option value="@item.PaperGSMVal">@item.PaperGSMVal</option>
                                     }
                                 </select> <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
@@ -221,7 +223,7 @@
                                     <option value="">Select Colour</option>
                                     @foreach (var item in ViewBag.PrintingColor)
                                     {
-                                        <option >@item.PrintColourName</option>
+                                        <option value="@item.PrintColourName">@item.PrintColourName</option>
                                     }
                                 </select>
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -253,7 +255,7 @@
                                     <option value="">Select Quality</option>
                                     @foreach (var item in ViewBag.paperQuality)
                                     {
-                                        <option >@item.QualityName</option>
+                                        <option value="@item.QualityName">@item.QualityName</option>
                                     }
                                 </select>
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -287,7 +289,7 @@
             <div class="modal-body text-center">
                 <img src="http://osmhotels.com//assets/check-true.jpg">
                 <p class="lead" id="message" style="font-size:15px"></p>
-                <a class="rd_more btn btn-default" data-dismiss="modal">Go Back</a>
+                <button class="rd_more btn btn-default" data-dismiss="modal" id="reload">Add Next Job</button>
             </div>
 
         </div>

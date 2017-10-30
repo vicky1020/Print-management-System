@@ -91,11 +91,12 @@ namespace PrintManagementApp.Controllers
             var CustomerAdd = irepo.AddCustomer(obj);
         }
 
-        public async Task<TaxViewModel> CalculateTaxes(OrderItemModel obj)
+        public async Task<JsonResult> CalculateTaxes(OrderItemModel obj)
         {
             TaxViewModel t = new TaxViewModel();
             t = await util.GetTaxAmt(obj);
-            return t;
+            t.CGSTAmt = t.CGSTAmt + t.SGSTAmt;
+            return Json(t, JsonRequestBehavior.AllowGet);
         }
     }
 }

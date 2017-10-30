@@ -19,19 +19,22 @@
             $('#item_card_type').change(function () {
                 if ($('#item_card_type option:selected').val() == 'Bill Book') {
                     $('#additional').removeClass('hide');
+                    $('#bill').removeClass('hide');
                     $('#ADDbtn').attr('disabled', false);
                 }
                 else if ($('#item_card_type option:selected').val() == "") {
 
                     $('#ADDbtn').attr('disabled', true);
+
                 }
             else {
+                    $('#additional').addClass('hide');
                     $('#additional').addClass('hide');
                     $('#ADDbtn').attr('disabled', false);
             }
             });
-            
-            
+
+
             for (var i = 0; i < elements.length; i++) {
                 element = $(elements[i]);
                 element.val(element.attr("value"));
@@ -66,27 +69,52 @@
                     $('.order_confor_div').addClass('hide');
                 }
             });
-
+            $("#reload").click(function () {
+                location.reload('#re');
+            });
 
             $("#ADDbtn").click(function () {
                 $('.bill_table').removeClass('hide');
-                var description = $('#item_card_type').val();
-                var qty = $('#bill_count').val()
-                var amount = $('#Amount1').val();
-                var GST = (amount * 16) / 100;
-                var netAmount = parseInt(amount) + GST;
-                
-                $('#price').html(amount);
-                $('#price1').html(amount);
-                $('#price2').html(amount);
-                $('#GST').html(GST);
-                $('#netamount').html(netAmount);
-                $('#qty').html(qty);
-                $('#description').html(description);
-                insertOrder();
-            });
+                var dataObject = {
+                    'ProductItem': $('#item_card_type option:selected').val(),
+                    'PaperGSM': $('#jc_paper_gsm option:selected').val(),
+                    'PaperColour': $('#PaperColor option:selected').val(),
+                    'PaperSize': $('#paper_size1 option:selected').val(),
+                    'PaperQuality': $('#PaperQuality option:selected').val(),
+                    'PaperSides': $('#PaperSide option:selected').val(),
+                    'LedgerFalio': $('#Ledget_Falio option:selected').val(),
+                    'AdditionalPaperCount': $('#Add_paper_count').val(),
+                    'AdditionalPaperSize': $('#paper_size2 option:selected').val(),
+                    'AdditionalPaperGSM': $('#paper_gsm2 option:selected').val(),
+                    'Quantity': $('#Quantity').val(),
+                    'Amount': $('#Amount1').val(),
+                    'CreatedBy': 'admin',
+                    'CustomerId': 1,
+                    'JobProcessType': $('#job_process_type option:selected').val(),
+                    'UpdatedBy': 'admin'
 
+                };
+                $.get("/Job/CalculateTaxes", dataObject, function (data) {
+
+                    alert(data.Amount);
+                        $('#price').html(data.Amount);
+                        $('#price1').html(data.Amount);
+                        $('#price2').html(data.Amount);
+                        $('#GST').html(data.CGSTAmt);
+                        $('#netamount').html(data.GrossBillAmount);
+                        $('#qty').html(qty);
+                        $('#description').html(description);
+
+                });
+            });
+            $("#ADDbtn1").click(function () {
+                 insertOrder();
+            });
             function insertOrder() {
+
+
+
+
 
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
@@ -115,6 +143,24 @@
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
+                        if ($('#job_process_type option:selected').val() == 'Order Confirm') {
+                            if ($("input[name$='customer']:checked").val() == '2') {
+                                var obj = {
+                                    name: $('#cust_name').val(),
+                                    FirstName: $('#cust_email').val(),
+                                    LastName: '',
+                                    phone: $('#cust_phone').val(),
+                                    CreatedBy: 'admin'
+                                };
+                                $.post("/Job/customer", obj, function () {
+
+                                });
+
+                            }
+                            else {
+
+                            }
+                        }
                         $('#message').html("Job successfully scheduled");
                     },
                     error: function (error) {
@@ -124,15 +170,16 @@
                     }
                 });
             }
-        
+
 
         });
     </script>}
+
 <div class="page-content inset  center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
     <h3 style="color: #fff;background-color: #428bca;">JOBS</h3>
-    
+
     <div class="tab-content clearfix well">
-        
+
         <div class="tab-pane active" id="Others">
             <div class="body-nest" id="element">
 
@@ -143,9 +190,9 @@
                             <label class="col-sm-2 control-label" for="item_card_type">Item Type</label>
                             <div class="col-sm-3">
 
-                                <select class="form-control" name="item_card_type" id="item_card_type" >
+                                <select class="form-control" name="item_card_type" id="item_card_type">
                                     <option value="">Select Item Type</option>
-                                        
+
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
                                         <option value="@item.ItemName">@item.ItemName</option>
@@ -161,7 +208,7 @@
                             <label class="col-sm-2 control-label" for="job_card_type">Job Process Type</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="job_card_type" id="job_process_type">
-                                    <option value="Order Confirm" >Order Confirm</option>
+                                    <option value="Order Confirm">Order Confirm</option>
                                     <option value="Estimation" selected="selected">Estimation</option>
                                 </select>
                                 <label class="error"></label>
@@ -181,7 +228,7 @@
                             <div class="col-sm-3">
                                 <input id="new_customer" type="radio" name="customer" value="1">New
                                 <input type="radio" name="customer" value="2" id="old_customer" checked="checked">Existing<br>
-                                
+
                             </div>
 
 
@@ -191,7 +238,7 @@
                             <div class="client_new">
                                 <label class="col-sm-2 control-label" for="jc_job_card">Name</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="cust_name" id="cust_name" >
+                                    <input type="text" class="form-control" name="cust_name" id="cust_name">
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
                             </div>
@@ -350,7 +397,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="jc_paper_size">Paper Count</label>
                                     <div class="col-sm-3">
-                                        <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="Add_paper_count"></input>
+                                        <input class="form-control" type="number" min="0" value="" name="Add_paper_count" id="Add_paper_count"></input>
 
                                         </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                         <label class="error" style="color:#c3041d;"></label>
@@ -411,12 +458,12 @@
                                 <label class="error" style="color:#c3041d;"></label>
                             </div>
                         </div>
-                        
+
 
                         <div class="form-group">
                             <label class="col-sm-3"></label>
                             <div class="col-sm-5">
-                                <button id="ADDbtn" disabled="true" class="btn btn-primary col-sm-6" data-toggle="modal" data-target="#myModal">Submit</button>
+                                <button id="ADDbtn" type="button" disabled="true" class="btn btn-primary col-sm-6">Calculate</button>
                             </div>
                         </div>
                     </form>
@@ -425,45 +472,52 @@
             </div>
         </div>
     </div>
-    <div class="bill_table well  hide">
+    <div class="bill_table hide">
+        <h3 class="bill " style="color: #fff;background-color: #428bca;">Admin Reference Bill</h3>
 
-        <h3 style="color: #fff;background-color: #428bca;">Admin Reference Bill</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>S.NO</th>
-                    <th>Description</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td id="description"></td>
-                    <td class="text-right" id="qty">1</td>
-                    <td class="text-right" id="price1">0.07</td>
-                    <td class="text-right" id="price2">0.07</td>
-                </tr>
-                
-                <tr>
-                    <td colspan="3" rowspan="4" style="vertical-align:middle;"></td>
-                    <td class="text-right">GST(CGST 8% + SGST 8%)</td>
-                    <td class="text-right" id="GST">0.00</td>
-                </tr>
-                <tr>
-                    <td class="text-right">Net Amount(Indian Rupee <i class="fa fa-inr" aria-hidden="true"></i>)</td>
-                    <td class="text-right" id="netamount">0.00</td>
-                </tr>
-                
-            </tbody>
-        </table>
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>S.NO</th>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td id="description"></td>
+                        <td class="text-right" id="qty">1</td>
+                        <td class="text-right" id="price1">0.07</td>
+                        <td class="text-right" id="price2">0.07</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" rowspan="4" style="vertical-align:middle;"></td>
+                        <td class="text-right">GST(CGST 8% + SGST 8%)</td>
+                        <td class="text-right" id="GST">0.00</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Net Amount(Indian Rupee <i class="fa fa-inr" aria-hidden="true"></i>)</td>
+                        <td class="text-right" id="netamount">0.00</td>
+                    </tr>
 
+                </tbody>
+            </table>
+
+        </div>
+
+        <label class="col-sm-10"></label>
+        <div class="col-sm-2 ">
+            <button id="ADDbtn1" class="btn btn-primary col-sm-9" data-toggle="modal" data-target="#myModal">Submit</button>
+        </div>
     </div>
+    </br>
     <h3 style="color: #fff;background-color: #428bca;">Recent Orders</h3>
-    <div class="table-cont well">
-        
+    <div class="table-cont well" name="re">
+
         <table id="example" class="display table table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -507,13 +561,13 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button"  class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Status Message !</h4>
             </div>
             <div class="modal-body text-center">
                 <img src="http://osmhotels.com//assets/check-true.jpg">
                 <p class="lead" id="message" style="font-size:15px"></p>
-                <a  class="rd_more btn btn-default" data-dismiss="modal">Go Back</a>
+                <button class="rd_more btn btn-default" data-dismiss="modal" id="reload">Go Back</button>
             </div>
 
         </div>
