@@ -177,6 +177,12 @@ textarea {
 .add-btn:hover {
     background-color: #285e8e;
 }
+table.dataTable thead th div.DataTables_sort_wrapper span {
+    position: initial;
+    top: 50%;
+    margin-top: -8px;
+    right: -18px;
+}
 
 .submit-btn-cont {
     margin: 30px 0;
