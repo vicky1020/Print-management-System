@@ -67,7 +67,7 @@ namespace PrintManagement.Common.Mapping
         }
         public static ConfigurationModel ToConfigurationModel(this Configuration item)
         {
-            ConfigurationModel config =  Mapper.Map<Configuration, ConfigurationModel>(item);
+            ConfigurationModel config = Mapper.Map<Configuration, ConfigurationModel>(item);
             return config;
         }
 
@@ -97,19 +97,21 @@ namespace PrintManagement.Common.Mapping
 
         public static LedgerFalioModel ToLedgerFalioModel(this LedgerFalio item)
         {
-            LedgerFalioModel ledgerFalio =  Mapper.Map<LedgerFalio, LedgerFalioModel>(item);
+            LedgerFalioModel ledgerFalio = Mapper.Map<LedgerFalio, LedgerFalioModel>(item);
             return ledgerFalio;
         }
 
         public static OrderConfigurationModel ToOrderConfigurationModel(this OrderConfiguration item)
         {
-            OrderConfigurationModel orderConfiguration =  Mapper.Map<OrderConfiguration, OrderConfigurationModel>(item);
+            OrderConfigurationModel orderConfiguration = Mapper.Map<OrderConfiguration, OrderConfigurationModel>(item);
+            orderConfiguration.Amount = decimal.Round(orderConfiguration.Amount, 2, MidpointRounding.AwayFromZero);
             return orderConfiguration;
         }
 
         public static OrderItemModel ToOrderItemModel(this OrderItem item)
         {
-            OrderItemModel orderItem =  Mapper.Map<OrderItem, OrderItemModel>(item);
+            OrderItemModel orderItem = Mapper.Map<OrderItem, OrderItemModel>(item);
+            orderItem.Amount = decimal.Round(orderItem.Amount, 2, MidpointRounding.AwayFromZero);
             return orderItem;
         }
 
@@ -136,19 +138,19 @@ namespace PrintManagement.Common.Mapping
 
         public static UserRoleModel ToUserRoleModel(this UserRole item)
         {
-            UserRoleModel userRole =  Mapper.Map<UserRole, UserRoleModel>(item);
+            UserRoleModel userRole = Mapper.Map<UserRole, UserRoleModel>(item);
             return userRole;
         }
 
         public static UserSecurityQuestionModel ToUserSecurityQuestionModel(this UserSecurityQuestion item)
         {
-            UserSecurityQuestionModel userSecurityQuestion =    Mapper.Map<UserSecurityQuestion, UserSecurityQuestionModel>(item);
+            UserSecurityQuestionModel userSecurityQuestion = Mapper.Map<UserSecurityQuestion, UserSecurityQuestionModel>(item);
             return userSecurityQuestion;
         }
 
         public static UserModel ToUserModel(this User item)
         {
-            UserModel user =  Mapper.Map<User, UserModel>(item);
+            UserModel user = Mapper.Map<User, UserModel>(item);
             return user;
         }
         #endregion
