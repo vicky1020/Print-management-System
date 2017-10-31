@@ -97,6 +97,8 @@ namespace PrintManagementApp.Controllers
         [HttpPost]
         public void InsertConfig(OrderConfigurationModel obj)
         {
+            obj.CreatedBy = Convert.ToString(Session["AccountName"]);
+            obj.CreatedDate = DateTime.Now;
             var orderConfig = irepo.AddOrderConfiguration(obj);
         }
         

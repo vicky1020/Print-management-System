@@ -64,16 +64,16 @@ namespace PrintManagementApp.Utilities
                             query = query.Where(p => p.PaperSize.Equals(Convert.ToString(obj.PaperSize)));
 
                         if (itemDisplay.PaperSides)
-                            query = query.Where(p => p.PaperSize.Equals(Convert.ToString(obj.PaperSides)));
+                            query = query.Where(p => p.PaperSides.Equals(Convert.ToString(obj.PaperSides)));
 
                         if (itemDisplay.PaperQuality)
-                            query = query.Where(p => p.PaperSize.Equals(Convert.ToString(obj.PaperQuality)));
+                            query = query.Where(p => p.PaperQuality.Equals(Convert.ToString(obj.PaperQuality)));
 
                         if (itemDisplay.PaperColor)
-                            query = query.Where(p => p.PaperSize.Equals(Convert.ToString(obj.PaperColour)));
+                            query = query.Where(p => p.PaperColour.Equals(Convert.ToString(obj.PaperColour)));
 
                         if (itemDisplay.LedgerFalio)
-                            query = query.Where(p => p.PaperSize.Equals(Convert.ToString(obj.LedgerFalio)));
+                            query = query.Where(p => p.LedgerFalio.Equals(Convert.ToString(obj.LedgerFalio)));
 
                         var datas = query.ToList();
                         if (datas.Count > 0)

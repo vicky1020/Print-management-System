@@ -45,7 +45,7 @@ namespace PrintManagementApp.Controllers
                         result = true;
                     ViewBag.Roles = loginResult.UserName;
                     ViewBag.AccountName = loginResult.FirstName;
-                    Session["AccountName"] = loginResult.FirstName.ToString();
+                    Session["AccountName"] = loginResult.UserName.ToString();
                     Session["Roles"] = loginResult.UserName.ToString();
 
                 }

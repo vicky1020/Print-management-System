@@ -84,6 +84,8 @@ namespace PrintManagementApp.Controllers
 
         public void SaveOrder(OrderItemModel obj)
         {
+            obj.CreatedBy = Convert.ToString(Session["AccountName"]);
+            obj.CreatedDate = DateTime.Now;
             var OrderItemModel = irepo.AddOrderItem(obj);
         }
         public void customer(CustomerModel obj)

@@ -128,12 +128,9 @@
                     'AdditionalPaperSize': $('#paper_size2 option:selected').val(),
                     'AdditionalPaperGSM': $('#paper_gsm2 option:selected').val(),
                     'Quantity': $('#Quantity').val(),
-                    'Amount': $('#Amount1').val(),
-                    'CreatedBy': 'admin',
+                    'Amount': $('#netamount').val(),
                     'CustomerId': 1,
-                    'JobProcessType': $('#job_process_type option:selected').val(),
-                    'UpdatedBy': 'admin'
-
+                    'JobProcessType': $('#job_process_type option:selected').val()
                 };
 
                 $.ajax({
