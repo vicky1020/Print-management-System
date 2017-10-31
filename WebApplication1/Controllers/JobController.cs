@@ -90,7 +90,7 @@ namespace PrintManagementApp.Controllers
             }
         }
 
-        public  void SaveOrder(OrderItemModel obj)
+        public void SaveOrder(OrderItemModel obj)
         {
             obj.CreatedBy = Convert.ToString(Session["AccountName"]);
             obj.CreatedDate = DateTime.Now;
@@ -106,11 +106,11 @@ namespace PrintManagementApp.Controllers
                     customer.LastName = obj.LastName;
                     customer.PhoneNumber = obj.PhoneNumber;
                     customer.CreatedDate = obj.CreatedDate;
-                    var data =  irepo.AddCustomer(customer);
-                    obj.CustomerId = Convert.ToInt32(data);
+                    var data = irepo.AddCustomer(customer);
+                    obj.CustomerId = 2;
                 }
             }
-            var OrderItemModel =  irepo.AddOrderItem(obj);
+            var OrderItemModel = irepo.AddOrderItem(obj);
         }
         public void customer(CustomerModel obj)
         {

@@ -96,15 +96,18 @@
                 };
                 $.get("/Job/CalculateTaxes", dataObject, function (data) {
 
-                    alert(data.Amount);
+                    if (data.Amount != 0 && data.GrossBillAmount!=0) {
                         $('#price').html(data.Amount);
                         $('#price1').html(data.Amount);
                         $('#price2').html(data.Amount);
                         $('#GST').html(data.CGSTAmt);
                         $('#netamount').html(data.GrossBillAmount);
-                        $('#qty').html(qty);
-                        $('#description').html(description);
-
+                        $('#qty').html($('#Quantity').val());
+                        $('#description').html($('#item_card_type option:selected').val());
+                    }
+                    else {
+                        alert("Please Enter Amount, No Rules Matched!");
+                    }
                 });
             });
             $("#ADDbtn1").click(function () {
@@ -142,6 +145,7 @@
                     type: "POST",
                     data: JSON.stringify({ 'obj': dataObject }),
                     traditional: true,
+                    async: true,
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
                         $('#message').html("Job added successful!");
@@ -494,9 +498,9 @@
 
 
                         <div class="form-group">
-                            <label class="col-sm-3"></label>
-                            <div class="col-sm-5">
-                                <button id="ADDbtn" type="button" disabled="true" class="btn btn-primary col-sm-6">Calculate</button>
+                            
+                            <div class="calc-btn-cont">
+                                <button id="ADDbtn" type="button" disabled="true" class="btn btn-primary calc-btn">Calculate</button>
                             </div>
                         </div>
                     </form>

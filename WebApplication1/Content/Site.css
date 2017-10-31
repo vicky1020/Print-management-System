@@ -222,3 +222,13 @@ user .Report {
 .DataTables_sort_icon {
     margin: 0 auto !important;
 }
+.calc-btn {
+    width: 140px;
+    font-size: 16px;
+}
+
+h3 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
