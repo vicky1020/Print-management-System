@@ -212,6 +212,14 @@ namespace PrintManagement.Common.Repositories
                 return allOrders.Select(item => item.ToOrderItemModel()).ToList();
             return new List<OrderItemModel>();
         }
+
+        public async Task<List<OrderItemModel>> GetAllOrderItemByUserName(string userName)
+        {
+            var allOrders = await _entities.OrderItem.Where(x => x.CreatedBy.ToLower().Equals(userName.ToLower())).ToListAsync();
+            if (allOrders.Count > 0)
+                return allOrders.Select(item => item.ToOrderItemModel()).ToList();
+            return new List<OrderItemModel>();
+        }
         public async Task<OrderItemModel> GetOrderItemById(int OrderId)
         {
             var order = await _entities.OrderItem.Where(i => i.OrderId == OrderId).FirstOrDefaultAsync();
