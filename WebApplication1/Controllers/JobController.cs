@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PrintManagement.Common.Models;
 using PrintManagementApp.Filters;
 using PrintManagementApp.Utilities;
+using System.Linq;
 
 namespace PrintManagementApp.Controllers
 {
@@ -89,11 +90,27 @@ namespace PrintManagementApp.Controllers
             }
         }
 
-        public void SaveOrder(OrderItemModel obj)
+        public  void SaveOrder(OrderItemModel obj)
         {
             obj.CreatedBy = Convert.ToString(Session["AccountName"]);
             obj.CreatedDate = DateTime.Now;
-            var OrderItemModel = irepo.AddOrderItem(obj);
+
+            if (obj.JobProcessType == "Order Confirm")
+            {
+                if (obj.CustomerId == null)
+                {
+                    CustomerModel customer = new CustomerModel();
+                    customer.CreatedBy = obj.CreatedBy;
+                    customer.Email = obj.Email;
+                    customer.FirstName = obj.FirstName;
+                    customer.LastName = obj.LastName;
+                    customer.PhoneNumber = obj.PhoneNumber;
+                    customer.CreatedDate = obj.CreatedDate;
+                    var data =  irepo.AddCustomer(customer);
+                    obj.CustomerId = Convert.ToInt32(data);
+                }
+            }
+            var OrderItemModel =  irepo.AddOrderItem(obj);
         }
         public void customer(CustomerModel obj)
         {

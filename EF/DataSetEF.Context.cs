@@ -27,6 +27,7 @@ namespace EF
     
         public virtual DbSet<Configuration> Configuration { get; set; }
         public virtual DbSet<ConfigurationType> ConfigurationType { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<ItemDisplayConfig> ItemDisplayConfig { get; set; }
         public virtual DbSet<JobProcessType> JobProcessType { get; set; }
         public virtual DbSet<OrderConfiguration> OrderConfiguration { get; set; }
@@ -39,7 +40,6 @@ namespace EF
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<UserSecurityQuestion> UserSecurityQuestion { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<LedgerFalio> LedgerFalio { get; set; }
         public virtual DbSet<PaperSize> PaperSize { get; set; }
     }

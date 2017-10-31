@@ -27,6 +27,10 @@ namespace PrintManagement.Common.Models
         public string JobProcessType { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
 
     }
 }

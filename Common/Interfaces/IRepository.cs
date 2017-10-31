@@ -57,7 +57,7 @@ namespace PrintManagement.Common.Interfaces
         #region CustomerModel
         Task<List<CustomerModel>> GetAllCustomer();
         Task<CustomerModel> GetCustomerById(int customerId);
-        Task<bool> AddCustomer(CustomerModel cust);
+        Task<int> AddCustomer(CustomerModel cust);
         Task<bool> UpdateCustomer(CustomerModel User, int UserId);
         Task<bool> DeleteCustomer(int UserId);
         #endregion

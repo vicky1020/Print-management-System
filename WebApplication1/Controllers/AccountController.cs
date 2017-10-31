@@ -12,7 +12,7 @@ namespace PrintManagementApp.Controllers
         private readonly Repository irepo;
         public AccountController()
         {
-            var irepo = new Repository();
+             irepo = new Repository();
         }
 
         //

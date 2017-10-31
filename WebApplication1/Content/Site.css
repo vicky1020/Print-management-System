@@ -167,6 +167,7 @@ textarea {
 
 .update-btn {
     width: 70px;
+    display: none;
 }
 
     .add-btn a, .update-btn a {
@@ -200,4 +201,24 @@ user .Report {
 
 .user .Config {
     display: none;
+}
+
+.orderId:after {
+    content: "\A  EDIT  ";
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #285e8e;
+    background-color: #3276b1;
+    color: #FFF;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.DataTables_sort_icon {
+    margin: 0 auto !important;
 }

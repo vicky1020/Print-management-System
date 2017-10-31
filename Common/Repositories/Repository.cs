@@ -308,18 +308,18 @@ namespace PrintManagement.Common.Repositories
             var allCustomer = await _entities.Customer.ToListAsync();
             if (allCustomer.Count > 0)
                 return allCustomer.Select(item => item.ToCustomerModel()).ToList();
-            return null;
+            return new List<CustomerModel>();
         }
         public async Task<CustomerModel> GetCustomerById(int customerId)
         {
             var customer = await _entities.Customer.Where(i => i.CustomerId == customerId).FirstOrDefaultAsync();
             return customer?.ToCustomerModel();
         }
-        public async Task<bool> AddCustomer(CustomerModel cust)
+        public async Task<int> AddCustomer(CustomerModel cust)
         {
             var customer = _entities.Customer.Add(cust.ToCustomerEntity());
             await _entities.SaveChangesAsync();
-            return true;
+            return customer.CustomerId;
         }
         public async Task<bool> UpdateCustomer(CustomerModel cust, int customerId)
         {

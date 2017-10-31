@@ -21,17 +21,9 @@
           <Property Name="ConfigurationTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ConfigurationName" Type="varchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PrintManagementSystem.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="LastName" />
-            <PropertyRef Name="Email" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
           </Key>
           <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="256" Nullable="false" />
@@ -243,6 +235,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
         <EntityContainer Name="PrintManagementSystemModelStoreContainer">
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConfigurationType" EntityType="Self.ConfigurationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemDisplayConfig" EntityType="Self.ItemDisplayConfig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobProcessType" EntityType="Self.JobProcessType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderConfiguration" EntityType="Self.OrderConfiguration" Schema="dbo" store:Type="Tables" />
@@ -255,17 +248,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSecurityQuestion" EntityType="Self.UserSecurityQuestion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Customer].[CustomerId] AS [CustomerId], 
-    [Customer].[FirstName] AS [FirstName], 
-    [Customer].[LastName] AS [LastName], 
-    [Customer].[Email] AS [Email], 
-    [Customer].[PhoneNumber] AS [PhoneNumber], 
-    [Customer].[CreatedBy] AS [CreatedBy], 
-    [Customer].[CreatedDate] AS [CreatedDate]
-    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="LedgerFalio" EntityType="Self.LedgerFalio" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [LedgerFalio].[LedgerFalioId] AS [LedgerFalioId], 
@@ -317,6 +299,18 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="ConfigurationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ConfigurationName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Configuration" Relationship="Self.FK_Configuration_Configuration_Typeid" FromRole="ConfigurationType" ToRole="Configuration" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="ItemDisplayConfig">
           <Key>
@@ -456,24 +450,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="QuestionName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Users_Users_SecuirtyQuestion" FromRole="UserSecurityQuestion" ToRole="User" />
         </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="LastName" />
-            <PropertyRef Name="Email" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="LedgerFalio">
           <Key>
             <PropertyRef Name="LedgerFalioId" />
@@ -540,6 +516,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
         <EntityContainer Name="PrintManagementSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Configuration" EntityType="Self.Configuration" />
           <EntitySet Name="ConfigurationType" EntityType="Self.ConfigurationType" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="ItemDisplayConfig" EntityType="Self.ItemDisplayConfig" />
           <EntitySet Name="JobProcessType" EntityType="Self.JobProcessType" />
           <EntitySet Name="OrderConfiguration" EntityType="Self.OrderConfiguration" />
@@ -552,7 +529,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" />
           <EntitySet Name="UserSecurityQuestion" EntityType="Self.UserSecurityQuestion" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="LedgerFalio" EntityType="Self.LedgerFalio" />
           <EntitySet Name="PaperSize" EntityType="Self.PaperSize" />
           <AssociationSet Name="FK_Configuration_Configuration_Typeid" Association="Self.FK_Configuration_Configuration_Typeid">
@@ -593,6 +569,19 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               <MappingFragment StoreEntitySet="ConfigurationType">
                 <ScalarProperty Name="ConfigurationTypeId" ColumnName="ConfigurationTypeId" />
                 <ScalarProperty Name="ConfigurationName" ColumnName="ConfigurationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="PrintManagementSystemModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -737,19 +726,6 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
               <MappingFragment StoreEntitySet="UserSecurityQuestion">
                 <ScalarProperty Name="UserSecurityQuestionId" ColumnName="UserSecurityQuestionId" />
                 <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="PrintManagementSystemModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

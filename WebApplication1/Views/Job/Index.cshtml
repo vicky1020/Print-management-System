@@ -129,8 +129,12 @@
                     'AdditionalPaperGSM': $('#paper_gsm2 option:selected').val(),
                     'Quantity': $('#Quantity').val(),
                     'Amount': $('#netamount').val(),
-                    'CustomerId': 1,
-                    'JobProcessType': $('#job_process_type option:selected').val()
+                    'CustomerId': $('#Select_Customer option:selected').attr('value'),
+                    'JobProcessType': $('#job_process_type option:selected').val(),
+                    'FirstName': $('#cust_name').val(),
+                    'Email': $('#cust_email').val(),
+                    'LastName': 'Test',
+                    'PhoneNumber': $('#cust_phone').val()
                 };
 
                 $.ajax({
@@ -140,25 +144,7 @@
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
-                        if ($('#job_process_type option:selected').val() == 'Order Confirm') {
-                            if ($("input[name$='customer']:checked").val() == '2') {
-                                var obj = {
-                                    name: $('#cust_name').val(),
-                                    FirstName: $('#cust_email').val(),
-                                    LastName: '',
-                                    phone: $('#cust_phone').val(),
-                                    CreatedBy: 'admin'
-                                };
-                                $.post("/Job/customer", obj, function () {
-
-                                });
-
-                            }
-                            else {
-
-                            }
-                        }
-                        $('#message').html("Job successfully scheduled");
+                        $('#message').html("Job added successful!");
                     },
                     error: function (error) {
 
@@ -168,6 +154,56 @@
                 });
             }
 
+            $(".orderId").click(function () {
+                var parent = $("#" + event.currentTarget.textContent);
+
+                var pdtItem = parent.children(".pdtItem").text();
+                $("#item_card_type").val(pdtItem).trigger('change');
+
+                var jobProcess = parent.children(".jobProcess").text();
+                $("#job_process_type").val(jobProcess);
+
+                var printColor = parent.children(".paperColor").text();
+                $("#jc_job").val(printColor);
+
+                var paperSize = parent.children(".paperSize").text();
+                $("#paper_size1").val(paperSize);
+
+                var paperSide = parent.children(".paperSide").text();
+                $("#PaperSide").val(paperSide);
+
+                var paperColor = parent.children(".paperColor").text();
+                $("#PaperColor").val(paperColor);
+
+                var amt = parent.children(".amt").text();
+                $("#Amount1").val(amt);
+
+                var paperQuality = parent.children(".paperQuality").text();
+                $("#PaperQuality").val(paperQuality);
+
+                var paperGSM = parent.children(".paperGSM").text();
+                $("#jc_paper_gsm").val(paperGSM);
+
+                var ledgerFalio = parent.children(".ledgerFalio").text();
+                $("#Ledget_Falio").val(ledgerFalio);
+
+                var qty = parent.children(".qty").text();
+                $("#Quantity").val(qty);
+
+                var adPaperCount = parent.children(".adPaperCount").text();
+                $("#Add_paper_count").val(adPaperCount);
+
+                var adPaperSize = parent.children(".adPaperSize").text();
+                $("#paper_size2").val(adPaperSize);
+
+                var adPaperGSM = parent.children(".adPaperGSM").text();
+                $("#paper_gsm2").val(adPaperGSM);
+
+                var custId = parent.children(".custId").text();
+                $("#Select_Customer").val(custId);
+
+                $(window).scrollTop($('.page-content').offset().top);
+            });
 
         });
     </script>}
@@ -531,24 +567,32 @@
                     <th>Created By</th>
                     <th>Created Date</th>
                     <th>Job Status</th>
+                    <th class="hide">Additional Paper Count</th>
+                    <th class="hide">Additional Paper Size</th>
+                    <th class="hide">Additional Paper GSM</th>
+                    <th class="hide">Customer ID</th>
                 </tr>
             </thead>
             @foreach (var item in ViewBag.OrderItem)
             {
-                <tr>
-                    <td>@item.OrderId</td>
-                    <td>@item.ProductItem</td>
-                    <td>@item.PaperGSM</td>
-                    <td>@item.PaperColour</td>
-                    <td>@item.PaperSize</td>
-                    <td>@item.PaperQuality</td>
-                    <td>@item.PaperSides</td>
-                    <td>@item.LedgerFalio</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Amount</td>
-                    <td>@item.CreatedBy</td>
-                    <td>@item.CreatedDate</td>
-                    <td>@item.JobProcessType</td>
+                <tr id="@item.OrderId">
+                    <td class="orderId">@item.OrderId</td>
+                    <td class="pdtItem">@item.ProductItem</td>
+                    <td class="paperGSM">@item.PaperGSM</td>
+                    <td class="paperColor">@item.PaperColour</td>
+                    <td class="paperSize">@item.PaperSize</td>
+                    <td class="paperQuality">@item.PaperQuality</td>
+                    <td class="paperSide">@item.PaperSides</td>
+                    <td class="ledgerFalio">@item.LedgerFalio</td>
+                    <td class="qty">@item.Quantity</td>
+                    <td class="amt">@item.Amount</td>
+                    <td class="createdBy">@item.CreatedBy</td>
+                    <td class="createdDate">@item.CreatedDate</td>
+                    <td class="jobProcess">@item.JobProcessType</td>
+                    <td class="hide adPaperCount">@item.AdditionalPaperCount</td>
+                    <td class="hide adPaperSize">@item.AdditionalPaperSize</td>
+                    <td class="hide adPaperGSM">@item.AdditonalPaperGSM</td>
+                    <td class="hide custId">@item.CustomerId</td>
                 </tr>
             }
         </table>
