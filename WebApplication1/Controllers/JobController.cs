@@ -85,26 +85,55 @@ namespace PrintManagementApp.Controllers
 
         public async Task<JsonResult> saveCustomer(OrderItemModel obj)
         {
-            obj.CreatedBy = Convert.ToString(Session["AccountName"]);
-            obj.CreatedDate = DateTime.Now;
-            if (obj.JobProcessType == "Order Confirm")
+            if (obj.OrderId != 0)
             {
-                if (obj.CustomerId == null)
+                Console.WriteLine(obj.OrderId + "" + "is the order id");
+                obj.UpdatedBy = Convert.ToString(Session["AccountName"]);
+                obj.UpdatedDate = DateTime.Now;
+                if (obj.JobProcessType == "Order Confirm")
                 {
-                    CustomerModel c = new CustomerModel();
+                    if (obj.CustomerId == null)
+                    {
+                        CustomerModel c = new CustomerModel();
 
-                    c.CreatedBy = Convert.ToString(Session["AccountName"]);
-                    c.FirstName = obj.FirstName;
-                    c.LastName = obj.LastName;
-                    c.PhoneNumber = obj.PhoneNumber;
-                    c.CreatedDate = obj.CreatedDate;
-                    c.Email = obj.Email;
-                    var a = await irepo.AddCustomer(c);
-                    obj.CustomerId = a;
+                        c.CreatedBy = Convert.ToString(Session["AccountName"]);
+                        c.FirstName = obj.FirstName;
+                        c.LastName = obj.LastName;
+                        c.PhoneNumber = obj.PhoneNumber;
+                        c.CreatedDate = obj.CreatedDate;
+                        c.Email = obj.Email;
+                        var a = await irepo.AddCustomer(c);
+                        obj.CustomerId = a;
+                    }
                 }
+                var OrderItemModel = irepo.UpdateOrderItem(obj, obj.OrderId);
+                return Json(OrderItemModel, JsonRequestBehavior.AllowGet);
             }
-            var OrderItemModel = irepo.AddOrderItem(obj);
-            return Json(OrderItemModel, JsonRequestBehavior.AllowGet);
+            else
+            {
+                Console.WriteLine("no orderid" + "" + "so creating new");
+                obj.CreatedBy = Convert.ToString(Session["AccountName"]);
+                obj.CreatedDate = DateTime.Now;
+                if (obj.JobProcessType == "Order Confirm")
+                {
+                    if (obj.CustomerId == null)
+                    {
+                        CustomerModel c = new CustomerModel();
+
+                        c.CreatedBy = Convert.ToString(Session["AccountName"]);
+                        c.FirstName = obj.FirstName;
+                        c.LastName = obj.LastName;
+                        c.PhoneNumber = obj.PhoneNumber;
+                        c.CreatedDate = obj.CreatedDate;
+                        c.Email = obj.Email;
+                        var a = await irepo.AddCustomer(c);
+                        obj.CustomerId = a;
+                    }
+                }
+                var OrderItemModel = irepo.AddOrderItem(obj);
+                return Json(OrderItemModel, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         public void customer(CustomerModel obj)

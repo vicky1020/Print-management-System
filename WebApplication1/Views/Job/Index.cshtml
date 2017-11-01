@@ -124,6 +124,7 @@
             });
             function insertOrder() {
                 var dataObject = {
+                    'OrderId': $("#item_card_type").attr("orderId"),
                     'ProductItem': $('#item_card_type option:selected').val(),
                     'PaperGSM': $('#jc_paper_gsm option:selected').val(),
                     'PaperColour': $('#PaperColor option:selected').val(),
@@ -163,7 +164,9 @@
 
             $(".orderId").click(function () {
                 var parent = $("#" + event.currentTarget.textContent);
+                var id = parent.attr("id");
 
+                $("#item_card_type").attr("orderId", id);
                 var pdtItem = parent.children(".pdtItem").text();
                 $("#item_card_type").val(pdtItem).trigger('change');
 
