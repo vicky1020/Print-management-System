@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,6 @@ using EF;
 using PrintManagement.Common.Interfaces;
 using PrintManagement.Common.Mapping;
 using PrintManagement.Common.Models;
-using System;
 
 namespace PrintManagement.Common.Repositories
 {
