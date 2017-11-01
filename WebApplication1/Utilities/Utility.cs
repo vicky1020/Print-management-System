@@ -58,22 +58,22 @@ namespace PrintManagementApp.Utilities
                                     select data;
 
                         if (itemDisplay.PaperGSM)
-                            query = query.Where(p => p.PaperGSM.Equals(Convert.ToString(obj.PaperGSM)));
+                            query = query.Where(p => p.PaperGSM.Trim().Equals(Convert.ToString(obj.PaperGSM).Trim()));
 
                         if (itemDisplay.PaperSize)
-                            query = query.Where(p => p.PaperSize.Equals(Convert.ToString(obj.PaperSize)));
+                            query = query.Where(p => p.PaperSize.Trim().Equals(Convert.ToString(obj.PaperSize).Trim()));
 
                         if (itemDisplay.PaperSides)
-                            query = query.Where(p => p.PaperSides.Equals(Convert.ToString(obj.PaperSides)));
+                            query = query.Where(p => p.PaperSides.Trim().Equals(Convert.ToString(obj.PaperSides).Trim()));
 
                         if (itemDisplay.PaperQuality)
-                            query = query.Where(p => p.PaperQuality.Equals(Convert.ToString(obj.PaperQuality)));
+                            query = query.Where(p => p.PaperQuality.Trim().Equals(Convert.ToString(obj.PaperQuality).Trim()));
 
                         if (itemDisplay.PaperColor)
-                            query = query.Where(p => p.PaperColour.Equals(Convert.ToString(obj.PaperColour)));
+                            query = query.Where(p => p.PaperColour.Trim().Equals(Convert.ToString(obj.PaperColour).Trim()));
 
                         if (itemDisplay.LedgerFalio)
-                            query = query.Where(p => p.LedgerFalio.Equals(Convert.ToString(obj.LedgerFalio)));
+                            query = query.Where(p => p.LedgerFalio.Trim().Equals(Convert.ToString(obj.LedgerFalio).Trim()));
 
                         var datas = query.ToList();
                         if (datas.Count > 0)
