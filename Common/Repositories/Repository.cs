@@ -208,8 +208,9 @@ namespace PrintManagement.Common.Repositories
         public async Task<List<OrderItemModel>> GetAllOrderItem()
         {
             var allOrders = await _entities.OrderItem.ToListAsync();
-            var allInfo = await (from ct in _entities.Customer
-                                 join ot in _entities.OrderItem on ct.CustomerId equals ot.CustomerId
+            var allInfo = await (from ot in _entities.OrderItem
+                                 join ct in _entities.Customer on  ot.CustomerId equals ct.CustomerId into ps
+                                 from ct in ps.DefaultIfEmpty()
                                  orderby ot.OrderId
                                  select new OrderItemModel
                                  {
@@ -229,11 +230,10 @@ namespace PrintManagement.Common.Repositories
                                      CreatedBy = ot.CreatedBy,
                                      CreatedDate = ot.CreatedDate,
                                      JobProcessType = ot.JobProcessType,
-                                     FirstName = ct.FirstName,
-                                     LastName = ct.LastName,
-                                     PhoneNumber = ct.PhoneNumber,
-                                     Email = ct.Email
-
+                                     FirstName = ct == null ? null : ct.FirstName,
+                                     LastName = ct == null ? null : ct.LastName,
+                                     PhoneNumber = ct == null ? null : ct.PhoneNumber,
+                                     Email = ct == null ? null : ct.Email
                                  }).ToListAsync();
             return (List<OrderItemModel>)allInfo;
         }
