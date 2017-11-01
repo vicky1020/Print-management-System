@@ -232,3 +232,7 @@ h3 {
     line-height: 40px;
     font-size: 20px;
 }
+
+label.error {
+    color: #FF0000;
+}

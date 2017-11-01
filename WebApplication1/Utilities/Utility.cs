@@ -69,7 +69,7 @@ namespace PrintManagementApp.Utilities
                         if (itemDisplay.PaperQuality)
                             query = query.Where(p => p.PaperQuality.Trim().Equals(Convert.ToString(obj.PaperQuality).Trim()));
 
-                        if (itemDisplay.PaperColor)
+                        if (itemDisplay.PaperColour)
                             query = query.Where(p => p.PaperColour.Trim().Equals(Convert.ToString(obj.PaperColour).Trim()));
 
                         if (itemDisplay.LedgerFalio)
