@@ -626,6 +626,7 @@
                     <th>Created By</th>
                     <th>Ordered Date</th>
                     <th>Job Status</th>
+                    <th class="hide">Amount</th>
                     <th class="hide">Paper GSM</th>
                     <th class="hide">Paper Color</th>
                     <th class="hide">Paper Size</th>
@@ -647,10 +648,11 @@
                     <td>@item.PhoneNumber</td>
                     <td>@item.Email</td>
                     <td class="qty">@item.Quantity</td>
-                    <td class="amt">@item.Amount</td>
+                    <td>@item.TotalAmount</td>
                     <td class="createdBy">@item.CreatedBy</td>
                     <td class="createdDate">@item.CreatedDate</td>
                     <td class="jobProcess">@item.JobProcessType</td>
+                    <td class="hide amt">@item.Amount</td>
                     <td class="hide paperGSM">@item.PaperGSM</td>
                     <td class="hide paperColor">@item.PaperColour</td>
                     <td class="hide paperSize">@item.PaperSize</td>
