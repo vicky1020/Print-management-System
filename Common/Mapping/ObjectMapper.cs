@@ -204,6 +204,12 @@ namespace PrintManagement.Common.Mapping
             return orderItem;
         }
 
+        public static OrderItem ToOrderItemEntityForUpdate(this OrderItemModel item)
+        {
+            OrderItem orderItem = Mapper.Map<OrderItemModel, OrderItem>(item);
+            return orderItem;
+        }
+
         public static PaperGSM ToPaperGSMEntity(this PaperGSMModel item)
         {
             PaperGSM paperGSM = Mapper.Map<PaperGSMModel, PaperGSM>(item);

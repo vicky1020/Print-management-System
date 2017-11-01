@@ -20,6 +20,7 @@ namespace PrintManagement.Common.Models
         public string AdditionalPaperSize { get; set; }
         public string AdditonalPaperGSM { get; set; }
         public Nullable<int> PerBookBillCount { get; set; }
+        public string JobTitle { get; set; }
         public int Quantity { get; set; }
         public decimal Amount { get; set; }
         public decimal CGST { get; set; }
@@ -28,7 +29,6 @@ namespace PrintManagement.Common.Models
         public decimal TotalAmount { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public string JobTitle { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public string JobProcessType { get; set; }
         public string UpdatedBy { get; set; }

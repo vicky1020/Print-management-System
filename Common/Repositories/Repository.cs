@@ -261,9 +261,22 @@ namespace PrintManagement.Common.Repositories
             OrderItem orderItems = _entities.OrderItem.Where(x => x.OrderId == orderId).FirstOrDefault();
             if (orderItems != null)
             {
-                orderItem.ToOrderItemEntity();
-                orderItem.OrderId = orderId;
-                _entities.Entry(orderItem).State = EntityState.Modified;
+                DateTime d = orderItems.CreatedDate;
+                string createdBy = orderItems.CreatedBy;
+                orderItems = orderItem.ToOrderItemEntity();
+                orderItems.CreatedBy = createdBy;
+                orderItems.CreatedDate = d;
+
+                var entry = _entities.Entry(orderItems);
+                if (entry.State == EntityState.Detached || entry.State == EntityState.Modified)
+                {
+                    entry.State = EntityState.Modified; //do it here
+
+                    _entities.Set<OrderItem>().Attach(orderItems); //attach
+
+                   await _entities.SaveChangesAsync(); //save it
+                }
+                _entities.Entry(orderItems).State = EntityState.Modified;
                 await _entities.SaveChangesAsync();
             }
             return true;
