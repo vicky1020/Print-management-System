@@ -6,6 +6,7 @@ using EF;
 using PrintManagement.Common.Interfaces;
 using PrintManagement.Common.Mapping;
 using PrintManagement.Common.Models;
+using System;
 
 namespace PrintManagement.Common.Repositories
 {
@@ -255,7 +256,7 @@ namespace PrintManagement.Common.Repositories
         }
         public async Task<bool> UpdateOrderItem(OrderItemModel orderItem, int orderId)
         {
-            OrderItem orderItems = _entities.OrderItem.Where(x => x.OrderId == orderId).FirstOrDefault();
+            OrderItem orderItems = _entities.OrderItem.AsNoTracking().Where(x => x.OrderId == orderId).FirstOrDefault();
             if (orderItems != null)
             {
                 DateTime d = orderItems.CreatedDate;
@@ -263,16 +264,6 @@ namespace PrintManagement.Common.Repositories
                 orderItems = orderItem.ToOrderItemEntity();
                 orderItems.CreatedBy = createdBy;
                 orderItems.CreatedDate = d;
-
-                var entry = _entities.Entry(orderItems);
-                if (entry.State == EntityState.Detached || entry.State == EntityState.Modified)
-                {
-                    entry.State = EntityState.Modified; //do it here
-
-                    _entities.Set<OrderItem>().Attach(orderItems); //attach
-
-                   await _entities.SaveChangesAsync(); //save it
-                }
                 _entities.Entry(orderItems).State = EntityState.Modified;
                 await _entities.SaveChangesAsync();
             }

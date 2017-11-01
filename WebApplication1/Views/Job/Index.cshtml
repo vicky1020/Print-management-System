@@ -116,6 +116,7 @@
                     else {
                         $('.bill_table').addClass('hide');
                         $('#message1').removeClass('hide');
+                        $('#message1').html('No Configuration Found, Pease Enter Amount!')
                     }
                 });
             }
@@ -151,14 +152,13 @@
                     'LastName': $('#cust_lname').val(),
                     'PhoneNumber': $('#cust_phone').val()
                 };
-                $.post("/Job/saveCustomer", dataObject, function (data) {
-
+                $.post("/Job/saveCustomer", dataObject, function (data,staus) {
+                    $('#message').html(status);
                 }).done(function () {
-                    $('#message').html("Job added successful!");
+                    $('#message').html('Job added successful!');
                 }).fail(function () {
-                    $('#message').html("Connection Error");
+                    $('#message').html('Connection Error');
                 });
-                $('#message').html("Job added successful!");
             }
 
             $("#example").on("click", ".orderId", function(){

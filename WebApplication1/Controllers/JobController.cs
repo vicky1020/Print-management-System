@@ -81,7 +81,7 @@ namespace PrintManagementApp.Controllers
             }
         }
 
-        public async Task<JsonResult> saveCustomer(OrderItemModel obj)
+        public async Task<int> saveCustomer(OrderItemModel obj)
         {
             if (obj.OrderId != 0)
             {
@@ -105,7 +105,7 @@ namespace PrintManagementApp.Controllers
                     }
                 }
                 var OrderItemModel = irepo.UpdateOrderItem(obj, obj.OrderId);
-                return Json(OrderItemModel, JsonRequestBehavior.AllowGet);
+                return 1;
             }
             else
             {
@@ -129,7 +129,7 @@ namespace PrintManagementApp.Controllers
                     }
                 }
                 var OrderItemModel = irepo.AddOrderItem(obj);
-                return Json(OrderItemModel, JsonRequestBehavior.AllowGet);
+                return 1;
             }
 
         }
