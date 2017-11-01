@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using PrintManagement.Common.Models;
 using PrintManagement.Common.Repositories;
 using PrintManagementApp.Filters;
+using PrintManagementApp.Utilities;
 
 namespace PrintManagementApp.Controllers
 {
@@ -16,7 +17,9 @@ namespace PrintManagementApp.Controllers
 
         #region
         private readonly Repository irepo;
+        private readonly Utility util;
         #endregion
+
         #region Constructors
 
         /// <summary>
@@ -26,6 +29,7 @@ namespace PrintManagementApp.Controllers
         public ConfigController()
         {
             irepo = new Repository();
+            util = new Utility();
         }
         #endregion
 
@@ -86,12 +90,22 @@ namespace PrintManagementApp.Controllers
             }
         }
 
-        [HttpPost]
-        public void InsertConfig(OrderConfigurationModel obj)
+        
+        public async Task<int> InsertConfig(OrderConfigurationModel obj)
         {
             obj.CreatedBy = Convert.ToString(Session["AccountName"]);
             obj.CreatedDate = DateTime.Now;
-            var orderConfig = irepo.AddOrderConfiguration(obj);
+            var i =await util.getdata(obj);
+            if (i.OrderConfigurationId == 1)
+            {
+                return 1;
+            }
+            else if(i.OrderConfigurationId==0)
+            {
+                var orderConfig = irepo.AddOrderConfiguration(obj);
+                return 0;
+            }
+            return 1;
         }
 
     }

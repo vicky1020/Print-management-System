@@ -52,19 +52,12 @@
 
                 // prevent the default event behaviour
 
-                $.ajax({
-                    url: "/Config/InsertConfig",
-                    type: "POST",
-                    data: JSON.stringify({ 'obj': dataObject }),
-                    traditional: true,
-                    async: false,
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        $('#message').html("The Configuration has be saved successfully!");
-                    },
-                    error: function (error) {
-                        $('#message').html("Connection Error!");
+                $.post("/Config/InsertConfig", dataObject, function (data,status) {
+                    if(data==1){
+                        $('#message').text("Configuration Already Exists");
                     }
+                    else{
+                        $('#message').text('Configuration Added Succssfully');}
                 });
             }
 

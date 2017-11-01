@@ -90,5 +90,41 @@ namespace PrintManagementApp.Utilities
             }
             return t;
         }
+        public async Task<OrderConfigurationModel> getdata(OrderConfigurationModel obj)
+        {
+            OrderConfigurationModel o = new OrderConfigurationModel();
+
+            var query = from data in (await irepo.GetAllOrderConfiguration())
+                        where data.ProductItem == obj.ProductItem &&
+                        data.AdditionalPaperCount==obj.AdditionalPaperCount &&
+                        data.AdditionalPaperSize==obj.AdditionalPaperSize &&
+                        data.AdditonalPaperGSM==obj.AdditonalPaperGSM &&
+                        data.LedgerFalio==obj.LedgerFalio &&
+                        data.PaperColour==obj.PaperColour &&
+                        data.PaperGSM==obj.PaperGSM &&
+                        data.PaperQuality==obj.PaperQuality &&
+                        data.PaperSides==obj.PaperSides &&
+                        data.PaperSize==obj.PaperSize
+                        select data;
+            var datau = query.ToList();
+            if (datau.Count > 0)
+            {
+                if (obj.MaxRange  <= datau.FirstOrDefault().MaxRange&& obj.MinRange >= datau.FirstOrDefault().MinRange )
+                {
+                    o.OrderConfigurationId = 1;
+                    return o;
+                }
+                else
+                {
+                    o.OrderConfigurationId = 0;
+                    return o;
+                }
+            }
+            else
+            {
+                o.OrderConfigurationId = 0;
+                return o;
+            }
+        }
     }
 }
