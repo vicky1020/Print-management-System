@@ -80,7 +80,6 @@
             });
 
             function calculateAmount() {
-                $('.bill_table').removeClass('hide');
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
                     'PaperGSM': $('#jc_paper_gsm option:selected').val(),
@@ -103,6 +102,8 @@
                 $.get("/Job/CalculateTaxes", dataObject, function (data) {
 
                     if (data.Amount != 0 && data.GrossBillAmount!=0) {
+                        $('.bill_table').removeClass('hide');
+                        $('#message1').addClass('hide');
                         $('#price').html(data.Amount);
                         $('#price1').html(data.Amount);
                         $('#price2').html(data.Amount);
@@ -113,7 +114,8 @@
                         $('#description').html($('#item_card_type option:selected').val());
                     }
                     else {
-                        alert("Please Enter Amount, No Rules Matched!");
+                        $('.bill_table').addClass('hide');
+                        $('#message1').removeClass('hide');
                     }
                 });
             }
@@ -156,7 +158,7 @@
                 }).fail(function () {
                     $('#message').html("Connection Error");
                 });
-
+                $('#message').html("Job added successful!");
             }
 
             $(".orderId").click(function () {
@@ -547,7 +549,11 @@
                         </div>
 
                         <div class="form-group">
+                            <strong>
+                                <div class="alert alert-danger hide" id="message1">
 
+                                </div>
+                            </strong>
                             <div class="calc-btn-cont">
                                 <button id="ADDbtn" type="button" disabled="true" class="btn btn-primary calc-btn">Calculate</button>
                             </div>
