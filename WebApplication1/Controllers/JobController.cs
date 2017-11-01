@@ -1,11 +1,10 @@
 ﻿using System;
-using PrintManagement.Common.Repositories;
-using System.Web.Mvc;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using PrintManagement.Common.Models;
+using PrintManagement.Common.Repositories;
 using PrintManagementApp.Filters;
 using PrintManagementApp.Utilities;
-using System.Linq;
 
 namespace PrintManagementApp.Controllers
 {
@@ -55,7 +54,6 @@ namespace PrintManagementApp.Controllers
                 return View(e.Message);
             }
         }
-
 
         public async Task<ActionResult> Report()
         {

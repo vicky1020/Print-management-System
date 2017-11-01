@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrintManagement.Common.Models
 {
-   public class OrderConfigurationModel
+    public class OrderConfigurationModel
     {
         public int OrderConfigurationId { get; set; }
         public string ProductItem { get; set; }

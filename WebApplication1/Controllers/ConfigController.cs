@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using PrintManagement.Common.Repositories;
-using PrintManagement.Common.Interfaces;
-using System.Web.Mvc;
-using PrintManagementApp.Models;
 using System.Threading.Tasks;
-using PrintManagementApp.Controllers;
-using PrintManagementApp.Filters;
+using System.Web.Mvc;
 using PrintManagement.Common.Models;
-using PrintManagementApp.Utilities;
+using PrintManagement.Common.Repositories;
+using PrintManagementApp.Filters;
 
 namespace PrintManagementApp.Controllers
 {
@@ -32,7 +25,7 @@ namespace PrintManagementApp.Controllers
         /// <param name="IRepository">The tenants repository.</param>
         public ConfigController()
         {
-             irepo = new Repository();
+            irepo = new Repository();
         }
         #endregion
 
@@ -99,6 +92,6 @@ namespace PrintManagementApp.Controllers
             obj.CreatedDate = DateTime.Now;
             var orderConfig = irepo.AddOrderConfiguration(obj);
         }
-        
+
     }
 }

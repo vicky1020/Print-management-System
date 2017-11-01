@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PrintManagement.Common.Models;
 
@@ -50,7 +47,7 @@ namespace PrintManagement.Common.Interfaces
         Task<List<UserModel>> GetAllUser();
         Task<UserModel> GetUserById(int userId);
         Task<bool> AddUser(UserModel User);
-        Task<bool> UpdateUser(UserModel User,int UserId);
+        Task<bool> UpdateUser(UserModel User, int UserId);
         Task<bool> DeleteUser(int UserId);
         #endregion
 

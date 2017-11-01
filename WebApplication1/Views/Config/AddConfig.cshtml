@@ -28,7 +28,6 @@
                     $('#button').attr('disabled', false);
                 }
 
-
             });
             function insertConfig() {
                 var dataObject = {
@@ -47,8 +46,7 @@
                     'Amount': $('#Amount').val()
                 };
 
-                // prevent the default event behaviour    
-
+                // prevent the default event behaviour
 
                 $.ajax({
                     url: "/Config/InsertConfig",
@@ -67,11 +65,9 @@
             }
         });
 
-
-
     </script>}
 <div class="page-content inset well center" style="width:100%;padding:15px" id="page-content-wrapper" align="center">
-    <h3 style="color: #fff;background-color: #428bca;" >CONFIGURATOR</h3>
+    <h3 style="color: #fff;background-color: #428bca;">CONFIGURATOR</h3>
     <div class="tab-content clearfix">
         <div class="tab-pane active" id="Others">
             <div class="body-nest" id="element">
@@ -87,96 +83,86 @@
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
 
-                                        <option value="@item.ItemName" >@item.ItemName</option>
+                                        <option value="@item.ItemName">@item.ItemName</option>
 
-                                    }  </select>
+                                    }
+                                </select>
                                 <label class="error"></label>
                             </div>
 
-
                         </div>
-                        
-                        
-                            <div class="form-group">
 
+                        <div class="form-group">
 
+                            <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="paper_size" id="jobcard_paper_size">
+                                    <option value="">Select Paper Size</option>
 
-                                <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="paper_size" id="jobcard_paper_size">
-                                        <option value="">Select Paper Size</option>
-
-                                        @foreach (var item in ViewBag.Papersize)
+                                    @foreach (var item in ViewBag.Papersize)
                                         {
-                                            <option value="@item.PaperSize1">@item.PaperSize1</option>
+                                        <option value="@item.PaperSize1">@item.PaperSize1</option>
                                         }
 
+                                </select>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                            <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input select2-hidden-accessible" name="gsm" id="jc_paper_gsm" tabindex="-1" aria-hidden="true">
+                                    <option value="">Select Paper GSM</option>
 
-                                    
-                                    </select>
-                                    <label class="error" style="color:#c3041d;"></label>
-                                </div>
-                                <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input select2-hidden-accessible" name="gsm" id="jc_paper_gsm" tabindex="-1" aria-hidden="true">
-                                        <option value="">Select Paper GSM</option>
-
-                                        @foreach (var item in ViewBag.PaperGSM)
+                                    @foreach (var item in ViewBag.PaperGSM)
                                         {
-                                            <option value="@item.PaperGSMVal">@item.PaperGSMVal</option>
+                                        <option value="@item.PaperGSMVal">@item.PaperGSMVal</option>
                                         }
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <label class="error" style="color:#c3041d;"></label>
-                                </div>
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-sm-2 control-label hide" for="jc_feeding_type">Feeding Type</label>
+                            <div class="col-sm-3 hide">
+                                <select class="form-control rst_input" name="feeding_type" id="jc_feeding_type">
+                                    <option value="">Select Feeding Type</option>
+                                    <option value="Single Side" selected="selected">Single Side</option>
+                                    <option value="Double side">Double side</option>
+
+                                </select>
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
                             </div>
 
-
-
-                            <div class="form-group">
-
-
-
-                                <label class="col-sm-2 control-label hide" for="jc_feeding_type">Feeding Type</label>
-                                <div class="col-sm-3 hide">
-                                    <select class="form-control rst_input" name="feeding_type" id="jc_feeding_type">
-                                        <option value="">Select Feeding Type</option>
-                                        <option value="Single Side" selected="selected">Single Side</option>
-                                        <option value="Double side">Double side</option>
-
-                                    </select>
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <label class="error" style="color:#c3041d;"></label>
-                                </div>
-
-                                <label class="col-sm-2 control-label" for="exact_work">Paper Sides</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="exact_work" id="PaperSideId">
-                                        <option>Select Paper Sides</option>
-                                          @foreach (var item in ViewBag.PaperSide)
+                            <label class="col-sm-2 control-label" for="exact_work">Paper Sides</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="exact_work" id="PaperSideId">
+                                    <option>Select Paper Sides</option>
+                                    @foreach (var item in ViewBag.PaperSide)
                                         {
-                                            <option value="@item.PaperSideName">@item.PaperSideName</option>
+                                        <option value="@item.PaperSideName">@item.PaperSideName</option>
                                         }
 
+                                </select>
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
 
-                                    </select>
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <label class="error" style="color:#c3041d;"></label>
-
-                                </div>
-                                <label class="col-sm-2 control-label" for="exact_work">Ledger Falio</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="exact_work" id="LedgerFalio">
-                                        <option>Select Ledger Falio</option>
-                                        @foreach (var item in ViewBag.LedgerFolio)
-                                        {
-                                            <option value="@item.LedgerFalioValue">@item.LedgerFalioValue</option>
-                                        }
-                                    </select>
-                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <label class="error" style="color:#c3041d;"></label>
-
-                                </div>
                             </div>
+                            <label class="col-sm-2 control-label" for="exact_work">Ledger Falio</label>
+                            <div class="col-sm-3">
+                                <select class="form-control rst_input" name="exact_work" id="LedgerFalio">
+                                    <option>Select Ledger Falio</option>
+                                    @foreach (var item in ViewBag.LedgerFolio)
+                                        {
+                                        <option value="@item.LedgerFalioValue">@item.LedgerFalioValue</option>
+                                        }
+                                </select>
+                                </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <label class="error" style="color:#c3041d;"></label>
+
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="exact_work">Addition Paper Count</label>
                             <div class="col-sm-3">
@@ -227,7 +213,7 @@
                                 <label class="error" style="color:#c3041d;"></label>
 
                             </div>
-                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="exact_work">Min</label>
                             <div class="col-sm-3">
@@ -268,8 +254,8 @@
                             </div>
                         </div>
                         <div class="form-group submit-btn-cont">
-                            <button class="btn btn-primary submit-btn @ViewBag.BtnName" disabled="true" type="submit" id="button"data-toggle="modal" data-target="#myModal">@ViewBag.BtnName</button>
-                       </div>
+                            <button class="btn btn-primary submit-btn @ViewBag.BtnName" disabled="true" type="submit" id="button" data-toggle="modal" data-target="#myModal">@ViewBag.BtnName</button>
+                        </div>
                     </form>
                 </div>
             </div>

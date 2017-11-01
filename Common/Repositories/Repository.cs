@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PrintManagement.Common.Models;
-using EF;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using PrintManagement.Common.Mapping;
+using System.Linq;
+using System.Threading.Tasks;
+using EF;
 using PrintManagement.Common.Interfaces;
+using PrintManagement.Common.Mapping;
+using PrintManagement.Common.Models;
 
 namespace PrintManagement.Common.Repositories
 {
@@ -203,13 +201,12 @@ namespace PrintManagement.Common.Repositories
         }
         #endregion
 
-
         #region ItemOrder
         public async Task<List<OrderItemModel>> GetAllOrderItem()
         {
             var allOrders = await _entities.OrderItem.ToListAsync();
             var allInfo = await (from ot in _entities.OrderItem
-                                 join ct in _entities.Customer on  ot.CustomerId equals ct.CustomerId into ps
+                                 join ct in _entities.Customer on ot.CustomerId equals ct.CustomerId into ps
                                  from ct in ps.DefaultIfEmpty()
                                  orderby ot.OrderId
                                  select new OrderItemModel

@@ -1,6 +1,6 @@
-﻿using Owin;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Owin;
 using PrintManagement.Common.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace PrintManagementApp
 {
@@ -12,7 +12,7 @@ namespace PrintManagementApp
         }
         public void Configuration(IAppBuilder app)
         {
-            
+
         }
     }
 }

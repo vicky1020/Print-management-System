@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using PrintManagementApp.Models;
 using PrintManagement.Common.Repositories;
+using PrintManagementApp.Models;
 using Rework;
 
 namespace PrintManagementApp.Controllers
@@ -12,7 +12,7 @@ namespace PrintManagementApp.Controllers
         private readonly Repository irepo;
         public AccountController()
         {
-             irepo = new Repository();
+            irepo = new Repository();
         }
 
         //

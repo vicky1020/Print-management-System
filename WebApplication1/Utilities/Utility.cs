@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using PrintManagement.Common.Models;
 using PrintManagement.Common.Repositories;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using PrintManagementApp.Models;
-
 
 namespace PrintManagementApp.Utilities
 {

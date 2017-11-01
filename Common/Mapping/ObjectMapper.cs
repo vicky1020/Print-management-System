@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
 using EF;
 using PrintManagement.Common.Models;
-using PrintManagement.Common.Repositories;
-using AutoMapper;
 
 namespace PrintManagement.Common.Mapping
 {
