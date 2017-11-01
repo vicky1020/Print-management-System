@@ -38,7 +38,7 @@ namespace PrintManagementApp.Utilities
             t.Amount = amt;
             t.CGSTAmt = ((amt * CGSTVal) / 100);
             t.SGSTAmt = ((amt * SGSTVal) / 100);
-            t.GrossBillAmount = t.Amount + t.CGSTAmt + t.CGSTAmt;
+            t.GrossBillAmount = t.Amount + t.CGSTAmt + t.SGSTAmt;
             return t;
         }
 

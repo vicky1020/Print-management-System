@@ -208,9 +208,34 @@ namespace PrintManagement.Common.Repositories
         public async Task<List<OrderItemModel>> GetAllOrderItem()
         {
             var allOrders = await _entities.OrderItem.ToListAsync();
-            if (allOrders.Count > 0)
-                return allOrders.Select(item => item.ToOrderItemModel()).ToList();
-            return new List<OrderItemModel>();
+            var allInfo = await (from ct in _entities.Customer
+                                 join ot in _entities.OrderItem on ct.CustomerId equals ot.CustomerId
+                                 orderby ot.OrderId
+                                 select new OrderItemModel
+                                 {
+                                     OrderId = ot.OrderId,
+                                     PaperColour = ot.PaperColour,
+                                     PaperGSM = ot.PaperGSM,
+                                     PaperQuality = ot.PaperQuality,
+                                     PaperSides = ot.PaperSides,
+                                     PaperSize = ot.PaperSize,
+                                     ProductItem = ot.ProductItem,
+                                     Quantity = ot.Quantity,
+                                     LedgerFalio = ot.LedgerFalio,
+                                     AdditionalPaperCount = ot.AdditionalPaperCount,
+                                     AdditionalPaperSize = ot.AdditionalPaperSize,
+                                     AdditonalPaperGSM = ot.AdditonalPaperGSM,
+                                     Amount = ot.Amount,
+                                     CreatedBy = ot.CreatedBy,
+                                     CreatedDate = ot.CreatedDate,
+                                     JobProcessType = ot.JobProcessType,
+                                     FirstName = ct.FirstName,
+                                     LastName = ct.LastName,
+                                     PhoneNumber = ct.PhoneNumber,
+                                     Email = ct.Email
+
+                                 }).ToListAsync();
+            return (List<OrderItemModel>)allInfo;
         }
 
         public async Task<List<OrderItemModel>> GetAllOrderItemByUserName(string userName)

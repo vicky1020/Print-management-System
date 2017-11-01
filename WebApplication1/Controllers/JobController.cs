@@ -113,7 +113,6 @@ namespace PrintManagementApp.Controllers
         {
             TaxViewModel t = new TaxViewModel();
             t = await util.GetTaxAmt(obj);
-            t.CGSTAmt = t.CGSTAmt + t.SGSTAmt;
             return Json(t, JsonRequestBehavior.AllowGet);
         }
     }
