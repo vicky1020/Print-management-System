@@ -22,6 +22,10 @@ namespace EF
         public bool PaperQuality { get; set; }
         public bool PaperSides { get; set; }
         public bool LedgerFalio { get; set; }
+        public bool AdditionalPaperCount { get; set; }
+        public bool AdditionalPaperSize { get; set; }
+        public bool AdditonalPaperGSM { get; set; }
+        public bool PerBookBillCount { get; set; }
     
         public virtual ProductItem ProductItem { get; set; }
     }

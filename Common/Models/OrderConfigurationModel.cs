@@ -19,6 +19,7 @@ namespace PrintManagement.Common.Models
         public Nullable<int> AdditionalPaperCount { get; set; }
         public string AdditionalPaperSize { get; set; }
         public string AdditonalPaperGSM { get; set; }
+        public Nullable<int> PerBookBillCount { get; set; }
         public Nullable<int> MinRange { get; set; }
         public Nullable<int> MaxRange { get; set; }
         public decimal Amount { get; set; }

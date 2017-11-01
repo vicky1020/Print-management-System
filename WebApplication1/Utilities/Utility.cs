@@ -75,6 +75,18 @@ namespace PrintManagementApp.Utilities
                         if (itemDisplay.LedgerFalio)
                             query = query.Where(p => p.LedgerFalio.Trim().Equals(Convert.ToString(obj.LedgerFalio).Trim()));
 
+                        if (itemDisplay.AdditionalPaperCount)
+                            query = query.Where(p => p.AdditionalPaperCount.Value == obj.AdditionalPaperCount);
+
+                        if (itemDisplay.AdditionalPaperSize)
+                            query = query.Where(p => p.AdditionalPaperSize.Trim().Equals(Convert.ToString(obj.AdditionalPaperSize).Trim()));
+
+                        if (itemDisplay.AdditonalPaperGSM)
+                            query = query.Where(p => p.AdditonalPaperGSM.Trim().Equals(Convert.ToString(obj.AdditonalPaperGSM).Trim()));
+
+                        if (itemDisplay.PerBookBillCount)
+                            query = query.Where(p => p.PerBookBillCount == obj.PerBookBillCount);
+
                         var datas = query.ToList();
                         if (datas.Count > 0)
                             t = await CalculateTax(datas.FirstOrDefault().Amount);

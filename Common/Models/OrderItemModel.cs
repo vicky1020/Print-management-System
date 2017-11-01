@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrintManagement.Common.Models
 {
-   public class OrderItemModel
+    public class OrderItemModel
     {
         public int OrderId { get; set; }
         public string ProductItem { get; set; }
@@ -19,10 +19,16 @@ namespace PrintManagement.Common.Models
         public Nullable<int> AdditionalPaperCount { get; set; }
         public string AdditionalPaperSize { get; set; }
         public string AdditonalPaperGSM { get; set; }
+        public Nullable<int> PerBookBillCount { get; set; }
         public int Quantity { get; set; }
         public decimal Amount { get; set; }
+        public decimal CGST { get; set; }
+        public decimal SGST { get; set; }
+        public decimal TotalTaxes { get; set; }
+        public decimal TotalAmount { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public string JobTitle { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public string JobProcessType { get; set; }
         public string UpdatedBy { get; set; }

@@ -73,16 +73,8 @@ namespace PrintManagementApp.Controllers
         {
             try
             {
-                if (!Convert.ToString(Session["AccountName"]).ToLower().Equals("admin"))
-                {
-                    var OrderItemModel = await irepo.GetAllOrderItemByUserName(Convert.ToString(Session["AccountName"]));
-                    return View(OrderItemModel);
-                }
-                else
-                {
-                    var OrderItemModel = await irepo.GetAllOrderItem();
-                    return View(OrderItemModel);
-                }
+                var OrderItemModel = await irepo.GetAllOrderItem();
+                return View(OrderItemModel);
             }
             catch (Exception e)
             {
