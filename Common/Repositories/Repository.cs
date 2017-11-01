@@ -228,6 +228,8 @@ namespace PrintManagement.Common.Repositories
                                      Amount = ot.Amount,
                                      CreatedBy = ot.CreatedBy,
                                      CreatedDate = ot.CreatedDate,
+                                     WorkedBy = ot.UpdatedBy == null ? ot.CreatedBy : ot.UpdatedBy,
+                                     WorkedOn = ot.UpdatedDate != null && ot.UpdatedDate.HasValue ? ot.UpdatedDate.Value : ot.CreatedDate,
                                      JobProcessType = ot.JobProcessType,
                                      FirstName = ct == null ? null : ct.FirstName,
                                      LastName = ct == null ? null : ct.LastName,

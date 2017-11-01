@@ -33,6 +33,7 @@ namespace PrintManagement.Common.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-
+        public string WorkedBy { get; set; }
+        public System.DateTime WorkedOn{ get; set; }
     }
 }
