@@ -33,6 +33,7 @@
                     $('#ADDbtn').attr('disabled', false);
                 }
 
+                $("label.error").remove();
                 toggleFields();
             });
 
@@ -76,7 +77,11 @@
             });
 
             $("#ADDbtn").click(function () {
-                $("#jc_form_spl").valid();
+                if($("#jc_form_spl").valid())
+                    calculateAmount();
+            });
+
+            function calculateAmount() {
                 $('.bill_table').removeClass('hide');
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
@@ -113,12 +118,11 @@
                         alert("Please Enter Amount, No Rules Matched!");
                     }
                 });
-            });
+            }
             $("#ADDbtn1").click(function () {
                 insertOrder();
             });
             function insertOrder() {
-
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
                     'PaperGSM': $('#jc_paper_gsm option:selected').val(),
@@ -146,23 +150,15 @@
                     'LastName': 'Test',
                     'PhoneNumber': $('#cust_phone').val()
                 };
-
-                $.ajax({
-                    url: "/Job/SaveOrder",
-                    type: "POST",
-                    data: JSON.stringify({ 'obj': dataObject }),
-                    traditional: true,
-                    async: true,
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        $('#message').html("Job added successful!");
-                    },
-                    error: function (error) {
-
-                        $('#message').html("Connection Error");
-                        //alert(JSON.stringify(error));
-                    }
+                $.post("/Job/saveCustomer", dataObject, function (data) {
+                    
+                    
+                }).done(function () {
+                    $('#message').html("Job added successful!");
+                }).fail(function () {
+                    $('#message').html("Connection Error");
                 });
+                
             }
 
             $(".orderId").click(function () {

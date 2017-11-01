@@ -83,28 +83,30 @@ namespace PrintManagementApp.Controllers
             }
         }
 
-        public void SaveOrder(OrderItemModel obj)
+        public async Task<JsonResult> saveCustomer(OrderItemModel obj)
         {
             obj.CreatedBy = Convert.ToString(Session["AccountName"]);
             obj.CreatedDate = DateTime.Now;
-
             if (obj.JobProcessType == "Order Confirm")
             {
                 if (obj.CustomerId == null)
                 {
-                    CustomerModel customer = new CustomerModel();
-                    customer.CreatedBy = obj.CreatedBy;
-                    customer.Email = obj.Email;
-                    customer.FirstName = obj.FirstName;
-                    customer.LastName = obj.LastName;
-                    customer.PhoneNumber = obj.PhoneNumber;
-                    customer.CreatedDate = obj.CreatedDate;
-                    var data = irepo.AddCustomer(customer);
-                    obj.CustomerId = 2;
+                    CustomerModel c = new CustomerModel();
+
+                    c.CreatedBy = Convert.ToString(Session["AccountName"]);
+                    c.FirstName = obj.FirstName;
+                    c.LastName = obj.LastName;
+                    c.PhoneNumber = obj.PhoneNumber;
+                    c.CreatedDate = obj.CreatedDate;
+                    c.Email = obj.Email;
+                    var a = await irepo.AddCustomer(c);
+                    obj.CustomerId = a;
                 }
             }
             var OrderItemModel = irepo.AddOrderItem(obj);
+            return Json(OrderItemModel, JsonRequestBehavior.AllowGet);
         }
+
         public void customer(CustomerModel obj)
         {
             var CustomerAdd = irepo.AddCustomer(obj);
