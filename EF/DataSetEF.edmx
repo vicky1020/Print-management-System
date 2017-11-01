@@ -40,7 +40,7 @@
           <Property Name="ItemDisplayConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductItemId" Type="int" Nullable="false" />
           <Property Name="PaperGSM" Type="bit" Nullable="false" />
-          <Property Name="PaperColor" Type="bit" Nullable="false" />
+          <Property Name="PaperColour" Type="bit" Nullable="false" />
           <Property Name="PaperSize" Type="bit" Nullable="false" />
           <Property Name="PaperQuality" Type="bit" Nullable="false" />
           <Property Name="PaperSides" Type="bit" Nullable="false" />
@@ -209,13 +209,13 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
         </Association>
         <Association Name="FK_ItemDisplayConfig_ItemDisplayConfig">
           <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
-          <End Role="ItemDisplayConfig" Type="Self.ItemDisplayConfig" Multiplicity="0..1" />
+          <End Role="ItemDisplayConfig" Type="Self.ItemDisplayConfig" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductItem">
               <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="ItemDisplayConfig">
-              <PropertyRef Name="ItemDisplayConfigId" />
+              <PropertyRef Name="ProductItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -330,7 +330,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
           <Property Name="ItemDisplayConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductItemId" Type="Int32" Nullable="false" />
           <Property Name="PaperGSM" Type="Boolean" Nullable="false" />
-          <Property Name="PaperColor" Type="Boolean" Nullable="false" />
+          <Property Name="PaperColour" Type="Boolean" Nullable="false" />
           <Property Name="PaperSize" Type="Boolean" Nullable="false" />
           <Property Name="PaperQuality" Type="Boolean" Nullable="false" />
           <Property Name="PaperSides" Type="Boolean" Nullable="false" />
@@ -501,13 +501,13 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
         </Association>
         <Association Name="FK_ItemDisplayConfig_ItemDisplayConfig">
           <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="1" />
-          <End Role="ItemDisplayConfig" Type="Self.ItemDisplayConfig" Multiplicity="0..1" />
+          <End Role="ItemDisplayConfig" Type="Self.ItemDisplayConfig" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductItem">
               <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="ItemDisplayConfig">
-              <PropertyRef Name="ItemDisplayConfigId" />
+              <PropertyRef Name="ProductItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -613,7 +613,7 @@ warning 6002: The table/view 'PrintManagementSystem.dbo.PaperSize' does not have
                 <ScalarProperty Name="ItemDisplayConfigId" ColumnName="ItemDisplayConfigId" />
                 <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
                 <ScalarProperty Name="PaperGSM" ColumnName="PaperGSM" />
-                <ScalarProperty Name="PaperColor" ColumnName="PaperColor" />
+                <ScalarProperty Name="PaperColour" ColumnName="PaperColour" />
                 <ScalarProperty Name="PaperSize" ColumnName="PaperSize" />
                 <ScalarProperty Name="PaperQuality" ColumnName="PaperQuality" />
                 <ScalarProperty Name="PaperSides" ColumnName="PaperSides" />

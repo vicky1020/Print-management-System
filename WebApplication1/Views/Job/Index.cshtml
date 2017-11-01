@@ -2,7 +2,6 @@
     ViewBag.Title = "Job Page";
 }
 
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script>
@@ -17,6 +16,7 @@
             var elements = $(".job-status");
             var i=$('#item_card_type option:selected').val();
             $('#item_card_type').change(function () {
+
                 if ($('#item_card_type option:selected').val() == 'Bill Book') {
                     $('#additional').removeClass('hide');
                     $('#bill').removeClass('hide');
@@ -27,11 +27,13 @@
                     $('#ADDbtn').attr('disabled', true);
 
                 }
-            else {
+                else {
                     $('#additional').addClass('hide');
                     $('#additional').addClass('hide');
                     $('#ADDbtn').attr('disabled', false);
-            }
+                }
+
+                toggleFields();
             });
 
 
@@ -74,6 +76,7 @@
             });
 
             $("#ADDbtn").click(function () {
+                $("#jc_form_spl").valid();
                 $('.bill_table').removeClass('hide');
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
@@ -112,10 +115,10 @@
                 });
             });
             $("#ADDbtn1").click(function () {
-                 insertOrder();
+                insertOrder();
             });
             function insertOrder() {
-                
+
                 var dataObject = {
                     'ProductItem': $('#item_card_type option:selected').val(),
                     'PaperGSM': $('#jc_paper_gsm option:selected').val(),
@@ -157,7 +160,7 @@
                     error: function (error) {
 
                         $('#message').html("Connection Error");
-                       // alert(JSON.stringify(error));
+                        //alert(JSON.stringify(error));
                     }
                 });
             }
@@ -169,7 +172,7 @@
                 $("#item_card_type").val(pdtItem).trigger('change');
 
                 var jobProcess = parent.children(".jobProcess").text();
-                $("#job_process_type").val(jobProcess);
+                $("#job_process_type").val(jobProcess).trigger('change');
 
                 var printColor = parent.children(".paperColor").text();
                 $("#jc_job").val(printColor);
@@ -213,6 +216,54 @@
                 $(window).scrollTop($('.page-content').offset().top);
             });
 
+            function toggleFields() {
+                var itemId = $("#item_card_type option:selected").attr("id");
+                var model = @Html.Raw(Json.Encode(ViewBag.ItemDisplayConfig));
+
+                for(var i = 0; i < model.length; i++)
+                {
+                    var modelEle = model[i];
+                    if(modelEle.ProductItemId == itemId)
+                    {
+                        for(var key in modelEle)
+                        {
+                            var dom = $("." + key + "-cont");
+                            if(dom.length > 0)
+                            {
+                                if(modelEle[key] == true)
+                                {
+                                    dom.css("display", "block");
+                                    dom.children("select").addClass("required");
+                                }
+                                else
+                                {
+                                    dom.css("display", "none");
+                                    dom.children("select").removeClass("required");
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            };
+
+            $("#jc_form_spl").validate({
+                messages: {
+                    gsm: "*Please select Paper GSM",
+                    paper_size: "*Please select Paper Size",
+                    PaperColor: "*Please select Paper Color",
+                    PaperQuality: "*Please select Paper Quality",
+                    PaperSide: "*Please select Paper Side",
+                    Ledget_Falio: "*Please select Ledger Falio",
+                    paper_size2: "*Please select Additional Paper Size",
+                    Add_paper_count: "Please fill Add_paper_count",
+                    gsm2: "*Please select Additional Paper GSM",
+                    bill_count: "*Please fill per book bill count",
+					Quantity: "*Please fill Quantity"
+                }
+            });
+
         });
     </script>}
 
@@ -236,7 +287,7 @@
 
                                     @foreach (var item in ViewBag.AllProductItem)
                                     {
-                                        <option value="@item.ItemName">@item.ItemName</option>
+                                        <option id="@item.ProductId" value="@item.ItemName">@item.ItemName</option>
                                     }
                                 </select>
 
@@ -329,9 +380,9 @@
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
-                                <label class="col-sm-2 control-label" for="jc_job">Select Paper Quality</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="exact_work" id="PaperQuality">
+                                <label class="col-sm-2 control-label PaperQuality-cont" for="jc_job">Select Paper Quality</label>
+                                <div class="col-sm-3 PaperQuality-cont">
+                                    <select class="form-control rst_input" name="PaperQuality" id="PaperQuality">
                                         <option value="">Select Quality</option>
                                         @foreach (var item in ViewBag.paperQuality)
                                         {
@@ -345,11 +396,11 @@
 
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="jc_paper_size">Paper Size</label>
-                                <div class="col-sm-3">
+                                <label class="col-sm-2 control-label PaperSize-cont" for="jc_paper_size">Paper Size</label>
+                                <div class="col-sm-3 PaperSize-cont">
                                     <select class="form-control rst_input" name="paper_size" id="paper_size1">
                                         <option value="">Select Paper Size</option>
-
+                                        t
                                         @foreach (var item in ViewBag.Papersize)
                                         {
                                             <option>@item.PaperSize1</option>
@@ -357,8 +408,8 @@
                                     </select>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
-                                <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                <div class="col-sm-3">
+                                <label class="col-sm-2 control-label PaperGSM-cont" for="jc_paper_gsm">Paper GSM</label>
+                                <div class="col-sm-3 PaperGSM-cont">
                                     <select class="form-control rst_input select2-hidden-accessible" name="gsm" id="jc_paper_gsm" tabindex="-1" aria-hidden="true">
                                         <option value="">Select Paper GSM</option>
 
@@ -389,9 +440,9 @@
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
 
-                                <label class="col-sm-2 control-label" for="exact_work">Paper Sides</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="exact_work" id="PaperSide">
+                                <label class="col-sm-2 control-label PaperSides-cont" for="PaperSide">Paper Sides</label>
+                                <div class="col-sm-3 PaperSides-cont">
+                                    <select class="form-control rst_input" name="PaperSide" id="PaperSide">
                                         <option value="">Select Paper Sides</option>
                                         @foreach (var item in ViewBag.PaperSide)
                                         {
@@ -402,9 +453,9 @@
                                     <label class="error" style="color:#c3041d;"></label>
 
                                 </div>
-                                <label class="col-sm-2 control-label" for="exact_work">Ledger Falio</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input" name="exact_work" id="Ledget_Falio">
+                                <label class="col-sm-2 control-label LedgerFalio-cont" for="Ledget_Falio">Ledger Falio</label>
+                                <div class="col-sm-3 LedgerFalio-cont">
+                                    <select class="form-control rst_input" name="Ledget_Falio" id="Ledget_Falio">
                                         <option>Select Ledger Falio</option>
                                         @foreach (var item in ViewBag.LedgerFolio)
                                         {
@@ -414,9 +465,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="exact_work">Paper Colour</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control rst_input select2-hidden-accessible" name="job" id="PaperColor" tabindex="-1" aria-hidden="true">
+                                <label class="col-sm-2 control-label PaperColor-cont" for="PaperColor">Paper Colour</label>
+                                <div class="col-sm-3 PaperColor-cont">
+                                    <select class="form-control rst_input select2-hidden-accessible" name="PaperColor" id="PaperColor" tabindex="-1" aria-hidden="true">
                                         <option value="">Select Colour</option>
                                         @foreach (var item in ViewBag.PrintingColor)
                                         {
@@ -426,9 +477,9 @@
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
-                                <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
+                                <label class="col-sm-2 control-label" for="Quantity">Paper Quantity</label>
                                 <div class="col-sm-3">
-                                    <input class="form-control" type="number" min="0" value="" name="exact_work" id="Quantity"></input>
+                                    <input class="form-control" type="number" min="0" value="" name="Quantity" id="Quantity" required></input>
                                 </div>
                             </div>
                             <div class="well hide" id="additional">
@@ -459,8 +510,8 @@
                                         <label class="error" style="color:#c3041d;"></label>
 
                                     </div>
-                                    <label class="col-sm-2 control-label" for="jc_paper_gsm">Paper GSM</label>
-                                    <div class="col-sm-3">
+                                    <label class="col-sm-2 control-label PaperGSM-cont" for="jc_paper_gsm">Paper GSM</label>
+                                    <div class="col-sm-3 PaperGSM-cont">
                                         <select class="form-control rst_input" name="gsm2" id="paper_gsm2">
                                             <option value="">Select Paper GSM</option>
 
@@ -476,13 +527,13 @@
                                 </div>
 
                                 <div class="form-group ">
-                                    <label class="col-sm-2 control-label" for="jc_paper_qty">Paper Quantity</label>
+                                    <label class="col-sm-2 control-label" for="Quantity">Paper Quantity</label>
                                     <div class="col-sm-3">
-                                        <input class="form-control" type="number" min="0" value="1" name="exact_work" id="exact_work">
+                                        <input class="form-control" type="number" min="0" value="1" name="Quantity" id="exact_work" required>
                                     </div>
                                     <label class="col-sm-2 control-label" for="jc_paper_qty">Per Book Bill Count</label>
                                     <div class="col-sm-3">
-                                        <input type="number" value="1" min="0" class="form-control rst_input numbersOnly" name="bill_count" id="bill_count">
+                                        <input type="number" value="1" min="0" class="form-control rst_input numbersOnly" name="bill_count" id="bill_count" required>
                                         <label class="error" style="color:#c3041d;"></label>
                                     </div>
                                     <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -502,7 +553,7 @@
 
 
                         <div class="form-group">
-                            
+
                             <div class="calc-btn-cont">
                                 <button id="ADDbtn" type="button" disabled="true" class="btn btn-primary calc-btn">Calculate</button>
                             </div>
@@ -548,7 +599,6 @@
                         <td class="text-right">Net Amount(Indian Rupee <i class="fa fa-inr" aria-hidden="true"></i>)</td>
                         <td class="text-right" id="netamount">0.00</td>
                     </tr>
-
                 </tbody>
             </table>
 

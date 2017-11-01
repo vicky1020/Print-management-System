@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f32fe19af53946d9bcbdba2ad765b94d" Name="Diagram1">
+      <Diagram DiagramId="994ac65c646d415ba4c0a75fac8a3cb9" Name="Diagram1">
         <EntityTypeShape EntityType="PrintManagementSystemModel.Configuration" Width="1.5" PointX="5" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.ConfigurationType" Width="1.5" PointX="2.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintManagementSystemModel.Customer" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />

@@ -17,7 +17,7 @@ namespace EF
         public int ItemDisplayConfigId { get; set; }
         public int ProductItemId { get; set; }
         public bool PaperGSM { get; set; }
-        public bool PaperColor { get; set; }
+        public bool PaperColour { get; set; }
         public bool PaperSize { get; set; }
         public bool PaperQuality { get; set; }
         public bool PaperSides { get; set; }

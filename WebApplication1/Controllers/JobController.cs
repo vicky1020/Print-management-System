@@ -47,6 +47,7 @@ namespace PrintManagementApp.Controllers
                 ViewBag.LedgerFolio = await irepo.GetAllLedgerFalio();
                 ViewBag.Customers = await irepo.GetAllCustomer();
                 ViewBag.paperQuality = await irepo.GetAllPaperQuality();
+                ViewBag.ItemDisplayConfig = await irepo.GetAllItemDisplayConfig();
                 return View();
             }
             catch (Exception e)
