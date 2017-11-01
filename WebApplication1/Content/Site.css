@@ -203,8 +203,8 @@ user .Report {
     display: none;
 }
 
-.orderId:after {
-    content: "\A  EDIT  ";
+.jobProcess:after {
+    content: "\A EDIT ORDER";
     display: block;
     text-align: center;
     margin: 0 auto;
@@ -213,6 +213,12 @@ user .Report {
     color: #FFF;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.jobProcess[value="Order Confirm"]:after {
+    opacity: 0.5;
+    pointer-events: none;
+    display: none;
 }
 
 .hide {

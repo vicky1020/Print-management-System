@@ -161,8 +161,8 @@
                 });
             }
 
-            $("#example").on("click", ".orderId", function(){
-                var parent = $("#" + event.target.textContent);
+            $("#example").on("click", ".jobProcess", function(){
+                var parent = $("#order_" + event.target.id);
                 var id = parent.attr("id");
 
                 $("#item_card_type").attr("orderId", id);
@@ -641,7 +641,7 @@
             </thead>
             @foreach (var item in ViewBag.OrderItem)
             {
-                <tr id="@item.OrderId">
+                <tr id="order_@item.OrderId">
                     <td class="orderId">@item.OrderId</td>
                     <td class="pdtItem">@item.ProductItem</td>
                     <td>@item.FirstName @item.LastName</td>
@@ -651,7 +651,7 @@
                     <td>@Math.Round(@item.TotalAmount, 2, MidpointRounding.AwayFromZero)</td>
                     <td class="createdBy">@item.WorkedBy</td>
                     <td class="createdDate">@item.WorkedOn</td>
-                    <td class="jobProcess">@item.JobProcessType</td>
+                    <td class="jobProcess" value="@item.JobProcessType" id="@item.OrderId">@item.JobProcessType</td>
                     <td class="hide amt">@Math.Round(@item.Amount, 2, MidpointRounding.AwayFromZero)</td>
                     <td class="hide paperGSM">@item.PaperGSM</td>
                     <td class="hide paperColor">@item.PaperColour</td>
