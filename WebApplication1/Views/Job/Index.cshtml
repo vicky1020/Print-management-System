@@ -161,8 +161,8 @@
                 $('#message').html("Job added successful!");
             }
 
-            $(".orderId").click(function () {
-                var parent = $("#" + event.currentTarget.textContent);
+            $("#example").on("click", ".orderId", function(){
+                var parent = $("#" + event.target.textContent);
                 var id = parent.attr("id");
 
                 $("#item_card_type").attr("orderId", id);
