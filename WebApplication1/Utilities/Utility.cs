@@ -109,7 +109,7 @@ namespace PrintManagementApp.Utilities
             var datau = query.ToList();
             if (datau.Count > 0)
             {
-                if (obj.MaxRange  <= datau.FirstOrDefault().MaxRange&& obj.MinRange >= datau.FirstOrDefault().MinRange )
+                if (obj.MaxRange  <= datau.FirstOrDefault().MaxRange || obj.MinRange >= datau.FirstOrDefault().MinRange )
                 {
                     o.OrderConfigurationId = 1;
                     return o;
