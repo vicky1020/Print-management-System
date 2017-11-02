@@ -6,7 +6,7 @@
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example1').dataTable({ "order": [[0, "desc"]] });
+        $('#example1').dataTable({ lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]], "order": [[0, "desc"]] });
 
         var elements = $(".job-status");
 

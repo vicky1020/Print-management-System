@@ -96,35 +96,32 @@ namespace PrintManagementApp.Utilities
 
             var query = from data in (await irepo.GetAllOrderConfiguration())
                         where data.ProductItem == obj.ProductItem &&
-                        data.AdditionalPaperCount==obj.AdditionalPaperCount &&
-                        data.AdditionalPaperSize==obj.AdditionalPaperSize &&
-                        data.AdditonalPaperGSM==obj.AdditonalPaperGSM &&
-                        data.LedgerFalio==obj.LedgerFalio &&
-                        data.PaperColour==obj.PaperColour &&
-                        data.PaperGSM==obj.PaperGSM &&
-                        data.PaperQuality==obj.PaperQuality &&
-                        data.PaperSides==obj.PaperSides &&
-                        data.PaperSize==obj.PaperSize
+                        data.AdditionalPaperCount == obj.AdditionalPaperCount &&
+                        data.AdditionalPaperSize == obj.AdditionalPaperSize &&
+                        data.AdditonalPaperGSM == obj.AdditonalPaperGSM &&
+                        data.LedgerFalio == obj.LedgerFalio &&
+                        data.PaperColour == obj.PaperColour &&
+                        data.PaperGSM == obj.PaperGSM &&
+                        data.PaperQuality == obj.PaperQuality &&
+                        data.PaperSides == obj.PaperSides &&
+                        data.PaperSize == obj.PaperSize
                         select data;
             var datau = query.ToList();
             if (datau.Count > 0)
             {
-                if (obj.MaxRange  <= datau.FirstOrDefault().MaxRange || obj.MinRange >= datau.FirstOrDefault().MinRange )
+                foreach (OrderConfigurationModel m in datau)
                 {
-                    o.OrderConfigurationId = 1;
-                    return o;
-                }
-                else
-                {
-                    o.OrderConfigurationId = 0;
-                    return o;
+                    if ((obj.MaxRange <= m.MaxRange || obj.MinRange >= m.MinRange) &&
+                     (obj.MaxRange <= m.MaxRange || obj.MaxRange >= m.MinRange) &&
+                     (obj.MinRange <= m.MaxRange || obj.MinRange >= m.MinRange))
+                    {
+                        o.OrderConfigurationId = 1;
+                        return o;
+                    }
                 }
             }
-            else
-            {
-                o.OrderConfigurationId = 0;
-                return o;
-            }
+            o.OrderConfigurationId = 0;
+            return o;
         }
     }
 }

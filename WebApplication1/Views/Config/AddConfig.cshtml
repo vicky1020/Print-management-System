@@ -56,10 +56,14 @@
 
                 $.post("/Config/InsertConfig", dataObject, function (data,status) {
                     if(data==1){
+                        $('#back').removeClass('hide');
+                        $('#next').addClass('hide');
                         $("html").removeClass("loading");
                         $('#message').text("Configuration Already Exists");
                     }
                     else{
+                        $('#next').removeClass('hide');
+                        $('#back').addClass('hide');
                         $("html").removeClass("loading");
                         $('#message').text('Configuration Added Succssfully');}
                 });
@@ -216,7 +220,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label AdditionalPaperCount-cont" for="Add_paper_count">Addition Paper Count</label>
                             <div class="col-sm-3 AdditionalPaperCount-cont">
-                                <input class="form-control" type="number" min="0" value="1" name="Add_paper_count" id="AddPaperCount">
+                                <input class="form-control" type="number" min="0" value="" name="Add_paper_count" id="AddPaperCount">
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
 
@@ -321,10 +325,10 @@
             <div class="modal-body text-center">
                 <img src="http://osmhotels.com//assets/check-true.jpg">
                 <p class="lead" id="message" style="font-size:15px"></p>
-                <button class="rd_more btn btn-default" onclick="location.href='@Url.Action("Index", "Config")';return false;">Ok</button>
-            </div>
-
-        </div>
+                <button class="rd_more btn btn-default hide" id="next" onclick="location.href='@Url.Action("Index", "Config")';return false;">Ok</button>
+                <button class="rd_more btn btn-default hide" data-dismiss="modal" id="back" >Ok</button>
+             </div>
+         </div>
     </div>
 </div>
 

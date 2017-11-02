@@ -11,7 +11,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#example').dataTable({ "order": [[0, "desc"]] });
+            $('#example').dataTable({ lengthMenu: [[10, 25,50,100, -1], [10, 25,50,100, "All"]] ,"order": [[0, "desc"]] });
 
             var elements = $(".job-status");
             var i=$('#item_card_type option:selected').val();
@@ -677,7 +677,7 @@
             <div class="modal-body text-center">
                 <img src="http://osmhotels.com//assets/check-true.jpg">
                 <p class="lead" id="message" style="font-size:15px"></p>
-                <button class="rd_more btn btn-default" data-dismiss="modal" id="reload">Go Back</button>
+                <button class="rd_more btn btn-default" data-dismiss="modal" id="reload">Ok</button>
             </div>
 
         </div>
