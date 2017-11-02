@@ -31,8 +31,6 @@
                     $('#additional').addClass('hide');
                     $('#additional').addClass('hide');
                     $('#ADDbtn').attr('disabled', false);
-                    $("#item_card_type option:first").prop('selected',true);
-                    $('#item_card_type option:first').prop('selected',true);
                     $('#jc_paper_gsm option:first').prop('selected',true);
                     $('#PaperColor option:first').prop('selected',true);
                     $('#paper_size1 option:first').prop('selected',true);
@@ -288,8 +286,11 @@
                     gsm2: "*Please select Additional Paper GSM",
                     bill_count: "*Please enter per book bill count",
                     Quantity: "*Please enter Quantity",
+                    cust_fname:"*Please enter customer first name",
+                    cust_lname:"*Please enter customer last name",
                     cust_email: "*Please enter valid email address",
-                    cust_phone: "*Please enter valid mobile number"
+                    cust_phone: "*Please enter valid mobile number",
+                    client: "*Please select customer name" 
                 }
             });
 
@@ -357,35 +358,35 @@
                             <div class="client_new">
                                 <label class="col-sm-1 control-label" for="jc_job_card">First Name</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="cust_fname" id="cust_fname">
+                                    <input type="text" class="form-control" name="cust_fname" id="cust_fname" required>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
                             </div>
                             <div class="client_new">
                                 <label class="col-sm-1 control-label" for="jc_job_card">Last Name</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="cust_lname" id="cust_lname">
+                                    <input type="text" class="form-control" name="cust_lname" id="cust_lname" required>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
                             </div>
                             <div class="client_new">
                                 <label class="col-sm-1 control-label" for="jc_job_card">E-Mail</label>
                                 <div class="col-sm-2">
-                                    <input type="email" class="form-control" name="cust_email" id="cust_email" value="">
+                                    <input type="email" class="form-control" name="cust_email" id="cust_email" value="" required>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
                             </div>
                             <div class="client_new">
                                 <label class="col-sm-1 control-label" for="jc_job_card">Phone</label>
                                 <div class="col-sm-2">
-                                    <input type="number" minlength="10" maxlength="10" class="form-control" name="cust_phone" id="cust_phone" value="">
+                                    <input type="number" minlength="10" maxlength="10" class="form-control" name="cust_phone" id="cust_phone" value="" required>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
                             </div>
                             <div class="client_old" style="display: none;">
                                 <label class="col-sm-2 control-label" for="jc_job_card">Select Customer</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control select2-hidden-accessible" name="client" id="Select_Customer" tabindex="-1" aria-hidden="true">
+                                    <select class="form-control select2-hidden-accessible" name="client" id="Select_Customer" tabindex="-1" aria-hidden="true" required>
                                         <option value="">Select Client Name</option>
 
                                         @foreach (var item in ViewBag.Customers)
