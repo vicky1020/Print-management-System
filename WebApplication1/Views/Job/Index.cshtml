@@ -161,9 +161,10 @@
                 });
             }
 
-            $("#example").on("click", ".jobProcess", function(){
-                var parent = $("#order_" + event.target.id);
-                var id = parent.attr("id");
+            $("#example").on("click", ".jobProcess", function () {
+                var id = event.target.id;
+                var parent = $("#order_" + id);
+               
 
                 $("#item_card_type").attr("orderId", id);
                 var pdtItem = parent.children(".pdtItem").text();
