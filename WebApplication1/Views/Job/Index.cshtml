@@ -103,9 +103,8 @@
 
                 };
                 $.get("/Job/CalculateTaxes", dataObject, function (data) {
-
+                    var bill = $('.bill_table');
                     if (data.Amount != 0 && data.GrossBillAmount!=0) {
-                        var bill = $('.bill_table');
                         bill.removeClass('hide');
                         $('#message1').addClass('hide');
                         $('#price').html(data.Amount);
