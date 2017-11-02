@@ -53,7 +53,7 @@ namespace PrintManagementApp.Utilities
                                     select data;
 
                         if (itemDisplay.PaperGSM)
-                            query = query.Where(p => p.PaperGSM!=null && p.PaperGSM.Trim().Equals(Convert.ToString(obj.PaperGSM).Trim()));
+                            query = query.Where(p => p.PaperGSM != null && p.PaperGSM.Trim().Equals(Convert.ToString(obj.PaperGSM).Trim()));
 
                         if (itemDisplay.PaperSize)
                             query = query.Where(p => p.PaperSize != null && p.PaperSize.Trim().Equals(Convert.ToString(obj.PaperSize).Trim()));
@@ -111,9 +111,7 @@ namespace PrintManagementApp.Utilities
             {
                 foreach (OrderConfigurationModel m in datau)
                 {
-                    if ((obj.MaxRange <= m.MaxRange || obj.MinRange >= m.MinRange) &&
-                     (obj.MaxRange <= m.MaxRange || obj.MaxRange >= m.MinRange) &&
-                     (obj.MinRange <= m.MaxRange || obj.MinRange >= m.MinRange))
+                    if ((obj.MinRange >= m.MinRange && obj.MinRange <= m.MaxRange)  || (obj.MaxRange >= m.MinRange && obj.MaxRange <= m.MaxRange))
                     {
                         o.OrderConfigurationId = 1;
                         return o;
