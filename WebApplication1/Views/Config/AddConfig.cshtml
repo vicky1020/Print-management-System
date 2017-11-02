@@ -22,6 +22,9 @@
                     $("html").addClass("loading");
                     insertConfig();
                 } 
+                else {
+                    return false;
+                }
             });
             $('#item_card_type').change(function () {
                 if ($('#item_card_type option:selected').val() == '') {
