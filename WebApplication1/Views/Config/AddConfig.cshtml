@@ -114,8 +114,18 @@
                     gsm2: "*Please select Additional Paper GSM",
                     min: "*Please enter min range",
                     max: "*Please enter max range",
-                    amount: "*Please enter amount"
+                    amount: "*Please enter amount",
+                    max: "*Please enter Max range (greater than Min range)",
+                    min: "*Please enter Min range (lesser than Max range)",
                 }
+            });
+
+            $('#max').bind('input propertychange', function() {
+                $("#Min").attr("max", $(this).val()).blur();
+            });
+
+            $('#Min').bind('input propertychange', function() {
+                $("#max").attr("min", $(this).val()).blur();
             });
         });
 
@@ -271,7 +281,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="min">Min</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" min="0" value="1" name="min" id="Min" required>
+                                <input class="form-control" type="number" min="0" value="" name="min" id="Min" required>
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
 
@@ -279,7 +289,7 @@
                             <label class="col-sm-2 control-label" for="max">Max</label>
 
                             <div class="col-sm-3">
-                                <input class="form-control" type="number" min="1" value="1" name="max" id="max" required>
+                                <input class="form-control" type="number" min="1" value="" name="max" id="max" required>
                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_paper_gsm-container"><span class="select2-selection__rendered" id="select2-jc_paper_gsm-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <label class="error" style="color:#c3041d;"></label>
 
