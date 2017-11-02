@@ -65,7 +65,60 @@
             </tbody>
         </table>
     </div>
+    <div class="table-cont hide" id="sampletable">
+        <table id="example2" class="display table table-bordered" cellspacing="0" width="100%">
 
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Product Item</th>
+                    <th>Customer Name</th>
+                    <th>Customer Contact</th>
+                    <th>Customer Email</th>
+                    <th>Paper GSM</th>
+                    <th>Paper Color</th>
+                    <th>Paper Size</th>
+                    <th>Paper Quality</th>
+                    <th>Paper Sides</th>
+                    <th>Ledger Falio</th>
+                    <th>Additional Paper Count</th>
+                    <th>Additional Paper Size</th>
+                    <th>Additonal Paper GSM</th>
+                    <th>Qty</th>
+                    <th>Amount</th>
+                    <th>Worked By</th>
+                    <th>Order Date</th>
+                    <th>Job Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>@item.OrderId</td>
+                        <td>@item.ProductItem</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Email</td>
+                        <td>@item.PaperGSM</td>
+                        <td>@item.PaperColour</td>
+                        <td>@item.PaperSize</td>
+                        <td>@item.PaperQuality</td>
+                        <td>@item.PaperSides</td>
+                        <td>@item.LedgerFalio</td>
+                        <td>@item.AdditionalPaperCount</td>
+                        <td>@item.AdditionalPaperSize</td>
+                        <td>@item.AdditonalPaperGSM</td>
+                        <td>@item.Quantity</td>
+                        <td>@Math.Round(@item.TotalAmount, 2, MidpointRounding.AwayFromZero)</td>
+                        <td>@item.WorkedBy</td>
+                        <td>@item.WorkedOn</td>
+                        <td>@item.JobProcessType</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 <script type="text/javascript">
         // $('#btn').click(function () {
@@ -74,11 +127,18 @@
         //   filename:"Reports"
         //});
         //});
+    
+    $(document).ready(function () {
+        $('#example1').dataTable({ lengthMenu: [[25, 100, -1], [25, 100, "All"]] });
+        $('#example2').dataTable({ lengthMenu: [[-1, 25, 100], ["All", 25, 100]] });
 
-        $(document).ready(function () {
-            $('#example1').dataTable();
-            $('#btn').bind('click', function (e) {
-                $('#example1').tableExport({ type: 'excel', escape: 'false', bootstrap: 'true', "order": [[0, "desc"]] });
-            });
+        
+
+        $('#btn').bind('click', function (e) {
+            $('#sampletable').removeClass('hide');
+            $('#example2').tableExport({ type: 'excel', escape: 'false', bootstrap: 'true', "order": [[0, "desc"]] });
+            $('#sampletable').addClass('hide');
+        });
+        
         });
 </script>
