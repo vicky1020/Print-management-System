@@ -49,7 +49,7 @@ namespace PrintManagementApp.Utilities
                     if (itemDisplay != null)
                     {
                         var query = from data in (await irepo.GetAllOrderConfiguration())
-                                    where data.ProductItem == obj.ProductItem && obj.Quantity > data.MinRange && obj.Quantity <= data.MaxRange
+                                    where data.ProductItem == obj.ProductItem && obj.Quantity >= data.MinRange && obj.Quantity <= data.MaxRange
                                     select data;
 
                         if (itemDisplay.PaperGSM)

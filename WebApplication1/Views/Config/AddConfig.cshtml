@@ -32,6 +32,20 @@
                 }
                 else {
                     $('#button').attr('disabled', false);
+                    $('#jc_paper_gsm option:first').prop('selected',true);
+                    $('#PaperColor option:first').prop('selected',true);
+                    $('#jobcard_paper_size option:first').prop('selected',true);
+                    $('#Paper_Quality option:first').prop('selected',true);
+                    $('#PaperSideId option:first').prop('selected',true);
+                    $('#LedgerFalio option:first').prop('selected',true);
+                    $('#LedgerFalio').val();
+                    $('#AddPaperCount').val('');
+                    $('#AddPaperSize option:first').prop('selected',true);
+                    $('#Addpaper_gsm option:first').prop('selected',true);
+                    $("#bill_count").val('');
+                    $('#Min').val('');
+                    $('#max').val('');
+                    $('#Amount').val('');
                 }
 
                 $("label.error").remove();
