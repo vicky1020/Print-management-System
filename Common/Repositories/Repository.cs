@@ -224,6 +224,7 @@ namespace PrintManagement.Common.Repositories
                                      AdditionalPaperCount = ot.AdditionalPaperCount,
                                      AdditionalPaperSize = ot.AdditionalPaperSize,
                                      AdditonalPaperGSM = ot.AdditonalPaperGSM,
+                                     PerBookBillCount= ot.PerBookBillCount,
                                      TotalAmount = ot.TotalAmount,
                                      Amount = ot.Amount,
                                      CreatedBy = ot.CreatedBy,
