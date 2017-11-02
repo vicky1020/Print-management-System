@@ -18,8 +18,10 @@
                 location.reload('#re');
             });
             $(".ADD").click(function () {
-                if($("#jc_form_spl").valid())
+                if($("#jc_form_spl").valid()) {
+                    $("html").addClass("loading");
                     insertConfig();
+                } 
             });
             $('#item_card_type').change(function () {
                 if ($('#item_card_type option:selected').val() == '') {
@@ -54,9 +56,11 @@
 
                 $.post("/Config/InsertConfig", dataObject, function (data,status) {
                     if(data==1){
+                        $("html").removeClass("loading");
                         $('#message').text("Configuration Already Exists");
                     }
                     else{
+                        $("html").removeClass("loading");
                         $('#message').text('Configuration Added Succssfully');}
                 });
             }

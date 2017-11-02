@@ -76,7 +76,10 @@
 
             $("#ADDbtn").click(function () {
                 if($("#jc_form_spl").valid())
+                {
+                    $("html").addClass("loading");
                     calculateAmount();
+                }
             });
 
             function calculateAmount() {
@@ -102,7 +105,8 @@
                 $.get("/Job/CalculateTaxes", dataObject, function (data) {
 
                     if (data.Amount != 0 && data.GrossBillAmount!=0) {
-                        $('.bill_table').removeClass('hide');
+                        var bill = $('.bill_table');
+                        bill.removeClass('hide');
                         $('#message1').addClass('hide');
                         $('#price').html(data.Amount);
                         $('#price1').html(data.Amount);
@@ -112,15 +116,20 @@
                         $('#netamount').html(data.GrossBillAmount);
                         $('#qty').html($('#Quantity').val());
                         $('#description').html($('#item_card_type option:selected').val());
+                        $(window).scrollTop(bill.offset().top);
+                        $("html").removeClass("loading");
                     }
                     else {
-                        $('.bill_table').addClass('hide');
+                        bill.addClass('hide');
                         $('#message1').removeClass('hide');
-                        $('#message1').html('No Configuration Found, Pease Enter Amount!')
+                        $('#message1').html('No Configuration Found, Pease Enter Amount!');
+                        $("html").removeClass("loading")
                     }
                 });
+                
             }
             $("#ADDbtn1").click(function () {
+                $("html").addClass("loading");
                 insertOrder();
             });
             function insertOrder() {
@@ -152,11 +161,13 @@
                     'LastName': $('#cust_lname').val(),
                     'PhoneNumber': $('#cust_phone').val()
                 };
-                $.post("/Job/saveCustomer", dataObject, function (data,staus) {
+                $.post("/Job/saveCustomer", dataObject, function (data,status) {
                     $('#message').html(status);
                 }).done(function () {
+                    $("html").removeClass("loading");
                     $('#message').html('Job added successful!');
                 }).fail(function () {
+                    $("html").removeClass("loading");
                     $('#message').html('Connection Error');
                 });
             }

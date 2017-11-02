@@ -35,9 +35,10 @@
     <div class="body-cont">
         <div class="body-content">
             @RenderBody()
-            <hr />
         </div>
     </div>
+    <div class="loader fa fa-spinner fa-spin"></div>
+    <div class="loading-mask"></div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -64,5 +65,9 @@
     <script src="~/Scripts/custom.js"></script>
     @RenderSection("scripts", required: false)
     <div class="col-sm-2"></div>
+
+    <footer>
+        <div class="footer-cont">Print Management System. A product of <a target="_blank" href="http://www.vuedata.com/">VueData Technologies</a></div>
+    </footer>
 </body>
 </html>
