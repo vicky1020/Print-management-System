@@ -172,8 +172,8 @@
                 var jobProcess = parent.children(".jobProcess").text();
                 $("#job_process_type").val(jobProcess).trigger('change');
 
-                var printColor = parent.children(".paperColour").text();
-                $("#jc_job").val(printColor);
+                var printColor = parent.children(".paperColor").text();
+                $("#PaperColor").val(printColor);
 
                 var paperSize = parent.children(".paperSize").text();
                 $("#paper_size1").val(paperSize);
@@ -369,7 +369,7 @@
                         <div class="paper_info_div">
                             <div class="form-group">
 
-                                <label class="col-sm-2 control-label PaperColour-cont" for="jc_job">Printing Color</label>
+                                <label class="col-sm-2 control-label PaperColour-cont" for="PaperColour">Printing Color</label>
                                 <div class="col-sm-3 PaperColour-cont">
                                     <select class="form-control rst_input select2-hidden-accessible" name="PaperColour" id="PaperColor" tabindex="-1" aria-hidden="true">
                                         <option value="">Select Colour</option>
@@ -381,7 +381,7 @@
                                     </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-jc_job-container"><span class="select2-selection__rendered" id="select2-jc_job-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
-                                <label class="col-sm-2 control-label PaperQuality-cont" for="jc_job">Paper Quality</label>
+                                <label class="col-sm-2 control-label PaperQuality-cont" for="PaperQuality">Paper Quality</label>
                                 <div class="col-sm-3 PaperQuality-cont">
                                     <select class="form-control rst_input" name="PaperQuality" id="PaperQuality">
                                         <option value="">Select Quality</option>
@@ -397,7 +397,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label PaperSize-cont" for="jc_paper_size">Paper Size</label>
+                                <label class="col-sm-2 control-label PaperSize-cont" for="paper_size">Paper Size</label>
                                 <div class="col-sm-3 PaperSize-cont">
                                     <select class="form-control rst_input" name="paper_size" id="paper_size1">
                                         <option value="">Select Paper Size</option>
@@ -409,7 +409,7 @@
                                     </select>
                                     <label class="error" style="color:#c3041d;"></label>
                                 </div>
-                                <label class="col-sm-2 control-label PaperGSM-cont" for="jc_paper_gsm">Paper GSM</label>
+                                <label class="col-sm-2 control-label PaperGSM-cont" for="gsm">Paper GSM</label>
                                 <div class="col-sm-3 PaperGSM-cont">
                                     <select class="form-control rst_input select2-hidden-accessible" name="gsm" id="jc_paper_gsm" tabindex="-1" aria-hidden="true">
                                         <option value="">Select Paper GSM</option>
