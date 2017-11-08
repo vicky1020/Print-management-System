@@ -103,6 +103,189 @@ namespace PMSRepoTest
             Assert.IsNotNull(result);
         }
 
+        [TestMethod]
+        public async Task GetJobProcessTypeByIdTest()
+        {
+            var irepo = new Repository();
+            int ProductProcessIdTest = 1;
+            var result = (await irepo.GetJobProcessTypeById(ProductProcessIdTest));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllLedgerFalioTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllLedgerFalio());
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetLedgerFalioByIdTest()
+        {
+            var irepo = new Repository();
+            int LedgerFalioIdTest = 1;
+            var result = (await irepo.GetLedgerFalioById(LedgerFalioIdTest));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllPaperGSMTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllPaperGSM());
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetPaperGSMByIdTest()
+        {
+            var irepo = new Repository();
+            int PaperGSMId = 1;
+            var result = (await irepo.GetPaperGSMById(PaperGSMId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetPaperQualityByIdTest()
+        {
+            var irepo = new Repository();
+            int PaperQtyId = 1;
+            var result = (await irepo.GetPaperQualityById(PaperQtyId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllPaperSideTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllPaperSide());
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetPaperSideByIdTest()
+        {
+            var irepo = new Repository();
+            int PaperSideId = 1;
+            var result = (await irepo.GetPaperSideById(PaperSideId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetUserSecurityQuestionByIdTest()
+        {
+            var irepo = new Repository();
+            int SecurityQuestionId = 1;
+            var result = (await irepo.GetUserSecurityQuestionById(SecurityQuestionId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllUserSecurityQuestionTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllUserSecurityQuestion());
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetUserRoleByIdTest()
+        {
+            var irepo = new Repository();
+            int UserRoleId = 1;
+            var result = (await irepo.GetUserRoleById(UserRoleId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllUserRoleTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllUserRole());
+
+            Assert.IsNotNull(result);
+        }
+         
+
+           [TestMethod]
+        public async Task GetProductItemByIdTest()
+        {
+            var irepo = new Repository();
+            int ProductItemId = 1;
+            var result = (await irepo.GetUserRoleById(ProductItemId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllProductItemTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllProductItem());
+
+            Assert.IsNotNull(result);
+        }
+         
+
+               [TestMethod]
+        public async Task GetPrintingColourByIdTest()
+        {
+            var irepo = new Repository();
+            int PrintingColourId = 1;
+            var result = (await irepo.GetPrintingColourById(PrintingColourId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllPrintingColourTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllPrintingColour());
+
+            Assert.IsNotNull(result);
+        }
+
+         
+
+                  [TestMethod]
+        public async Task GetPaperSizeByIdTest()
+        {
+            var irepo = new Repository();
+            int PaperSizeId = 1;
+            var result = (await irepo.GetPaperSizeById(PaperSizeId));
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllPaperSizeTest()
+        {
+            var irepo = new Repository();
+            var result = (await irepo.GetAllPaperSize());
+
+            Assert.IsNotNull(result);
+        }
+
+
+
+
+
+
+
+
 
     }
 }
