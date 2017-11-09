@@ -128,6 +128,7 @@
     <None Include="DataSetEF.edmx.diagram">
       <DependentUpon>DataSetEF.edmx</DependentUpon>
     </None>
+    <None Include="DBBackPac\PMS-BackUp.bacpac" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
